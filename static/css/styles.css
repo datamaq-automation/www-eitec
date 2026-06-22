@@ -1,0 +1,547 @@
+@charset "utf-8";
+/* CUSTOM CSS Document */
+
+	/*
+	font-family: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	font-family: 'Roboto', sans-serif;
+	font-family: 'Varela Round', sans-serif;
+	*/m
+body{
+	font-family: 'Roboto', sans-serif;
+}
+
+
+header{
+	background-color: #ffffff;
+box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);	
+} 
+
+header .top{
+	background-color: #00a6ed;	
+}
+
+header .top p, header .top a{
+	color: #ffffff;	
+}
+
+header .logo{
+	background-image: url("../custom/logo.jpg");
+	width:86px;
+	height: 116px;
+}
+
+.hamburger{
+	display: block!important;
+	padding: 43px;
+}
+
+.hamburger-inner, .hamburger-inner:after, .hamburger-inner:before{
+	background-color: #040734;
+}
+
+header .options {
+    float: left;
+	width: 100%;
+    vertical-align: middle;
+    height: 0;
+    line-height: 50px;
+	text-align: left;
+	overflow: hidden;
+}
+
+header ul.options > li{
+	display: block;
+}
+
+header .options a, header .options p{
+	padding: 0;
+	margin: 0;
+}
+
+header .options a{
+	color: #00a6ed;
+}
+
+header .options a:hover{
+	color: #8aae4e;
+}
+
+header .menu .container > ul > li {
+	font-size: 1.75rem;
+    border-bottom: 1px solid #cccccc;
+}
+
+header .menu ul li a, header .menu ul li p{
+	color: #808080;
+}
+
+header + .carousel{
+	margin-top: 144px;
+	margin-bottom: 144px;
+}
+
+.carousel-caption h1{
+	font-size: 3rem;
+}
+
+h1{
+	font-family: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+}
+
+h2{
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	display: inline-block;
+	font-size: 2rem;
+	padding: 15px 30px;
+	margin: auto;
+	background-color: #00a6ed;
+	text-align: center;
+	font-family: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	color: #FFF;
+	margin-bottom: 30px;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+h2 + p{
+	text-align: center;
+	margin-bottom: 60px;
+}
+
+.btn-call{
+	background-color: #00a6ed;
+	color: #fff;
+	border-radius: 0;
+	border: 1px solid #00a6ed;
+	text-transform: uppercase;
+}
+
+.btn-call:hover{
+	background-color: #8aae4e;
+	color: #fff;
+	border: 1px solid #8aae4e;	
+}
+
+.listadoProductos a, .productos a{
+	border: 2px solid #c7d0d9;
+	padding: 30px;
+	text-align: center;
+	vertical-align: top;
+	background-color: transparent;
+	color: #414141;
+}
+
+
+.listadoProductos a .btn-call, .productos a .btn-call{
+	text-transform: uppercase;
+	width: 100%;
+}
+
+.listadoProductos a .imagen, .productos a .imagen{
+	margin-bottom: 30px;
+}
+
+.listadoProductos a .imagen img, .productos a .imagen img, .carousel-fade .carousel-item{
+	object-fit: contain;
+}
+
+.listadoProductos a .precioProducto, .productos a .precioProducto{
+	font-family: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	font-size: 1.5rem;
+	font-weight: normal;
+}
+
+.listadoProductos a .detalleProducto, .listadoProductos a .btn-call{
+	font-size: 0.875rem;
+}
+
+.listadoCategorias a p{
+	font-family: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	font-size: 1.25rem;
+	background-color: #00a6ed;
+	color: #fff;
+	margin-bottom: 0;
+	padding: 15px;
+	font-weight: normal;		
+} 
+
+.info .container > div{
+	border: 2px solid #c7d0d9;
+}
+
+.info .container > div .modalTrigger > div{
+	background-color: #00a6ed;
+}
+
+.info .container > div .modalTrigger > div i{
+	color: #ffffff;
+}
+
+.info .container > div .modalTrigger p{
+	font-family: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	font-size: 1.5rem;
+	font-weight: normal;	
+    text-transform: uppercase;	
+}
+
+footer{
+	background-color: #000;
+}
+
+footer .logo {
+    width: 90px;
+    height: 90px;
+    background-image: url(../files/logo.jpg);
+}
+
+footer .redes a{
+	color: #191919;
+	background-color: #c7d0d9;
+	border-radius: 100%;
+}
+
+footer .links p{
+	color: #ffffff;
+	font-size: .875rem;
+}
+
+
+footer .links p a{
+	color: #ffffff;
+}
+
+footer .links p a:hover{
+	color: #00a6ed;
+}
+
+footer .links p:first-child{
+	font-family: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	color: #00a6ed;
+	font-size: 1rem;
+	font-weight: normal;	
+}
+
+.buscando form, .mensaje > div:first-child{
+	background: #ffffff;
+	color: #414141;
+}
+
+.buscando form h2{
+	font-family: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	background-color: transparent;
+	padding: 0;
+	left: auto;
+	transform: none;
+	color: #414141;
+	font-size: 1.5rem;
+	margin-bottom: 15px;
+}
+
+.modal-backdrop.show{
+	opacity: 1;
+}
+
+.buscando .mask, .mensaje .mask, .modal-backdrop{
+    background: rgba(255,255,255,0.75);
+}
+
+.buscando form input[type="text"], .articulo form.buscandoDescarga input[type="text"]{
+	background-color: transparent;
+	color: #ffffff;
+}
+
+.buscando form input[type="submit"], .articulo form.buscandoDescarga input[type="submit"] {
+    background-color: #00a6ed;
+	border: 1px solid #00a6ed
+}
+
+.buscando form input[type="submit"]:hover, .articulo form.buscandoDescarga input[type="submit"]:hover {
+    background-color: #8aae4e;
+	border: 1px solid #8aae4e;
+}
+
+section.producto h1{
+	font-family: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+font-size: 2rem;
+	font-weight: normal;	
+}
+
+.importeFinal{
+	background: #9ba7b3;
+    padding: 15px;
+    color: #fff;	
+} 
+
+.formasTexto.active, .finalizarCompra.active{
+	background-color: #EFEFEF;	
+	color: #414141
+}
+
+    
+
+/*Modal*/
+
+.modal-content{
+	background-color: #fff;
+	border: 1px solid #c7d0d9;
+}
+
+.modal-body ul{
+	font-size: .879rem;
+}
+
+.loginRegistro .login, .loginRegistro .registro, .loginRegistro .recuperar{
+    border: 1px solid rgba(255,255,255,1);
+    background-color: transparent;
+}
+
+.recuperarTrigger, .registrar, .loginTrigger{
+	color: #414141;
+}
+
+.registrar{
+	color: #414141;
+}
+
+.loginRegistro .form-control, .loginRegistro .form-select{
+	background-color: transparent;
+	color: #414141;
+}
+
+.recuperarTrigger:hover, .registrarTrigger, .loginRegistro .small a{
+	color: #c7d0d9;
+}
+
+.carrito h2{
+	display: block;
+}
+
+.listaCarrito .cabecera p{
+	color: #000;
+}
+
+.listaCarrito ul.productos li:nth-child(odd){
+	background-color: #f2f2f2;
+}
+
+.listaCarrito ul.productos li:nth-child(even){
+	background-color: #ffffff;
+}
+
+.listaCarrito ul.productos li > p, .listaCarrito ul.productos li > a{
+	font-size: .875rem;
+}
+
+.listaCarrito ul.productos li > a {
+    border: 0;
+	padding: 0px;}
+
+.totales .btn-call{
+	width: 100%;
+}
+
+.totales{
+	background-color: #e5e5e5;
+}
+
+.finalizarCompra{
+    color: #000;
+    border: 1px solid rgba(65,65,65,0);
+    font-size: .879rem;
+	}
+
+.finalizarCompra.active{
+    border: 1px solid rgba(65,65,65,1);
+	}
+
+.articulo h2, .articulo h1{
+	float: left;
+}
+
+.articulo .texto {
+    font-size: 1rem;
+}
+
+.articulo .texto h3 {
+	color:#00a6ed; 
+	font-family: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+}
+
+ul.productos, li a.borrarProducto, .totales{
+	color: #000;
+}
+
+header + .loginRegistro, header + .contacto{
+	background-color: transparent;
+}
+
+.contacto .form-control{
+	background-color: transparent;
+}
+
+footer .redes a{
+	vertical-align: top;
+	color: #fff;
+	background-color: #414141;
+}
+
+footer .redes a.whatsapp:before{
+content: '\f232';	
+}
+
+footer .redes a.direccion:before{
+content: '\e826';	
+}
+
+footer .redes a:hover{
+	background-color: #00a6ed;
+}
+
+footer .clearfix + .links{
+	display: block;
+	width: 100%!important;
+	text-align: center;
+}
+
+footer .clearfix + .links a, footer .clearfix + .links p{
+	display: inline-block;
+	margin: 0 5px 10px;
+}
+
+footer .footReg{
+	color: #ffffff;
+}
+
+
+/*Producto*/
+.descripcion p{
+	font-size: .879rem;
+}
+
+@media only screen and (max-width : 479px) {
+	
+	header .menu .container > ul > li{
+		font-size: 1.5rem;
+	}
+	
+	header .hamburger {
+		padding: 20px 0;
+	}	
+	
+	header .logo{
+		width: 60px;
+		height: 70px;
+	}	
+	
+	header .options	{
+		height: 70px;
+		line-height: 40px;
+	}
+	
+	header .options a{
+		margin-left: 10px;
+	}	
+header + .carousel{
+	margin-top: 132px;
+	height: calc(100vh - 132px)
+}		
+	
+	.carousel-caption h1{
+		font-size: 2rem;
+	}
+	
+	footer .links p:first-child {
+    font-size: 2rem;
+}	
+	
+	footer .redes a{
+		width: 50px;
+		height: 50px;
+	}
+		
+	header + section, header + section.destacadosTienda{
+    margin-top: 170px;		
+	}	
+	
+	h2, h1{
+	font-size: 2rem;	
+	}
+		}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width:480px) and (max-width : 767px) {
+header + .carousel{
+	margin-top: 169px;
+	height: calc(100vh - 169px);
+		margin-bottom: 60px;
+	}	
+	
+	.carousel-caption h1{
+		font-size: 2rem;
+	}	
+	
+	header + section, header + section.destacadosTienda{
+		margin-top: 220px;
+	}	
+	
+	header + section.producto, header + section.carrito, section.contacto, section.articulo{
+		margin-top: 180px;	
+	}	
+	
+	
+}
+
+
+
+/* Small Devices, Tablets */
+@media only screen and (min-width:768px) and (max-width : 991px) {
+header + .carousel{
+	margin-top: 162px;
+	height: calc(100vh - 162px)
+}		
+	/*Listado*/
+header + section, header + section.destacadosTienda{
+	margin-top: 205px;
+}
+
+header + section.producto, section.contacto, section.articulo{
+margin-top: 175px;	
+}		
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width:992px) and (max-width : 1199px) {
+header + .carousel{
+	margin-top: 152px;
+	height: calc(100vh - 152px)
+}		
+/*Listado*/
+header + section, header + section.destacadosTienda{
+	margin-top: 205px;
+}
+	
+	header + section.producto, section.contacto, section.articulo{
+		margin-top: 175px;	
+	}	
+	
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+/*Listado*/
+header + section, section.contacto, section.articulo, header + section.destacadosTienda{
+	margin-top: 205px;
+}
+header + .carousel{
+	margin-top: 152px;
+	height: calc(100vh - 152px)
+}	
+	
+.listadoProductos a:nth-child(4n), .listadoCategorias a:nth-child(4n){
+	margin-right: 0;}
+	
+}

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% include "partials/head.html" %}
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+    {% include "partials/scripts.html" %}
+    {% block scripts_extra %}{% endblock %}
+</body>
+</html>

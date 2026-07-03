@@ -1,8 +1,11 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from datetime import datetime
+from pathlib import Path
+
+import yaml
+from fastapi import FastAPI, Form, Request
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 TEMPLATES_DIR = BASE_DIR / "templates"
@@ -20,14 +23,76 @@ if CUSTOM_DIR.exists():
 
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
+DATA_FILE = BASE_DIR / "data" / "site_data.yml"
+SITE_DATA = {"categories": [], "carousel_slides": []}
+if DATA_FILE.exists():
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        SITE_DATA = yaml.safe_load(f)
+
+
+def _get_category_slugs() -> set:
+    return {cat["slug"] for cat in SITE_DATA.get("categories", [])}
+
+
+def _common_context() -> dict:
+    return {
+        "categories": SITE_DATA.get("categories", []),
+        "carousel_slides": SITE_DATA.get("carousel_slides", []),
+        "current_year": datetime.now().year,
+    }
+
+
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    # Starlette 0.21-0.27: request va primero, luego name, luego context
-    return templates.TemplateResponse(
-        request,           # <-- 1er arg: el objeto Request
-        "index.html",      # <-- 2do arg: nombre del template
-        {"title": "Inicio"}  # <-- 3er arg: contexto (sin repetir request)
+    context = _common_context()
+    context.update({"title": "EITEC - Fábrica de accesorios para Artefactos a Gas"})
+    return templates.TemplateResponse(request, "index.html", context)
+
+
+@app.get("/contactanos")
+async def contact_page():
+    return RedirectResponse(url="/", status_code=307)
+
+
+@app.get("/categoria/{slug}")
+async def category(slug: str):
+    if slug not in _get_category_slugs():
+        return RedirectResponse(url="/", status_code=307)
+    return RedirectResponse(url="/", status_code=307)
+
+
+@app.post("/buscar")
+async def search(busqueda: str = Form("")):
+    query = busqueda.strip().lower()
+    if not query:
+        return RedirectResponse(url="/", status_code=307)
+
+    for cat in SITE_DATA.get("categories", []):
+        if query in cat["name"].lower():
+            return RedirectResponse(url=f"/categoria/{cat['slug']}", status_code=307)
+
+    return RedirectResponse(url="/", status_code=307)
+
+
+@app.post("/contacto", response_class=HTMLResponse)
+async def contact(
+    request: Request,
+    nombre: str = Form(...),
+    email: str = Form(...),
+    telefono: str = Form(...),
+    mensaje: str = Form(""),
+):
+    # TODO: agregar envío de email o persistencia real.
+    # Por ahora solo confirmamos recepción.
+    context = _common_context()
+    context.update(
+        {
+            "title": "Mensaje enviado - EITEC",
+            "message": "Gracias por contactarte. Te responderemos a la brevedad.",
+        }
     )
+    return templates.TemplateResponse(request, "index.html", context)
+
 
 @app.get("/health")
 async def health():

@@ -1,0 +1,41 @@
+<header class="header" id="header">
+    <div class="top">
+        <div class="container">
+            <div class="redes">
+                <a href="https://www.instagram.com/eitec_cooperativa/" class="icon icon-instagram" target="_blank"></a>
+                <a href="/contactanos" class="icon icon-mail"></a>
+                <a href="https://www.facebook.com/CooperativaEitec" class="icon icon-facebook" target="_blank"></a>
+            </div>
+            <p>Fábrica de accesorios para artefactos a gas</p>
+            <div class="optIcons">
+                <a href="javascript:void(0);" class="icon fa-solid fa-magnifying-glass buscar"></a>
+                <a href="/carrito" class="icon fa-solid fa-cart-shopping"></a>
+            </div>
+            <span class="clearfix"></span>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="/" class="logo"></a>
+
+        <button class="hamburger hamburger--collapse" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+
+        <ul class="options">
+            <li>
+                <a href="/">Inicio</a>
+            </li>
+            {% for cat in categories %}
+            <li>
+                <p class="trigger mb-0"><a href="/categoria/{{ cat.slug }}">{{ cat.name }}</a></p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div class="mask"></div>
+        <span class="clearfix"></span>
+    </div>
+</header>

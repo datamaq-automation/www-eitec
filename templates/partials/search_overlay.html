@@ -1,0 +1,11 @@
+{% set category_names = categories | map(attribute='name') | join(', ') %}
+
+<div class="buscando">
+    <form class="busqueda" action="/buscar" method="post" enctype="multipart/form-data">
+        <h2>Encontrá lo que buscás</h2>
+        <input type="text" placeholder="Buscá , {{ category_names }}" id="busqueda" name="busqueda">
+        <input type="submit" value="">
+        <span class="clearfix"></span>
+    </form>
+    <div class="mask"></div>
+</div>

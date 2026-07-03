@@ -1,5 +1,6 @@
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 import yaml
 from fastapi import FastAPI, Form, Request
@@ -13,7 +14,6 @@ STATIC_DIR = BASE_DIR / "static"
 
 app = FastAPI(title="Datamaq SSR")
 
-STATIC_DIR = BASE_DIR / "static"
 if STATIC_DIR.exists():
     app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
@@ -24,17 +24,23 @@ if CUSTOM_DIR.exists():
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 DATA_FILE = BASE_DIR / "data" / "site_data.yml"
-SITE_DATA = {"categories": [], "carousel_slides": []}
-if DATA_FILE.exists():
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        SITE_DATA = yaml.safe_load(f)
 
 
-def _get_category_slugs() -> set:
+def _load_site_data() -> dict[str, Any]:
+    if DATA_FILE.exists():
+        with open(DATA_FILE, "r", encoding="utf-8") as f:
+            return yaml.safe_load(f) or {"categories": [], "carousel_slides": []}
+    return {"categories": [], "carousel_slides": []}
+
+
+SITE_DATA: dict[str, Any] = _load_site_data()
+
+
+def _get_category_slugs() -> set[str]:
     return {cat["slug"] for cat in SITE_DATA.get("categories", [])}
 
 
-def _common_context() -> dict:
+def _common_context() -> dict[str, Any]:
     return {
         "categories": SITE_DATA.get("categories", []),
         "carousel_slides": SITE_DATA.get("carousel_slides", []),

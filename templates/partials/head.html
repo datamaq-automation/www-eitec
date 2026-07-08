@@ -21,12 +21,40 @@
 
 <link href="/static/css/styles.css" rel="stylesheet" type="text/css">
 
+<!-- Prefetching & Preconnecting CDNs for Performance -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://default.contactopuro.com">
+
+<!-- Robots Optimization -->
+{% if noindex %}
+<meta name="robots" content="noindex, nofollow">
+{% else %}
+<meta name="robots" content="index, follow">
+{% endif %}
+
+<!-- Canonical & Lang Tags -->
+<link rel="canonical" href="{{ canonical_url | default('https://www.eitec.coop.ar/') }}">
+<link rel="alternate" hreflang="es-AR" href="{{ canonical_url | default('https://www.eitec.coop.ar/') }}">
+
 <!-- Primary Meta Tags -->
 <title>{{ title | default('EITEC - Fábrica de accesorios para Artefactos a Gas') }}</title>
 <meta name="title" content="{{ title | default('EITEC - Fábrica de accesorios para Artefactos a Gas') }}">
-<meta name="description" content="{{ description | default('') }}">
-<meta property="og:image" content="/static/custom/logo.jpg">
-<meta property="twitter:image" content="/static/custom/logo.jpg">
+<meta name="description" content="{{ description | default('Fabricación de accesorios y repuestos para artefactos a gas en Bernal, Argentina. Válvulas de seguridad, termostatos y quemadores de la línea ex EITAR.') }}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ canonical_url | default('https://www.eitec.coop.ar/') }}">
+<meta property="og:title" content="{{ title | default('EITEC - Fábrica de accesorios para Artefactos a Gas') }}">
+<meta property="og:description" content="{{ description | default('Fabricación de accesorios y repuestos para artefactos a gas en Bernal, Argentina. Válvulas de seguridad, termostatos y quemadores de la línea ex EITAR.') }}">
+<meta property="og:image" content="https://www.eitec.coop.ar/static/custom/logo.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ canonical_url | default('https://www.eitec.coop.ar/') }}">
+<meta name="twitter:title" content="{{ title | default('EITEC - Fábrica de accesorios para Artefactos a Gas') }}">
+<meta name="twitter:description" content="{{ description | default('Fabricación de accesorios y repuestos para artefactos a gas en Bernal, Argentina. Válvulas de seguridad, termostatos y quemadores de la línea ex EITAR.') }}">
+<meta name="twitter:image" content="https://www.eitec.coop.ar/static/custom/logo.jpg">
 
 <!-- Favicon -->
 <link rel="icon" type="image/jpeg" href="/custom/logo.jpg">

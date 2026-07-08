@@ -4,7 +4,7 @@
             {% for cat in categories %}
             <a href="/categoria/{{ cat.slug }}" class="cuadrada">
                 <p>{{ cat.name }}</p>
-                <img src="/static/img/{{ cat.image }}" alt="{{ cat.name }}" class="centrar imagenCategoria">
+                <img src="/static/img/{{ cat.image }}" alt="{{ cat.name }} - EITEC Cooperativa ex EITAR" class="centrar imagenCategoria" loading="lazy">
             </a>
             {% endfor %}
             <span class="clearfix"></span>

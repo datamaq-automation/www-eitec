@@ -11,8 +11,66 @@
     </div>
     {% endif %}
 
-    {% include "partials/carousel.html" %}
-    {% include "partials/categories_grid.html" %}
+    {% if active_category %}
+        {# Renderizamos la vista de categoría para indexación SEO #}
+        <main id="main-content">
+            <section class="producto mt-5 pt-5 mb-5">
+                <div class="container">
+                    <nav aria-label="breadcrumb" class="mb-4">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ active_category.name }}</li>
+                        </ol>
+                    </nav>
+                    
+                    <div class="row align-items-center">
+                        <div class="col-md-7 mb-4 mb-md-0">
+                            <h1 class="mb-3 text-primary">{{ active_category.name }}</h1>
+                            <p class="lead text-muted">
+                                Fabricación y venta de <strong>{{ active_category.name }}</strong> de alta calidad. 
+                                Repuestos originales y componentes aprobados para artefactos a gas (línea ex EITAR).
+                            </p>
+                            <p>
+                                Como cooperativa industrial EITEC (anteriormente EITAR), producimos accesorios a gas con los estándares de seguridad y durabilidad más altos en Argentina. Ofrecemos soluciones confiables y seguras para calefactores, cocinas, termotanques y otros artefactos de gas domésticos e industriales. Todos nuestros repuestos e insumos están fabricados por trabajadores metalúrgicos con amplia experiencia en Bernal Oeste, Quilmes.
+                            </p>
+                            <div class="mt-4">
+                                <a href="#contacto" class="btn btn-primary btn-call px-4 py-2">Consultar por esta categoría</a>
+                            </div>
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <img src="/static/img/{{ active_category.image }}" alt="{{ active_category.name }} - EITEC Cooperativa ex EITAR" class="img-fluid rounded shadow-sm imagenCategoria" style="max-height: 380px; object-fit: contain;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        {# Mostramos la grilla de otras categorías #}
+        <section class="other-categories py-5 bg-light border-top border-bottom">
+            <div class="container">
+                <h2 class="text-center mb-5 h3">Otras Categorías de Productos</h2>
+                {% include "partials/categories_grid.html" %}
+            </div>
+        </section>
+    {% else %}
+        {# Vista normal de la Home page #}
+        <main id="main-content">
+            {% include "partials/carousel.html" %}
+            
+            {# Sección de introducción semántica y estética para la Home #}
+            <section class="intro-eitec py-5 text-center bg-light border-bottom">
+                <div class="container">
+                    <h1 class="display-6 fw-bold text-primary mb-3">EITEC Cooperativa de Trabajo</h1>
+                    <p class="lead mx-auto text-secondary" style="max-width: 800px;">
+                        Fábrica recuperada dedicada a la producción y comercialización de accesorios para artefactos a gas. Fabricamos los repuestos originales de la clásica línea <strong>EITAR</strong> con la mayor seguridad y experiencia metalúrgica de Quilmes, Buenos Aires.
+                    </p>
+                </div>
+            </section>
+            
+            {% include "partials/categories_grid.html" %}
+        </main>
+    {% endif %}
+
     {% include "partials/contact_form.html" %}
     {% include "partials/footer.html" %}
     {% include "partials/search_overlay.html" %}

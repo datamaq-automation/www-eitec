@@ -7,9 +7,11 @@
     <div class="carousel-inner">
         {% for slide in carousel_slides %}
         <div class="carousel-item{% if loop.first %} active{% endif %}" style="background-image: url('/static/img/{{ slide.image }}')">
+            {# Imagen oculta visualmente para indexación de Google y optimización LCP/Lazy loading #}
+            <img src="/static/img/{{ slide.image }}" alt="{{ slide.title }} - EITEC Cooperativa ex EITAR" class="visually-hidden" {% if loop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>{{ slide.title }}</h1>
+                    <h2 class="h1">{{ slide.title }}</h2>
                     <p>...</p>
                     <p><a class="btn btn-lg btn-call" href="/categoria/{{ slide.link }}">Ver más</a></p>
                 </div>

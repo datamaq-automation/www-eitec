@@ -6,8 +6,10 @@ from fastapi.templating import Jinja2Templates
 
 from src.domain.catalog import CatalogRepository
 from src.domain.lead import LeadNotifier
+from src.infrastructure.config import settings
 from src.infrastructure.repositories.yaml_catalog import YamlCatalogRepository
-from src.infrastructure.services.logging_lead_notifier import LoggingLeadNotifier
+from src.infrastructure.services.logger import LoggingLeadNotifier
+from src.infrastructure.services.smtp_lead_notifier import SmtpLeadNotifier
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 TEMPLATES_DIR = BASE_DIR / "templates"
@@ -17,7 +19,13 @@ DATA_FILE = BASE_DIR / "data" / "site_data.yml"
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 _catalog_repo = YamlCatalogRepository(DATA_FILE)
-_lead_notifier = LoggingLeadNotifier()
+
+# Iniciar SmtpLeadNotifier si SMTP_HOST no es 'localhost' y hay usuario configurado.
+# De lo contrario, usar LoggingLeadNotifier para pruebas locales sin romper nada.
+if settings.SMTP_HOST != "localhost" and settings.SMTP_USERNAME:
+    _lead_notifier: LeadNotifier = SmtpLeadNotifier()
+else:
+    _lead_notifier: LeadNotifier = LoggingLeadNotifier()
 
 def get_catalog_repository() -> CatalogRepository:
     return _catalog_repo

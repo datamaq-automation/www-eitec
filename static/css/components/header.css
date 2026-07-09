@@ -1,0 +1,86 @@
+.header {
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-header);
+    -webkit-box-shadow: var(--shadow-header);
+    -moz-box-shadow: var(--shadow-header);
+}
+
+.header__top {
+    background-color: var(--color-primary);
+}
+
+.header__top p,
+.header__top a {
+    color: var(--color-white);
+}
+
+.header__logo {
+    background-image: url("../custom/logo.jpg");
+    width: 86px;
+    height: 116px;
+}
+
+.header__hamburger {
+    display: block !important;
+    padding: 43px;
+}
+
+.header__hamburger-inner,
+.header__hamburger-inner:after,
+.header__hamburger-inner:before {
+    background-color: var(--color-dark);
+}
+
+.header__menu {
+    float: left;
+    width: 100%;
+    vertical-align: middle;
+    height: 0;
+    line-height: 50px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.header__menu-item {
+    display: block;
+}
+
+.header__menu-link,
+.header__menu-trigger {
+    padding: 0;
+    margin: 0;
+}
+
+.header__menu-link {
+    color: var(--color-primary);
+}
+
+.header__menu-link:hover {
+    color: var(--color-primary-hover);
+}
+
+/* Scroll reduce placeholder if needed */
+.header--reduce {
+    /* Potential future styles for scroll-reduced state */
+}
+
+/* Responsive Breakpoints for Header */
+@media only screen and (max-width: 479px) {
+    .header__hamburger {
+        padding: 20px 0;
+    }
+    
+    .header__logo {
+        width: 60px;
+        height: 70px;
+    }
+    
+    .header__menu {
+        height: 70px;
+        line-height: 40px;
+    }
+    
+    .header__menu-link {
+        margin-left: 10px;
+    }
+}

@@ -1,0 +1,22 @@
+:root {
+    /* Colors */
+    --color-primary: #00a6ed;
+    --color-primary-hover: #8aae4e;
+    --color-dark: #040734;
+    --color-text: #414141;
+    --color-text-muted: #808080;
+    --color-bg-light: #f8f9fa;
+    --color-border: #c7d0d9;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-gray-dark: #191919;
+    --color-gray-light: #f2f2f2;
+
+    /* Fonts */
+    --font-title: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-body: 'Roboto', sans-serif;
+    --font-secondary: 'Varela Round', sans-serif;
+
+    /* Shadows */
+    --shadow-header: 1px 1px 5px 0px rgba(0, 0, 0, 0.75);
+}

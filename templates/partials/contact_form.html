@@ -1,32 +1,32 @@
-<section class="contacto" id="contacto">
+<section class="contact-section contacto" id="contacto">
     <div class="container">
         <h2>Contactanos</h2>
 
-        <form action="/contacto" id="form_contactanos" name="form_contactanos" method="post" enctype="multipart/form-data" class="row g-3">
+        <form action="/contacto" id="form_contactanos" name="form_contactanos" method="post" enctype="multipart/form-data" class="contact-form row g-3">
             <input type="hidden" id="accion" name="accion" value="contacto">
 
-            <div class="form-group col-md-6 px-1" id="div_campo_nombre" name="div_campo_nombre">
-                <label class="obligatorio" for="nombre">Nombre</label>
-                <input autocomplete="off" placeholder="Nombre" minlength="5" type="text" class="form-control" name="nombre" id="nombre" value="" required="required">
+            <div class="contact-form__group form-group col-md-6 px-1" id="div_campo_nombre" name="div_campo_nombre">
+                <label class="contact-form__label obligatorio" for="nombre">Nombre</label>
+                <input autocomplete="off" placeholder="Nombre" minlength="5" type="text" class="contact-form__input form-control" name="nombre" id="nombre" value="" required="required">
             </div>
 
-            <div class="form-group col-md-6 px-1" id="div_campo_email" name="div_campo_email">
-                <label class="obligatorio" for="email">Email</label>
-                <input autocomplete="off" pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}" placeholder="" type="text" class="form-control" name="email" id="email" value="" required="required">
+            <div class="contact-form__group form-group col-md-6 px-1" id="div_campo_email" name="div_campo_email">
+                <label class="contact-form__label obligatorio" for="email">Email</label>
+                <input autocomplete="off" pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}" placeholder="" type="text" class="contact-form__input form-control" name="email" id="email" value="" required="required">
             </div>
 
-            <div class="form-group col-md-6 px-1" id="div_campo_telefono" name="div_campo_telefono">
-                <label class="obligatorio" for="telefono">Teléfono</label>
-                <input autocomplete="off" type="tel" minlength="8" class="form-control" name="telefono" id="telefono" value="" required="required">
+            <div class="contact-form__group form-group col-md-6 px-1" id="div_campo_telefono" name="div_campo_telefono">
+                <label class="contact-form__label obligatorio" for="telefono">Teléfono</label>
+                <input autocomplete="off" type="tel" minlength="8" class="contact-form__input form-control" name="telefono" id="telefono" value="" required="required">
             </div>
 
             <div class="form-floating col-12">
-                <textarea class="form-control" name="mensaje" placeholder="Dejanos tu mensaje." id="contactoMensaje"></textarea>
+                <textarea class="contact-form__input form-control" name="mensaje" placeholder="Dejanos tu mensaje." id="contactoMensaje"></textarea>
                 <label for="contactoMensaje" class="form-label">¿Querés dejarnos un comentario?</label>
             </div>
 
             <div class="form-floating col-12">
-                <button data-sitekey="6LcPPAwqAAAAAIBCVGMVKP-y6RIyHHN0SKqmEpg_" data-callback="onSubmit_contactanos" data-action="submit" id="boton_enviar" class="g-recaptcha btn btn-primary btn-call col-12 col-md-3">Enviar</button>
+                <button data-sitekey="6LcPPAwqAAAAAIBCVGMVKP-y6RIyHHN0SKqmEpg_" data-callback="onSubmit_contactanos" data-action="submit" id="boton_enviar" class="contact-form__submit g-recaptcha btn btn-primary btn-call col-12 col-md-3">Enviar</button>
             </div>
         </form>
     </div>

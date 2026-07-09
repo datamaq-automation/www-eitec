@@ -1,10 +1,10 @@
-<section id="categorias">
+<section id="categorias" class="categories-section">
     <div class="container">
-        <div class="listadoCategorias">
+        <div class="categories-grid listadoCategorias">
             {% for cat in categories %}
-            <a href="/categoria/{{ cat.slug }}" class="cuadrada">
+            <a href="/categoria/{{ cat.slug }}" class="categories-grid__card cuadrada">
                 <p>{{ cat.name }}</p>
-                <img src="/static/img/{{ cat.image }}" alt="{{ cat.name }} - EITEC Cooperativa ex EITAR" class="centrar imagenCategoria" loading="lazy">
+                <img src="/static/img/{{ cat.image }}" alt="{{ cat.name }} - EITEC Cooperativa ex EITAR" class="categories-grid__image centrar imagenCategoria" loading="lazy">
             </a>
             {% endfor %}
             <span class="clearfix"></span>

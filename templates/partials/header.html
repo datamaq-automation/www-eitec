@@ -1,13 +1,13 @@
 <header class="header" id="header">
-    <div class="top">
+    <div class="header__top top">
         <div class="container">
-            <div class="redes">
+            <div class="header__socials redes">
                 <a href="https://www.instagram.com/eitec_cooperativa/" class="icon icon-instagram" target="_blank"></a>
                 <a href="/contactanos" class="icon icon-mail"></a>
                 <a href="https://www.facebook.com/CooperativaEitec" class="icon icon-facebook" target="_blank"></a>
             </div>
             <p>Fábrica de accesorios para artefactos a gas</p>
-            <div class="optIcons">
+            <div class="header__actions optIcons">
                 <a href="javascript:void(0);" class="icon fa-solid fa-magnifying-glass buscar"></a>
                 <a href="/carrito" class="icon fa-solid fa-cart-shopping"></a>
             </div>
@@ -16,26 +16,26 @@
     </div>
 
     <div class="container">
-        <a href="/" class="logo"></a>
+        <a href="/" class="header__logo logo"></a>
 
-        <button class="hamburger hamburger--collapse" type="button">
+        <button class="header__hamburger hamburger hamburger--collapse" type="button">
             <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
+                <span class="header__hamburger-inner hamburger-inner"></span>
             </span>
         </button>
 
-        <ul class="options">
-            <li>
-                <a href="/">Inicio</a>
+        <ul class="header__menu options">
+            <li class="header__menu-item">
+                <a href="/" class="header__menu-link">Inicio</a>
             </li>
             {% for cat in categories %}
-            <li>
-                <p class="trigger mb-0"><a href="/categoria/{{ cat.slug }}">{{ cat.name }}</a></p>
+            <li class="header__menu-item">
+                <p class="header__menu-trigger trigger mb-0"><a href="/categoria/{{ cat.slug }}" class="header__menu-link">{{ cat.name }}</a></p>
             </li>
             {% endfor %}
         </ul>
 
-        <div class="mask"></div>
+        <div class="header__mask mask"></div>
         <span class="clearfix"></span>
     </div>
 </header>

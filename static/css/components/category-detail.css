@@ -1,0 +1,11 @@
+/* Category Detail Component */
+.category-detail__title {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+.category-detail__image {
+    max-height: 380px;
+    object-fit: contain;
+}

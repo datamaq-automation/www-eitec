@@ -1,0 +1,30 @@
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+}
+
+h1 {
+    font-family: var(--font-title);
+}
+
+h2 {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    font-size: 2rem;
+    padding: 15px 30px;
+    margin: auto;
+    background-color: var(--color-primary);
+    text-align: center;
+    font-family: var(--font-title);
+    color: var(--color-white);
+    margin-bottom: 30px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+h2 + p {
+    text-align: center;
+    margin-bottom: 60px;
+}

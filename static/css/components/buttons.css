@@ -1,0 +1,13 @@
+.btn-call {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 0;
+    border: 1px solid var(--color-primary);
+    text-transform: uppercase;
+}
+
+.btn-call:hover {
+    background-color: var(--color-primary-hover);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary-hover);
+}

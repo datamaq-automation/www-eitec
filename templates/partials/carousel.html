@@ -1,16 +1,16 @@
-<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+<div id="myCarousel" class="carousel slide carousel-slider" data-bs-ride="carousel">
     <div class="carousel-indicators">
         {% for slide in carousel_slides %}
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ loop.index0 }}" aria-label="Slide {{ loop.index }}"{% if loop.first %} class="active" aria-current="true"{% endif %}></button>
         {% endfor %}
     </div>
-    <div class="carousel-inner">
+    <div class="carousel-inner carousel-slider__inner">
         {% for slide in carousel_slides %}
-        <div class="carousel-item{% if loop.first %} active{% endif %}" style="background-image: url('/static/img/{{ slide.image }}')">
+        <div class="carousel-item carousel-slider__item{% if loop.first %} active{% endif %}" style="background-image: url('/static/img/{{ slide.image }}')">
             {# Imagen oculta visualmente para indexación de Google y optimización LCP/Lazy loading #}
             <img src="/static/img/{{ slide.image }}" alt="{{ slide.title }} - EITEC Cooperativa ex EITAR" class="visually-hidden" {% if loop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
             <div class="container">
-                <div class="carousel-caption">
+                <div class="carousel-caption carousel-slider__caption">
                     <h2 class="h1">{{ slide.title }}</h2>
                     <p>...</p>
                     <p><a class="btn btn-lg btn-call" href="/categoria/{{ slide.link }}">Ver más</a></p>

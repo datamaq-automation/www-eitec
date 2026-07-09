@@ -1,0 +1,17 @@
+/* Categories Grid Component */
+.categories-grid__card p {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    margin-bottom: 0;
+    padding: 15px;
+    font-weight: normal;
+}
+
+/* Ensure the 4th item in the row has no margin on large screens */
+@media only screen and (min-width: 1200px) {
+    .categories-grid__card:nth-child(4n) {
+        margin-right: 0;
+    }
+}

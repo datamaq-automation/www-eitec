@@ -11,6 +11,17 @@ class CarouselSlide(BaseModel):
     image: str
     link: str
 
+class SiteInfo(BaseModel):
+    title: str
+    subtitle: str
+    intro_title: str
+    intro_text: str
+    category_lead_template: str
+    category_description: str
+    contact_email: str
+    social_facebook: str
+    social_instagram: str
+
 class CatalogRepository(Protocol):
     def get_categories(self) -> list[Category]:
         ...
@@ -26,3 +37,7 @@ class CatalogRepository(Protocol):
 
     def search_categories(self, query: str) -> list[Category]:
         ...
+
+    def get_site_info(self) -> SiteInfo:
+        ...
+

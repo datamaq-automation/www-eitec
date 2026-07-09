@@ -72,6 +72,7 @@ def get_common_context(
     return {
         "categories": repo.get_categories(),
         "carousel_slides": repo.get_carousel_slides(),
+        "site_info": repo.get_site_info(),
         "current_year": datetime.now().year,
     }
 

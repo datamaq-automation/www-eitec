@@ -1,13 +1,16 @@
 from pathlib import Path
+from typing import Any
 import yaml
-from src.domain.catalog import CatalogRepository, Category, CarouselSlide
+from src.domain.catalog import CatalogRepository, Category, CarouselSlide, SiteInfo
 
 class YamlCatalogRepository(CatalogRepository):
+    _data: dict[str, Any]
+
     def __init__(self, file_path: Path):
         self.file_path = file_path
         self._data = self._load_data()
 
-    def _load_data(self) -> dict:
+    def _load_data(self) -> dict[str, Any]:
         if self.file_path.exists():
             with open(self.file_path, "r", encoding="utf-8") as f:
                 return yaml.safe_load(f) or {}
@@ -33,8 +36,12 @@ class YamlCatalogRepository(CatalogRepository):
         if not q:
             return []
         
-        results = []
+        results: list[Category] = []
         for cat in self.get_categories():
             if q in cat.name.lower():
                 results.append(cat)
         return results
+
+    def get_site_info(self) -> SiteInfo:
+        return SiteInfo(**self._data.get("site_info", {}))
+

@@ -1,9 +1,9 @@
 <footer class="footer">
     <div class="container">
         <div class="footer__socials redes">
-            <a href="/contactanos" class="email">horacio@eitec.coop.ar</a>
-            <a href="https://www.instagram.com/eitec_cooperativa/" class="instagram"></a>
-            <a href="https://www.facebook.com/CooperativaEitec" class="facebook"></a>
+            <a href="mailto:{{ site_info.contact_email }}" class="email">{{ site_info.contact_email }}</a>
+            <a href="{{ site_info.social_instagram }}" class="instagram" target="_blank"></a>
+            <a href="{{ site_info.social_facebook }}" class="facebook" target="_blank"></a>
         </div>
 
         <span class="clearfix"></span>
@@ -22,7 +22,7 @@
         <div class="clearfix"></div>
 
         <div class="footer__copyright footReg">
-            <p>Copyright EITEC - Fábrica de accesorios para Artefactos a Gas {{ current_year | default('2026') }}</p>
+            <p>Copyright {{ site_info.title }} - {{ site_info.subtitle }} {{ current_year | default('2026') }}</p>
             <a href="https://contactopuro.com" class="realizado" target="_blank"></a>
         </div>
     </div>

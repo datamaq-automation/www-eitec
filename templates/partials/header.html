@@ -2,11 +2,11 @@
     <div class="header__top top">
         <div class="container">
             <div class="header__socials redes">
-                <a href="https://www.instagram.com/eitec_cooperativa/" class="icon icon-instagram" target="_blank"></a>
-                <a href="/contactanos" class="icon icon-mail"></a>
-                <a href="https://www.facebook.com/CooperativaEitec" class="icon icon-facebook" target="_blank"></a>
+                <a href="{{ site_info.social_instagram }}" class="icon icon-instagram" target="_blank"></a>
+                <a href="mailto:{{ site_info.contact_email }}" class="icon icon-mail"></a>
+                <a href="{{ site_info.social_facebook }}" class="icon icon-facebook" target="_blank"></a>
             </div>
-            <p>Fábrica de accesorios para artefactos a gas</p>
+            <p>{{ site_info.subtitle }}</p>
             <div class="header__actions optIcons">
                 <a href="javascript:void(0);" class="icon fa-solid fa-magnifying-glass buscar"></a>
                 <a href="/carrito" class="icon fa-solid fa-cart-shopping"></a>

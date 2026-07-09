@@ -3,7 +3,7 @@ from fastapi.testclient import TestClient
 def test_contactanos_redirect(client: TestClient):
     response = client.get("/contactanos", follow_redirects=False)
     assert response.status_code == 307
-    assert response.headers["location"] == "/"
+    assert response.headers["location"] == "/#contacto"
 
 
 def test_contact_form_submission_success(client: TestClient):

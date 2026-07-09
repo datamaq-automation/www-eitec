@@ -15,7 +15,7 @@ router = APIRouter()
 
 @router.get("/contactanos")
 async def contact_page() -> RedirectResponse:
-    return RedirectResponse(url="/", status_code=307)
+    return RedirectResponse(url="/#contacto", status_code=307)
 
 
 @router.post("/contacto", response_class=HTMLResponse)

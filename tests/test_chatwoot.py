@@ -29,9 +29,11 @@ def test_chatwoot_notifier_success(mock_post):
 
     original_url = settings.CHATWOOT_API_URL
     original_token = settings.CHATWOOT_API_TOKEN
+    original_account = settings.CHATWOOT_ACCOUNT_ID
     
     settings.CHATWOOT_API_URL = "https://chatwoot.eitec.com.ar"
     settings.CHATWOOT_API_TOKEN = "test_token"
+    settings.CHATWOOT_ACCOUNT_ID = 1
     try:
         notifier = ChatwootLeadNotifier()
         lead = Lead(nombre="Test User", email="test@example.com", telefono="12345678", mensaje="Hola", productos="Termostatos")
@@ -46,6 +48,7 @@ def test_chatwoot_notifier_success(mock_post):
     finally:
         settings.CHATWOOT_API_URL = original_url
         settings.CHATWOOT_API_TOKEN = original_token
+        settings.CHATWOOT_ACCOUNT_ID = original_account
 
 
 @patch("httpx.AsyncClient.post", new_callable=AsyncMock)
@@ -57,9 +60,11 @@ def test_chatwoot_notifier_failure(mock_post):
 
     original_url = settings.CHATWOOT_API_URL
     original_token = settings.CHATWOOT_API_TOKEN
+    original_account = settings.CHATWOOT_ACCOUNT_ID
     
     settings.CHATWOOT_API_URL = "https://chatwoot.eitec.com.ar/api/v1"
     settings.CHATWOOT_API_TOKEN = "test_token"
+    settings.CHATWOOT_ACCOUNT_ID = 1
     try:
         notifier = ChatwootLeadNotifier()
         lead = Lead(nombre="Test User", email="test@example.com", telefono="12345678", mensaje="Hola")
@@ -71,6 +76,7 @@ def test_chatwoot_notifier_failure(mock_post):
     finally:
         settings.CHATWOOT_API_URL = original_url
         settings.CHATWOOT_API_TOKEN = original_token
+        settings.CHATWOOT_ACCOUNT_ID = original_account
 
 
 @patch("httpx.AsyncClient.post", new_callable=AsyncMock)

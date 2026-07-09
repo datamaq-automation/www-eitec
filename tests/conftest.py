@@ -1,5 +1,5 @@
 import pytest
-from typing import Any
+from typing import Generator
 from fastapi.testclient import TestClient
 from src.infrastructure.fastapi.app import app
 from src.infrastructure.config import settings
@@ -57,8 +57,8 @@ class MockCatalogRepository(CatalogRepository):
 
 
 class MockLeadNotifier(LeadNotifier):
-    def __init__(self):
-        self.notified_leads = []
+    def __init__(self) -> None:
+        self.notified_leads: list[Lead] = []
 
     async def notify(self, lead: Lead) -> None:
         self.notified_leads.append(lead)
@@ -75,7 +75,10 @@ def mock_lead_notifier() -> MockLeadNotifier:
 
 
 @pytest.fixture
-def client(mock_catalog_repo, mock_lead_notifier) -> TestClient:
+def client(
+    mock_catalog_repo: MockCatalogRepository,
+    mock_lead_notifier: MockLeadNotifier
+) -> Generator[TestClient, None, None]:
     # Set up overrides
     app.dependency_overrides[get_catalog_repository] = lambda: mock_catalog_repo
     app.dependency_overrides[get_lead_notifier] = lambda: mock_lead_notifier

@@ -19,19 +19,6 @@ def load_dotenv(env_path: Path = ENV_FILE) -> None:
 load_dotenv()
 
 class Settings:
-    SMTP_HOST: str = os.getenv("SMTP_HOST", "localhost")
-    SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587"))
-    SMTP_USERNAME: str = os.getenv("SMTP_USERNAME", "")
-    SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
-    SMTP_USE_TLS: bool = os.getenv("SMTP_USE_TLS", "True").lower() in ("true", "1", "yes")
-    
-    CONTACT_RECIPIENT_EMAIL: str = os.getenv("CONTACT_RECIPIENT_EMAIL", "")
-    CONTACT_SENDER_EMAIL: str = os.getenv("CONTACT_SENDER_EMAIL", "")
-
-    # Google reCAPTCHA v2
-    RECAPTCHA_SITE_KEY: str = os.getenv("RECAPTCHA_SITE_KEY", "")
-    RECAPTCHA_SECRET_KEY: str = os.getenv("RECAPTCHA_SECRET_KEY", "")
-
     # Chatwoot API Integration
     CHATWOOT_API_URL: str = os.getenv("CHATWOOT_API_URL", "")
     CHATWOOT_API_TOKEN: str = os.getenv("CHATWOOT_API_TOKEN", "")

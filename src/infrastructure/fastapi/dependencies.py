@@ -9,7 +9,6 @@ from src.domain.lead import Lead, LeadNotifier
 from src.infrastructure.config import settings
 from src.infrastructure.repositories.yaml_catalog import YamlCatalogRepository
 from src.infrastructure.services.logger import logger, LoggingLeadNotifier
-from src.infrastructure.services.smtp_lead_notifier import SmtpLeadNotifier
 from src.infrastructure.services.chatwoot_lead_notifier import ChatwootLeadNotifier
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
@@ -35,9 +34,6 @@ class CompositeLeadNotifier(LeadNotifier):
 # Configurar notificaciones múltiples según variables de entorno
 _active_notifiers: list[LeadNotifier] = [LoggingLeadNotifier()]
 
-if settings.SMTP_HOST != "localhost" and settings.SMTP_USERNAME:
-    _active_notifiers.append(SmtpLeadNotifier())
-
 if settings.CHATWOOT_API_TOKEN:
     _active_notifiers.append(ChatwootLeadNotifier())
 
@@ -57,5 +53,4 @@ def get_common_context(
         "carousel_slides": repo.get_carousel_slides(),
         "site_info": repo.get_site_info(),
         "current_year": datetime.now().year,
-        "recaptcha_site_key": settings.RECAPTCHA_SITE_KEY,
     }

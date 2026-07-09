@@ -1,3 +1,4 @@
+from typing import Any
 import httpx
 from src.domain.lead import Lead, LeadNotifier
 from src.infrastructure.config import settings
@@ -26,7 +27,7 @@ class ChatwootLeadNotifier(LeadNotifier):
             # Standard formatting assumption: prepend a plus sign
             phone = f"+{phone}"
 
-        payload = {
+        payload: dict[str, Any] = {
             "inbox_id": settings.CHATWOOT_INBOX_ID,
             "name": lead.nombre,
             "email": lead.email,

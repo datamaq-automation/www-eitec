@@ -19,11 +19,7 @@ def test_load_dotenv(tmp_path: Path):
         del os.environ["TEST_VAR_CONFIG"]
 
 
-def test_settings_defaults():
-    # Verify that SMTP defaults are sensible
-    assert Settings.SMTP_PORT == 587
-    assert Settings.SMTP_USE_TLS is True
-    assert Settings.RECAPTCHA_SITE_KEY == os.getenv("RECAPTCHA_SITE_KEY", "")
+
 
 
 def test_dependencies_and_logging_notifier():

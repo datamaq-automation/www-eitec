@@ -29,8 +29,10 @@ class SmtpLeadNotifier(LeadNotifier):
             f"Nombre: {lead.nombre}\n"
             f"Email: {lead.email}\n"
             f"Teléfono: {lead.telefono}\n\n"
-            f"Mensaje:\n{lead.mensaje}\n"
         )
+        if lead.productos:
+            body += f"Productos solicitados para cotización:\n{lead.productos}\n\n"
+        body += f"Mensaje:\n{lead.mensaje}\n"
         msg.attach(MIMEText(body, "plain", "utf-8"))
 
         server = smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT, timeout=10)

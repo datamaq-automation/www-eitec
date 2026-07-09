@@ -26,6 +26,19 @@ async def index(
     return templates.TemplateResponse(request, "index.html", context)
 
 
+@router.get("/carrito", response_class=HTMLResponse)
+async def view_cart(
+    request: Request,
+    context: dict[str, Any] = Depends(get_common_context),
+) -> HTMLResponse:
+    context.update({
+        "title": "Mi Solicitud de Cotización - EITEC",
+        "description": "Revisa los productos seleccionados para tu solicitud de cotización mayorista a la cooperativa EITEC.",
+        "canonical_url": "https://www.eitec.coop.ar/carrito",
+    })
+    return templates.TemplateResponse(request, "carrito.html", context)
+
+
 @router.get("/categoria/{slug}", response_class=HTMLResponse)
 async def category(
     request: Request,

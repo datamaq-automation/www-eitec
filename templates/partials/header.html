@@ -9,7 +9,9 @@
             <p>{{ site_info.subtitle }}</p>
             <div class="header__actions optIcons">
                 <a href="javascript:void(0);" class="icon fa-solid fa-magnifying-glass buscar"></a>
-                <a href="/carrito" class="icon fa-solid fa-cart-shopping"></a>
+                <a href="/carrito" class="icon fa-solid fa-cart-shopping position-relative">
+                    <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none" style="font-size: 0.55rem; padding: 0.25em 0.4em;">0</span>
+                </a>
             </div>
             <span class="clearfix"></span>
         </div>

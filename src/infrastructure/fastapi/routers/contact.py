@@ -48,17 +48,19 @@ async def contact(
     telefono: str = Form(...),
     mensaje: str = Form(""),
     g_recaptcha_response: str = Form(None, alias="g-recaptcha-response"),
+    productos: str | None = Form(None),
     notifier: LeadNotifier = Depends(get_lead_notifier),
     context: dict[str, Any] = Depends(get_common_context),
 ) -> HTMLResponse:
     # Depurar petición entrante
     client_ip = request.client.host if request.client else "Desconocida"
     logger.info(
-        "\x1b[1;33mPETICIÓN DE CONTACTO RECIBIDA\x1b[0m -> IP: \x1b[1m%s\x1b[0m | Nombre: '%s' | Email: '%s' | Teléfono: '%s'",
+        "\x1b[1;33mPETICIÓN DE CONTACTO RECIBIDA\x1b[0m -> IP: \x1b[1m%s\x1b[0m | Nombre: '%s' | Email: '%s' | Teléfono: '%s' | Productos: '%s'",
         client_ip,
         nombre,
         email,
-        telefono
+        telefono,
+        productos
     )
 
     # Validar reCAPTCHA si hay una clave secreta configurada
@@ -87,7 +89,7 @@ async def contact(
                 return templates.TemplateResponse(request, "index.html", context)
 
     # Registrar y notificar el lead
-    lead = Lead(nombre=nombre, email=email, telefono=telefono, mensaje=mensaje)
+    lead = Lead(nombre=nombre, email=email, telefono=telefono, mensaje=mensaje, productos=productos)
     await notifier.notify(lead)
 
     context.update(

@@ -6,6 +6,7 @@ class Lead(BaseModel):
     email: str
     telefono: str
     mensaje: str
+    productos: str | None = None
 
 class LeadNotifier(Protocol):
     async def notify(self, lead: Lead) -> None:

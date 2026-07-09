@@ -24,3 +24,20 @@ def test_settings_defaults():
     assert Settings.SMTP_PORT == 587
     assert Settings.SMTP_USE_TLS is True
     assert Settings.RECAPTCHA_SITE_KEY == os.getenv("RECAPTCHA_SITE_KEY", "")
+
+
+def test_dependencies_and_logging_notifier():
+    import asyncio
+    from src.infrastructure.fastapi.dependencies import get_catalog_repository, get_lead_notifier
+    from src.domain.lead import Lead
+    
+    repo = get_catalog_repository()
+    assert repo is not None
+    
+    notifier = get_lead_notifier()
+    assert notifier is not None
+    
+    # Trigger logging notifier notify method (since we default to local LoggingLeadNotifier in tests)
+    lead = Lead(nombre="Test User", email="test@example.com", telefono="12345678", mensaje="Hello", productos="Some product")
+    asyncio.run(notifier.notify(lead))
+

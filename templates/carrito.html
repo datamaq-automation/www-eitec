@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include "partials/header.html" %}
+
+    {% if message %}
+    <div class="container mt-3">
+        <div class="alert alert-{{ message_type | default('success') }}" role="alert">
+            {{ message }}
+        </div>
+    </div>
+    {% if message_type == 'success' %}
+    <script>
+        localStorage.removeItem('eitec_quote_items');
+        window.dispatchEvent(new Event('cart-updated'));
+    </script>
+    {% endif %}
+    {% endif %}
+
+    <main id="main-content" class="py-5">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Mi Cotización</li>
+                </ol>
+            </nav>
+
+            <h1 class="text-primary mb-4">Solicitud de Cotización Mayorista</h1>
+
+            <div id="cart-empty-view" class="text-center py-5 d-none">
+                <i class="fa-solid fa-cart-shopping display-1 text-muted mb-4"></i>
+                <h3>Tu lista de cotización está vacía</h3>
+                <p class="text-secondary">Explorá nuestro catálogo y seleccioná las categorías de productos que deseas presupuestar.</p>
+                <a href="/" class="btn btn-primary btn-call px-4 py-2 mt-3">Ver Categorías</a>
+            </div>
+
+            <div id="cart-content-view" class="row g-5">
+                <!-- List of items -->
+                <div class="col-lg-7">
+                    <h2 class="h4 mb-3 text-secondary">Productos Seleccionados</h2>
+                    <div id="cart-items-list" class="d-flex flex-column gap-3">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Request form -->
+                <div class="col-lg-5">
+                    <div class="card shadow-sm border-0 p-4" style="background-color: var(--color-bg-light); border-radius: 8px;">
+                        <h2 class="h4 mb-3 text-primary">Datos del Solicitante</h2>
+                        <form action="/contacto" id="form_contactanos" name="form_contactanos" method="post" enctype="multipart/form-data" class="contact-form row g-3">
+                            <input type="hidden" id="accion" name="accion" value="contacto">
+                            <input type="hidden" id="productos" name="productos" value="">
+
+                            <div class="contact-form__group form-group col-12 px-1">
+                                <label class="contact-form__label obligatorio" for="nombre">Nombre / Razón Social</label>
+                                <input autocomplete="off" placeholder="Nombre" minlength="5" type="text" class="contact-form__input form-control" name="nombre" id="nombre" value="" required="required">
+                            </div>
+
+                            <div class="contact-form__group form-group col-12 px-1">
+                                <label class="contact-form__label obligatorio" for="email">Email</label>
+                                <input autocomplete="off" pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}" placeholder="correo@ejemplo.com" type="text" class="contact-form__input form-control" name="email" id="email" value="" required="required">
+                            </div>
+
+                            <div class="contact-form__group form-group col-12 px-1">
+                                <label class="contact-form__label obligatorio" for="telefono">Teléfono de Contacto</label>
+                                <input autocomplete="off" type="tel" minlength="8" class="contact-form__input form-control" name="telefono" id="telefono" value="" required="required">
+                            </div>
+
+                            <div class="form-floating col-12 px-1">
+                                <textarea class="contact-form__input form-control" name="mensaje" placeholder="Dejanos tu mensaje." id="contactoMensaje" style="height: 100px;"></textarea>
+                                <label for="contactoMensaje" class="form-label ms-2">Notas adicionales o cantidades</label>
+                            </div>
+
+                            <div class="form-floating col-12 px-1 mt-4">
+                                <button data-sitekey="{{ recaptcha_site_key }}" data-callback="onSubmit_contactanos" data-action="submit" id="boton_enviar" class="contact-form__submit g-recaptcha btn btn-primary btn-call btn-call--secondary w-100 py-2">
+                                    Enviar Solicitud de Cotización
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "partials/footer.html" %}
+    {% include "partials/search_overlay.html" %}
+{% endblock %}

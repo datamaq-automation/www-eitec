@@ -30,6 +30,13 @@ def test_index_page(client: TestClient):
     assert "X-Frame-Options" in response.headers
 
 
+def test_view_cart(client: TestClient):
+    response = client.get("/carrito")
+    assert response.status_code == 200
+    assert "Solicitud de Cotización Mayorista" in response.text
+
+
+
 def test_category_page_success(client: TestClient):
     response = client.get("/categoria/termostatos")
     assert response.status_code == 200

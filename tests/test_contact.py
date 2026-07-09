@@ -125,3 +125,23 @@ def test_contact_form_submission_recaptcha_exception(mock_urlopen, client: TestC
         assert "Error de verificación de seguridad" in response.text
     finally:
         settings.RECAPTCHA_SECRET_KEY = original_secret
+
+
+def test_contact_form_submission_with_products(client: TestClient):
+    original_secret = settings.RECAPTCHA_SECRET_KEY
+    settings.RECAPTCHA_SECRET_KEY = ""
+    try:
+        response = client.post(
+            "/contacto",
+            data={
+                "nombre": "Juan Pérez",
+                "email": "juan@example.com",
+                "telefono": "12345678",
+                "mensaje": "Consulta de prueba",
+                "productos": "Termostatos, Válvulas"
+            }
+        )
+        assert response.status_code == 200
+        assert "Gracias por contactarte" in response.text
+    finally:
+        settings.RECAPTCHA_SECRET_KEY = original_secret

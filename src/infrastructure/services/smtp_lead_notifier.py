@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from src.domain.lead import Lead, LeadNotifier
 from src.infrastructure.config import settings
-from infrastructure.services.logger import logger
+from src.infrastructure.services.logger import logger
 
 class SmtpLeadNotifier(LeadNotifier):
     async def notify(self, lead: Lead) -> None:

@@ -28,4 +28,8 @@ class Settings:
     CONTACT_RECIPIENT_EMAIL: str = os.getenv("CONTACT_RECIPIENT_EMAIL", "")
     CONTACT_SENDER_EMAIL: str = os.getenv("CONTACT_SENDER_EMAIL", "")
 
+    # Google reCAPTCHA v2
+    RECAPTCHA_SITE_KEY: str = os.getenv("RECAPTCHA_SITE_KEY", "")
+    RECAPTCHA_SECRET_KEY: str = os.getenv("RECAPTCHA_SECRET_KEY", "")
+
 settings = Settings()

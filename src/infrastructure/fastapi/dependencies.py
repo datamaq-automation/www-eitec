@@ -41,4 +41,5 @@ def get_common_context(
         "carousel_slides": repo.get_carousel_slides(),
         "site_info": repo.get_site_info(),
         "current_year": datetime.now().year,
+        "recaptcha_site_key": settings.RECAPTCHA_SITE_KEY,
     }

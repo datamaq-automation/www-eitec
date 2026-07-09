@@ -15,7 +15,7 @@
 }
 
 .header__logo {
-    background-image: url("../custom/logo.jpg");
+    background-image: url("/custom/logo.jpg");
     width: 86px;
     height: 116px;
 }
@@ -59,10 +59,6 @@
     color: var(--color-primary-hover);
 }
 
-/* Scroll reduce placeholder if needed */
-.header--reduce {
-    /* Potential future styles for scroll-reduced state */
-}
 
 /* Responsive Breakpoints for Header */
 @media only screen and (max-width: 479px) {

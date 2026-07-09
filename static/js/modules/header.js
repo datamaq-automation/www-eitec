@@ -48,10 +48,8 @@ export function initHeader() {
         if (!header) return;
         if (window.scrollY > 50) {
             header.classList.add('header--reduce');
-            header.classList.add('reduce'); // keep legacy class in case needed
         } else {
             header.classList.remove('header--reduce');
-            header.classList.remove('reduce');
         }
     };
     

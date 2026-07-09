@@ -2,7 +2,7 @@ import logging
 from src.domain.lead import Lead, LeadNotifier
 
 # Logger principal del proyecto que hereda el formato y colores de Uvicorn
-logger = logging.getLogger()
+logger = logging.getLogger("uvicorn.error")
 
 class LoggingLeadNotifier(LeadNotifier):
     async def notify(self, lead: Lead) -> None:

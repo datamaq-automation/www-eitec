@@ -6,8 +6,9 @@ export function initHeader() {
 
     if (hamburger && menu) {
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('is-active');
+            const isActive = hamburger.classList.toggle('is-active');
             menu.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isActive);
         });
     }
 

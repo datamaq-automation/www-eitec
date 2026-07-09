@@ -1,7 +1,8 @@
 /* Category Detail Component */
 .category-detail__title {
     font-family: var(--font-title);
-    font-size: 3rem !important;
+    font-size: clamp(2rem, 5vw, 3.5rem) !important;
+    line-height: 1.1;
     font-weight: normal;
     color: var(--color-primary) !important;
     text-shadow: 0 0 15px rgba(0, 212, 255, 0.2);

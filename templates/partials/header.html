@@ -18,22 +18,24 @@
     <div class="container">
         <a href="/" class="header__logo logo"></a>
 
-        <button class="header__hamburger hamburger hamburger--collapse" type="button">
+        <button class="header__hamburger hamburger hamburger--collapse" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="navigation-menu">
             <span class="hamburger-box">
                 <span class="header__hamburger-inner hamburger-inner"></span>
             </span>
         </button>
 
-        <ul class="header__menu options">
-            <li class="header__menu-item">
-                <a href="/" class="header__menu-link">Inicio</a>
-            </li>
-            {% for cat in categories %}
-            <li class="header__menu-item">
-                <p class="header__menu-trigger trigger mb-0"><a href="/categoria/{{ cat.slug }}" class="header__menu-link">{{ cat.name }}</a></p>
-            </li>
-            {% endfor %}
-        </ul>
+        <nav class="header__nav" id="navigation-menu">
+            <ul class="header__menu options">
+                <li class="header__menu-item">
+                    <a href="/" class="header__menu-link">Inicio</a>
+                </li>
+                {% for cat in categories %}
+                <li class="header__menu-item">
+                    <p class="header__menu-trigger trigger mb-0"><a href="/categoria/{{ cat.slug }}" class="header__menu-link">{{ cat.name }}</a></p>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
 
         <div class="header__mask mask"></div>
         <span class="clearfix"></span>

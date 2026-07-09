@@ -1,7 +1,8 @@
 /* Contact Form Component */
 .contact-section {
     background-color: var(--color-dark);
-    padding: 60px 0;
+    padding: 80px 0;
+    margin-top: 60px !important;
 }
 
 .contact-form {
@@ -42,27 +43,14 @@
     color: rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Margin-top responsive rules for Contact Form alignment */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-    .contact-section {
-        margin-top: 180px;
-    }
+/* Floating labels adjustments for dark mode compatibility */
+.form-floating > label {
+    color: rgba(255, 255, 255, 0.5) !important;
+    padding-left: 15px !important;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .contact-section {
-        margin-top: 175px;
-    }
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .contact-section {
-        margin-top: 175px;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .contact-section {
-        margin-top: 205px;
-    }
+.form-floating > .contact-form__input:focus ~ label,
+.form-floating > .contact-form__input:not(:placeholder-shown) ~ label {
+    color: var(--color-primary) !important;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem) !important;
 }

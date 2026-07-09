@@ -1,7 +1,7 @@
 /* Carousel Component */
 .carousel-slider {
-    margin-top: 144px;
-    margin-bottom: 144px;
+    margin-top: var(--header-height) !important;
+    height: calc(100vh - var(--header-height)) !important;
     position: relative;
     overflow: hidden;
 }
@@ -14,6 +14,7 @@
 /* Modern brand gradient overlay */
 .carousel-slider__item {
     position: relative;
+    height: 100%;
 }
 
 .carousel-slider__item::before {
@@ -70,48 +71,19 @@
 }
 
 /* Responsive Media Queries */
-@media only screen and (max-width: 479px) {
-    .carousel-slider {
-        margin-top: 132px;
-        height: calc(100vh - 132px);
-    }
-    
+@media only screen and (max-width: 767px) {
     .carousel-slider__caption h1,
     .carousel-slider__caption h2 {
         font-size: 2rem !important;
     }
-}
-
-@media only screen and (min-width: 480px) and (max-width: 767px) {
     .carousel-slider {
-        margin-top: 169px;
-        height: calc(100vh - 169px);
-        margin-bottom: 60px;
-    }
-    
-    .carousel-slider__caption h1,
-    .carousel-slider__caption h2 {
-        font-size: 2.25rem !important;
+        margin-bottom: 40px !important;
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .carousel-slider {
-        margin-top: 162px;
-        height: calc(100vh - 162px);
-    }
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .carousel-slider {
-        margin-top: 152px;
-        height: calc(100vh - 152px);
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .carousel-slider {
-        margin-top: 152px;
-        height: calc(100vh - 152px);
+    .carousel-slider__caption h1,
+    .carousel-slider__caption h2 {
+        font-size: 2.75rem !important;
     }
 }

@@ -1,22 +1,24 @@
 :root {
     /* Colors */
-    --color-primary: #00a6ed;
-    --color-primary-hover: #8aae4e;
-    --color-dark: #040734;
-    --color-text: #414141;
-    --color-text-muted: #808080;
-    --color-bg-light: #f8f9fa;
-    --color-border: #c7d0d9;
+    --color-primary: #00d4ff;           /* Cian Neón */
+    --color-primary-hover: #7df9ff;     /* Glow Cian */
+    --color-secondary: #c026d3;         /* Magenta Neón */
+    --color-secondary-hover: #e879f9;   /* Glow Magenta */
+    --color-accent-green: #50ae4e;      /* Verde Lima del Logo */
+    --color-dark: #0a0a2e;              /* Azul Noche Profundo */
+    --color-text: #f0f4f8;              /* Gris Azulado Claro (Alta Lectura) */
+    --color-text-muted: #94a3b8;        /* Gris Pizarra Claro */
+    --color-bg-light: #131338;          /* Azul Noche Intermedio */
+    --color-border: #2e2e5c;            /* Borde Azul Noche */
     --color-white: #ffffff;
     --color-black: #000000;
-    --color-gray-dark: #191919;
-    --color-gray-light: #f2f2f2;
+    --color-gray-dark: #07071e;
+    --color-gray-light: #1b1b44;
 
     /* Fonts */
     --font-title: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-body: 'Roboto', sans-serif;
-    --font-secondary: 'Varela Round', sans-serif;
 
     /* Shadows */
-    --shadow-header: 1px 1px 5px 0px rgba(0, 0, 0, 0.75);
+    --shadow-header: 0 4px 20px rgba(0, 0, 0, 0.3);
 }

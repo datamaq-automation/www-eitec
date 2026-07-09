@@ -1,10 +1,45 @@
 /* Contact Form Component */
 .contact-section {
-    background-color: transparent;
+    background-color: var(--color-dark);
+    padding: 60px 0;
+}
+
+.contact-form {
+    background-color: var(--color-bg-light);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+}
+
+.contact-form__label {
+    color: var(--color-white);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.contact-form__label.obligatorio::after {
+    content: " *";
+    color: var(--color-secondary); /* Magenta accent for required */
 }
 
 .contact-form__input {
-    background-color: transparent !important;
+    background-color: rgba(10, 10, 46, 0.5) !important;
+    color: var(--color-white) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 6px !important;
+    padding: 12px 15px !important;
+    transition: all 0.3s ease !important;
+}
+
+.contact-form__input:focus {
+    background-color: rgba(10, 10, 46, 0.85) !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3) !important;
+}
+
+.contact-form__input::placeholder {
+    color: rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Margin-top responsive rules for Contact Form alignment */

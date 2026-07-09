@@ -1,7 +1,15 @@
 /* Search Overlay Component */
+.search-overlay {
+    transition: all 0.3s ease;
+}
+
 .search-overlay__form {
-    background: var(--color-white);
-    color: var(--color-text);
+    background: var(--color-dark) !important;
+    color: var(--color-white) !important;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 40px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
 }
 
 .search-overlay__title {
@@ -10,26 +18,43 @@
     padding: 0;
     left: auto;
     transform: none;
-    color: var(--color-text);
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+    color: var(--color-white) !important;
+    font-size: 2rem !important;
+    margin-bottom: 25px !important;
+    text-align: center;
 }
 
 .search-overlay__mask {
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(7, 7, 30, 0.85) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .search-overlay__input {
-    background-color: transparent;
-    color: var(--color-white); /* Matches legacy color styling */
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: var(--color-white) !important; /* White text input is now visible on dark input bg */
+    border: 1px solid var(--color-border) !important;
+    border-radius: 8px !important;
+    padding: 15px 20px !important;
+    font-size: 1.25rem !important;
+    width: 100% !important;
+}
+
+.search-overlay__input:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3) !important;
 }
 
 .search-overlay__submit {
-    background-color: var(--color-primary);
-    border: 1px solid var(--color-primary);
+    background-color: var(--color-primary) !important;
+    border: 1px solid var(--color-primary) !important;
+    border-radius: 8px !important;
+    cursor: pointer;
+    transition: all 0.3s ease !important;
 }
 
 .search-overlay__submit:hover {
-    background-color: var(--color-primary-hover);
-    border: 1px solid var(--color-primary-hover);
+    background-color: var(--color-primary-hover) !important;
+    border-color: var(--color-primary-hover) !important;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5) !important;
 }

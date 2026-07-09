@@ -1,4 +1,10 @@
 /* Intro Section Component */
+.intro-section {
+    background-color: var(--color-bg-light) !important;
+    border-bottom: 1px solid var(--color-border) !important;
+}
+
 .intro-section__lead {
     max-width: 800px;
+    color: var(--color-text-muted) !important;
 }

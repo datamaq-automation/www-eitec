@@ -11,7 +11,9 @@ from fastapi.templating import Jinja2Templates
 from starlette.middleware.base import RequestResponseEndpoint
 
 from src.domain.catalog import CatalogRepository
+from src.domain.lead import Lead, LeadNotifier
 from src.infrastructure.repositories.yaml_catalog import YamlCatalogRepository
+from src.infrastructure.services.logging_lead_notifier import LoggingLeadNotifier
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 TEMPLATES_DIR = BASE_DIR / "templates"
@@ -58,12 +60,18 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 DATA_FILE = BASE_DIR / "data" / "site_data.yml"
 
-# Inicializar repositorio
+# Inicializar repositorio y servicios
 _catalog_repo = YamlCatalogRepository(DATA_FILE)
+_lead_notifier = LoggingLeadNotifier()
 
 
 def get_catalog_repository() -> CatalogRepository:
     return _catalog_repo
+
+
+def get_lead_notifier() -> LeadNotifier:
+    return _lead_notifier
+
 
 
 def get_common_context(
@@ -138,10 +146,13 @@ async def contact(
     email: str = Form(...),
     telefono: str = Form(...),
     mensaje: str = Form(""),
+    notifier: LeadNotifier = Depends(get_lead_notifier),
     context: dict[str, Any] = Depends(get_common_context),
 ) -> HTMLResponse:
-    # TODO: agregar envío de email o persistencia real.
-    # Por ahora solo confirmamos recepción.
+    # Registrar y notificar el lead
+    lead = Lead(nombre=nombre, email=email, telefono=telefono, mensaje=mensaje)
+    await notifier.notify(lead)
+
     context.update(
         {
             "title": "Mensaje enviado - EITEC",

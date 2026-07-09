@@ -2,6 +2,10 @@ import pytest
 from typing import Any
 from fastapi.testclient import TestClient
 from src.infrastructure.fastapi.app import app
+from src.infrastructure.config import settings
+
+# Prevent any real HTTP requests to Chatwoot during test suites
+settings.CHATWOOT_API_TOKEN = ""
 from src.domain.catalog import CatalogRepository, Category, CarouselSlide, SiteInfo
 from src.domain.lead import Lead, LeadNotifier
 from src.infrastructure.fastapi.dependencies import get_catalog_repository, get_lead_notifier

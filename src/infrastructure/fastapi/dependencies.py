@@ -5,11 +5,12 @@ from fastapi import Depends
 from fastapi.templating import Jinja2Templates
 
 from src.domain.catalog import CatalogRepository
-from src.domain.lead import LeadNotifier
+from src.domain.lead import Lead, LeadNotifier
 from src.infrastructure.config import settings
 from src.infrastructure.repositories.yaml_catalog import YamlCatalogRepository
-from src.infrastructure.services.logger import LoggingLeadNotifier
+from src.infrastructure.services.logger import logger, LoggingLeadNotifier
 from src.infrastructure.services.smtp_lead_notifier import SmtpLeadNotifier
+from src.infrastructure.services.chatwoot_lead_notifier import ChatwootLeadNotifier
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 TEMPLATES_DIR = BASE_DIR / "templates"
@@ -20,12 +21,27 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 _catalog_repo = YamlCatalogRepository(DATA_FILE)
 
-# Iniciar SmtpLeadNotifier si SMTP_HOST no es 'localhost' y hay usuario configurado.
-# De lo contrario, usar LoggingLeadNotifier para pruebas locales sin romper nada.
+class CompositeLeadNotifier(LeadNotifier):
+    def __init__(self, notifiers: list[LeadNotifier]):
+        self.notifiers = notifiers
+
+    async def notify(self, lead: Lead) -> None:
+        for notifier in self.notifiers:
+            try:
+                await notifier.notify(lead)
+            except Exception as e:
+                logger.error("Error al notificar lead con %s: %s", notifier.__class__.__name__, str(e))
+
+# Configurar notificaciones múltiples según variables de entorno
+_active_notifiers: list[LeadNotifier] = [LoggingLeadNotifier()]
+
 if settings.SMTP_HOST != "localhost" and settings.SMTP_USERNAME:
-    _lead_notifier: LeadNotifier = SmtpLeadNotifier()
-else:
-    _lead_notifier: LeadNotifier = LoggingLeadNotifier()
+    _active_notifiers.append(SmtpLeadNotifier())
+
+if settings.CHATWOOT_API_TOKEN:
+    _active_notifiers.append(ChatwootLeadNotifier())
+
+_lead_notifier: LeadNotifier = CompositeLeadNotifier(_active_notifiers)
 
 def get_catalog_repository() -> CatalogRepository:
     return _catalog_repo

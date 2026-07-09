@@ -32,4 +32,10 @@ class Settings:
     RECAPTCHA_SITE_KEY: str = os.getenv("RECAPTCHA_SITE_KEY", "")
     RECAPTCHA_SECRET_KEY: str = os.getenv("RECAPTCHA_SECRET_KEY", "")
 
+    # Chatwoot API Integration
+    CHATWOOT_API_URL: str = os.getenv("CHATWOOT_API_URL", "")
+    CHATWOOT_API_TOKEN: str = os.getenv("CHATWOOT_API_TOKEN", "")
+    CHATWOOT_ACCOUNT_ID: int = int(os.getenv("CHATWOOT_ACCOUNT_ID", "1"))
+    CHATWOOT_INBOX_ID: int = int(os.getenv("CHATWOOT_INBOX_ID", "1"))
+
 settings = Settings()

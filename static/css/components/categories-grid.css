@@ -60,11 +60,15 @@
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    transition: transform 0.3s ease !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .categories-grid.listadoCategorias a.categories-grid__card:hover .categories-grid__image {
-    transform: scale(1.05) !important;
+    transform: translate(-50%, -50%) scale(1.08) !important;
 }
 
 /* Ensure the 4th item in the row has no margin on large screens - disabled as grid handles it */

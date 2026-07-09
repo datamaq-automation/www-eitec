@@ -20,11 +20,12 @@ async def add_security_headers(
     # CSP (Content-Security-Policy)
     csp = (
         "default-src 'self'; "
-        "script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; "
+        "script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; "
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://default.contactopuro.com https://cdnjs.cloudflare.com; "
         "font-src 'self' https://fonts.gstatic.com https://default.contactopuro.com; "
         "img-src 'self' data: https://default.contactopuro.com; "
-        "frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/;"
+        "connect-src 'self' https://cdn.jsdelivr.net; "
+        "frame-src 'self';"
     )
     response.headers["Content-Security-Policy"] = csp
     

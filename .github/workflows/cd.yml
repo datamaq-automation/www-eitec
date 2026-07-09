@@ -21,6 +21,14 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p ${{ secrets.DEPLOY_SSH_PORT || 22 }} -H "${{ secrets.DEPLOY_SSH_HOST }}" >> ~/.ssh/known_hosts
 
+      - name: Test SSH Connection (Observability / Diagnostics)
+        env:
+          DEPLOY_SSH_HOST: ${{ secrets.DEPLOY_SSH_HOST }}
+          DEPLOY_SSH_PORT: ${{ secrets.DEPLOY_SSH_PORT }}
+          DEPLOY_SSH_USER: ${{ secrets.DEPLOY_SSH_USER }}
+        run: |
+          ssh -v -o ConnectTimeout=10 -p ${{ env.DEPLOY_SSH_PORT || 22 }} ${{ env.DEPLOY_SSH_USER }}@${{ env.DEPLOY_SSH_HOST }} "echo '==> SSH connection and authentication successful!'"
+
       - name: Execute Deploy Script
         env:
           DEPLOY_SSH_HOST: ${{ secrets.DEPLOY_SSH_HOST }}

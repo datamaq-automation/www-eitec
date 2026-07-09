@@ -9,6 +9,8 @@ from fastapi import FastAPI, Form, Request, Response
 from fastapi.responses import HTMLResponse, RedirectResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from starlette.middleware.base import RequestResponseEndpoint
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 TEMPLATES_DIR = BASE_DIR / "templates"
@@ -18,7 +20,9 @@ app = FastAPI(title="Datamaq SSR")
 
 # Middleware para inyectar cabeceras de seguridad (HSTS, CSP, etc.)
 @app.middleware("http")
-async def add_security_headers(request: Request, call_next):
+async def add_security_headers(
+    request: Request, call_next: RequestResponseEndpoint
+) -> Response:
     response = await call_next(request)
     # HSTS (Strict-Transport-Security)
     response.headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains; preload"

@@ -4,13 +4,14 @@ from typing import Any
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 
-import yaml
-from fastapi import FastAPI, Form, Request, Response
+from fastapi import FastAPI, Form, Request, Response, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.base import RequestResponseEndpoint
 
+from src.domain.catalog import CatalogRepository
+from src.infrastructure.repositories.yaml_catalog import YamlCatalogRepository
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 TEMPLATES_DIR = BASE_DIR / "templates"
@@ -57,32 +58,29 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 DATA_FILE = BASE_DIR / "data" / "site_data.yml"
 
-
-def _load_site_data() -> dict[str, Any]:
-    if DATA_FILE.exists():
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
-            return yaml.safe_load(f) or {"categories": [], "carousel_slides": []}
-    return {"categories": [], "carousel_slides": []}
+# Inicializar repositorio
+_catalog_repo = YamlCatalogRepository(DATA_FILE)
 
 
-SITE_DATA: dict[str, Any] = _load_site_data()
+def get_catalog_repository() -> CatalogRepository:
+    return _catalog_repo
 
 
-def _get_category_slugs() -> set[str]:
-    return {cat["slug"] for cat in SITE_DATA.get("categories", [])}
-
-
-def _common_context() -> dict[str, Any]:
+def get_common_context(
+    repo: CatalogRepository = Depends(get_catalog_repository),
+) -> dict[str, Any]:
     return {
-        "categories": SITE_DATA.get("categories", []),
-        "carousel_slides": SITE_DATA.get("carousel_slides", []),
+        "categories": repo.get_categories(),
+        "carousel_slides": repo.get_carousel_slides(),
         "current_year": datetime.now().year,
     }
 
 
 @app.get("/", response_class=HTMLResponse)
-async def index(request: Request):
-    context = _common_context()
+async def index(
+    request: Request,
+    context: dict[str, Any] = Depends(get_common_context),
+) -> HTMLResponse:
     context.update({
         "title": "EITEC - Accesorios y Repuestos para Artefactos a Gas (ex EITAR)",
         "description": "Fábrica cooperativa de accesorios para artefactos a gas en Bernal, Argentina. Válvulas de seguridad, termostatos y quemadores de la línea ex EITAR.",
@@ -92,40 +90,42 @@ async def index(request: Request):
 
 
 @app.get("/contactanos")
-async def contact_page():
+async def contact_page() -> RedirectResponse:
     return RedirectResponse(url="/", status_code=307)
 
 
 @app.get("/categoria/{slug}", response_class=HTMLResponse)
-async def category(request: Request, slug: str):
-    if slug not in _get_category_slugs():
-        return RedirectResponse(url="/", status_code=307)
-    
-    context = _common_context()
-    # Buscar la categoría activa
-    active_cat = next((cat for cat in SITE_DATA.get("categories", []) if cat["slug"] == slug), None)
-    
+async def category(
+    request: Request,
+    slug: str,
+    repo: CatalogRepository = Depends(get_catalog_repository),
+    context: dict[str, Any] = Depends(get_common_context),
+) -> Response:
+    active_cat = repo.get_category_by_slug(slug)
     if not active_cat:
         return RedirectResponse(url="/", status_code=307)
         
     context.update({
         "active_category": active_cat,
-        "title": f"{active_cat['name']} - Repuestos EITAR | EITEC",
-        "description": f"Fabricación y provisión de {active_cat['name']} de seguridad para artefactos a gas. Componentes originales y homologados por EITEC (ex EITAR) en Argentina.",
+        "title": f"{active_cat.name} - Repuestos EITAR | EITEC",
+        "description": f"Fabricación y provisión de {active_cat.name} de seguridad para artefactos a gas. Componentes originales y homologados por EITEC (ex EITAR) en Argentina.",
         "canonical_url": f"https://www.eitec.coop.ar/categoria/{slug}",
     })
     return templates.TemplateResponse(request, "index.html", context)
 
 
 @app.post("/buscar")
-async def search(busqueda: str = Form("")):
+async def search(
+    busqueda: str = Form(""),
+    repo: CatalogRepository = Depends(get_catalog_repository),
+) -> RedirectResponse:
     query = busqueda.strip().lower()
     if not query:
         return RedirectResponse(url="/", status_code=307)
 
-    for cat in SITE_DATA.get("categories", []):
-        if query in cat["name"].lower():
-            return RedirectResponse(url=f"/categoria/{cat['slug']}", status_code=307)
+    results = repo.search_categories(query)
+    if results:
+        return RedirectResponse(url=f"/categoria/{results[0].slug}", status_code=307)
 
     return RedirectResponse(url="/", status_code=307)
 
@@ -137,10 +137,10 @@ async def contact(
     email: str = Form(...),
     telefono: str = Form(...),
     mensaje: str = Form(""),
-):
+    context: dict[str, Any] = Depends(get_common_context),
+) -> HTMLResponse:
     # TODO: agregar envío de email o persistencia real.
     # Por ahora solo confirmamos recepción.
-    context = _common_context()
     context.update(
         {
             "title": "Mensaje enviado - EITEC",
@@ -154,7 +154,7 @@ async def contact(
 
 
 @app.get("/robots.txt", response_class=PlainTextResponse)
-async def robots_txt():
+async def robots_txt() -> PlainTextResponse:
     content = (
         "User-agent: *\n"
         "Allow: /\n"
@@ -166,7 +166,9 @@ async def robots_txt():
 
 
 @app.get("/sitemap.xml")
-async def sitemap_xml():
+async def sitemap_xml(
+    repo: CatalogRepository = Depends(get_catalog_repository),
+) -> Response:
     urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
     
     # Home
@@ -179,10 +181,10 @@ async def sitemap_xml():
     priority_el.text = "1.0"
     
     # Categorias
-    for cat in SITE_DATA.get("categories", []):
+    for cat in repo.get_categories():
         url_el = ET.SubElement(urlset, "url")
         loc_el = ET.SubElement(url_el, "loc")
-        loc_el.text = f"https://www.eitec.coop.ar/categoria/{cat['slug']}"
+        loc_el.text = f"https://www.eitec.coop.ar/categoria/{cat.slug}"
         changefreq_el = ET.SubElement(url_el, "changefreq")
         changefreq_el.text = "monthly"
         priority_el = ET.SubElement(url_el, "priority")
@@ -196,5 +198,5 @@ async def sitemap_xml():
 
 
 @app.get("/health")
-async def health():
+async def health() -> dict[str, str]:
     return {"status": "ok"}

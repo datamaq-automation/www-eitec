@@ -3,7 +3,7 @@
 # Inicio del cronómetro
 start_time=$(date +%s)
 echo "🚀 Ejecutando tests antes de hacer push... (Iniciado a las $(date +"%H:%M:%S"))"
-export PYTHONPATH=$PYTHONPATH:.
+export PYTHONPATH=src:.:${PYTHONPATH:-}
 
 # Preferir pytest del entorno virtual si existe
 if [ -f "venv/bin/pytest" ]; then

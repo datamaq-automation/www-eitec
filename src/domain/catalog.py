@@ -19,6 +19,7 @@ class SiteInfo(BaseModel):
     category_lead_template: str
     category_description: str
     contact_email: str
+    contact_whatsapp: str | None = None
     social_facebook: str
     social_instagram: str
 

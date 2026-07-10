@@ -51,6 +51,7 @@ site_info:
   category_lead_template: "Fabricación y venta de <strong>{category_name}</strong> de alta calidad. Repuestos originales y componentes aprobados para artefactos a gas (línea ex EITAR)."
   category_description: "Como cooperativa industrial EITEC (anteriormente EITAR), producimos accesorios a gas con los estándares de seguridad y durabilidad más altos en Argentina. Ofrecemos soluciones confiables y seguras para calefactores, cocinas, termotanques y otros artefactos de gas domésticos e industriales. Todos nuestros repuestos e insumos están fabricados por trabajadores metalúrgicos con amplia experiencia en Bernal Oeste, Quilmes."
   contact_email: "horacio@eitec.coop.ar"
+  contact_whatsapp: "5491154721020"
   social_facebook: "https://www.facebook.com/CooperativaEitec"
   social_instagram: "https://www.instagram.com/eitec_cooperativa/"
 

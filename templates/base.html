@@ -7,6 +7,13 @@
 </head>
 <body>
     {% block content %}{% endblock %}
+
+    {% if site_info and site_info.contact_whatsapp %}
+    <a href="https://wa.me/{{ site_info.contact_whatsapp }}?text={{ "Hola, vengo del sitio web" | urlencode }}" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chatear por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    {% endif %}
+
     {% include "partials/scripts.html" %}
     {% block scripts_extra %}{% endblock %}
 </body>

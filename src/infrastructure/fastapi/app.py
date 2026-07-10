@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request, Response
 from fastapi.staticfiles import StaticFiles
-from starlette.middleware.base import RequestResponseEndpoint
+from collections.abc import Callable, Awaitable
 
 from src.infrastructure.fastapi.dependencies import (
     STATIC_DIR,
@@ -19,7 +19,7 @@ app.add_middleware(GZipMiddleware, minimum_size=1000)
 # Middleware para inyectar cabeceras de seguridad (HSTS, CSP, etc.)
 @app.middleware("http")
 async def add_security_headers(
-    request: Request, call_next: RequestResponseEndpoint
+    request: Request, call_next: Callable[[Request], Awaitable[Response]]
 ) -> Response:
     response = await call_next(request)
     # HSTS (Strict-Transport-Security)

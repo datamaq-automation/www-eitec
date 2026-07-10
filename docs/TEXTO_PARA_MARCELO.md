@@ -82,10 +82,9 @@ La imagen institucional (`image.png`) tiene un estilo oscuro con neones cian/mag
 
 ## 7. Políticas legales y Cookies (D9)
 
-Para cumplir con las normas de protección de datos (ya que solicitamos Nombre, Email y Teléfono en los formularios) y dar más confianza a los clientes mayoristas, **ya creamos las páginas de Política de Privacidad y Términos y Condiciones en el sitio (con sus respectivos enlaces en el pie de página) y redactamos dos borradores estándar**:
+Para cumplir con las normas de protección de datos (ya que solicitamos Nombre, Email y Teléfono en los formularios) y dar más confianza a los clientes mayoristas, **ya creamos las páginas de Política de Privacidad y Términos y Condiciones en el sitio e implementamos un banner interactivo de consentimiento de cookies porque confirmamos que usaremos Google Analytics y Microsoft Clarity**:
 
-- ¿Les parece correcta la redacción de los borradores creados o prefieren realizar alguna corrección técnica en el texto? *(Pueden verlos navegando a `/politica-de-privacidad` y `/terminos-y-condiciones` en el Sitio)*.
-- ¿Se va a instalar Google Analytics, píxel de Meta u otra herramienta de seguimiento en el corto plazo? *(Si no es así, no hace falta que pongamos el molesto banner de aceptación de cookies)*.
+- ¿Les parece correcta la redacción de los borradores creados o prefieren realizar alguna modificación técnica o comercial? *(Pueden verlos navegando a `/politica-de-privacidad` y `/terminos-y-condiciones` en el Sitio)*.
 
 **Por qué importa:** Google premia el cumplimiento de políticas de privacidad claras dentro de sus métricas de confianza (E-E-A-T), y nos ayuda a estar a derecho legalmente.
 

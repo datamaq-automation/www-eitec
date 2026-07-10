@@ -25,4 +25,8 @@ class Settings:
     CHATWOOT_ACCOUNT_ID: int = int(os.getenv("CHATWOOT_ACCOUNT_ID", "1"))
     CHATWOOT_INBOX_ID: int = int(os.getenv("CHATWOOT_INBOX_ID", "1"))
 
+    # Analytics Integrations
+    GOOGLE_ANALYTICS_ID: str = os.getenv("GOOGLE_ANALYTICS_ID", "")
+    MICROSOFT_CLARITY_ID: str = os.getenv("MICROSOFT_CLARITY_ID", "")
+
 settings = Settings()

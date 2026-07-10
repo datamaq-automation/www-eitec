@@ -1,0 +1,52 @@
+/* Cookie Banner component style rules with B2B neon glassmorphism brand identity */
+.cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.cookie-banner__content {
+    pointer-events: auto;
+    background: rgba(10, 10, 46, 0.95) !important; /* Deep night blue */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 212, 255, 0.25) !important; /* Subtle neon cyan border */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cookie-banner__text i {
+    color: #00d4ff !important; /* Neon Cyan */
+    text-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+}
+
+.cookie-banner__link {
+    color: rgba(0, 212, 255, 0.8) !important;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.cookie-banner__link:hover {
+    color: #7df9ff !important; /* Glowing Cyan */
+}
+
+.cookie-banner__btn {
+    min-width: 100px;
+    text-align: center;
+    border-radius: 4px !important;
+    font-size: 0.85rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .cookie-banner {
+        bottom: 16px;
+        padding: 0 10px;
+    }
+}

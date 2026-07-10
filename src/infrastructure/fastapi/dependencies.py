@@ -67,4 +67,6 @@ def get_common_context(
         "site_info": repo.get_site_info(),
         "static_version": _get_git_version(),
         "current_year": datetime.now().year,
+        "google_analytics_id": settings.GOOGLE_ANALYTICS_ID,
+        "microsoft_clarity_id": settings.MICROSOFT_CLARITY_ID,
     }

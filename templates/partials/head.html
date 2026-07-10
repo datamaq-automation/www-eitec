@@ -27,6 +27,12 @@
 <link href="/static/css/components/search-overlay.css?v={{ static_version }}" rel="stylesheet" type="text/css">
 <link href="/static/css/components/footer.css?v={{ static_version }}" rel="stylesheet" type="text/css">
 <link href="/static/css/components/whatsapp-btn.css?v={{ static_version }}" rel="stylesheet" type="text/css">
+<link href="/static/css/components/cookie-banner.css?v={{ static_version }}" rel="stylesheet" type="text/css">
+
+<script>
+    window.EITEC_GA_ID = "{{ google_analytics_id | default('') }}";
+    window.EITEC_CLARITY_ID = "{{ microsoft_clarity_id | default('') }}";
+</script>
 
 <!-- Prefetching & Preconnecting CDNs for Performance -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net">

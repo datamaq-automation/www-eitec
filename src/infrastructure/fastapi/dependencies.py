@@ -1,3 +1,4 @@
+import subprocess
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -45,6 +46,18 @@ def get_catalog_repository() -> CatalogRepository:
 def get_lead_notifier() -> LeadNotifier:
     return _lead_notifier
 
+
+def _get_git_version() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "--short", "HEAD"],
+            cwd=BASE_DIR,
+            text=True,
+        ).strip()
+    except Exception:
+        return "dev"
+
+
 def get_common_context(
     repo: CatalogRepository = Depends(get_catalog_repository),
 ) -> dict[str, Any]:
@@ -52,5 +65,6 @@ def get_common_context(
         "categories": repo.get_categories(),
         "carousel_slides": repo.get_carousel_slides(),
         "site_info": repo.get_site_info(),
+        "static_version": _get_git_version(),
         "current_year": datetime.now().year,
     }

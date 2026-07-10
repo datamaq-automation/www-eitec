@@ -6,7 +6,10 @@ from src.infrastructure.fastapi.dependencies import STATIC_DIR
 from src.infrastructure.fastapi.routers.web import router as web_router
 from src.infrastructure.fastapi.routers.contact import router as contact_router
 
+from fastapi.middleware.gzip import GZipMiddleware
+
 app = FastAPI(title="Datamaq SSR")
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 # Middleware para inyectar cabeceras de seguridad (HSTS, CSP, etc.)
 @app.middleware("http")
@@ -22,7 +25,7 @@ async def add_security_headers(
         "default-src 'self'; "
         "script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; "
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://default.contactopuro.com https://cdnjs.cloudflare.com; "
-        "font-src 'self' https://fonts.gstatic.com https://default.contactopuro.com; "
+        "font-src 'self' https://fonts.gstatic.com https://default.contactopuro.com https://cdnjs.cloudflare.com; "
         "img-src 'self' data: https://default.contactopuro.com; "
         "connect-src 'self' https://cdn.jsdelivr.net; "
         "frame-src 'self';"

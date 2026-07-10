@@ -7,7 +7,10 @@
                 <a href="{{ site_info.social_facebook }}" class="icon icon-facebook" target="_blank" rel="noopener noreferrer" aria-label="Seguinos en Facebook"></a>
             </div>
             <p>{{ site_info.subtitle }}</p>
-            <div class="header__actions optIcons">
+            <div class="header__actions optIcons" style="display: flex; align-items: center; gap: 15px;">
+                <a href="/carrito" class="icon fa-solid fa-file-invoice-dollar position-relative" aria-label="Ver solicitud de cotización" id="cart-badge-container" style="color: var(--color-text-white); text-decoration: none; font-size: 1.15rem;">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none" id="cart-badge" style="font-size: 0.55rem; padding: 0.25em 0.4em; transform: translate(-30%, -30%) !important;">0</span>
+                </a>
                 <a href="javascript:void(0);" class="icon fa-solid fa-magnifying-glass buscar" aria-label="Buscar categorías"></a>
             </div>
             <span class="clearfix"></span>
@@ -27,6 +30,9 @@
             <ul class="header__menu menu">
                 <li class="header__menu-item">
                     <a href="/" class="header__menu-link">Inicio</a>
+                </li>
+                <li class="header__menu-item">
+                    <a href="/carrito" class="header__menu-link" style="color: #ffc107 !important;"><i class="fa-solid fa-file-invoice-dollar me-2"></i>Mi Cotización</a>
                 </li>
                 <li class="header__menu-item d-md-none">
                     <a href="javascript:void(0);" class="header__menu-link buscar"><i class="fa-solid fa-magnifying-glass me-2"></i>Buscar productos</a>

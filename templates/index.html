@@ -33,9 +33,12 @@
                                 {{ site_info.category_description }}
                             </p>
                             <div class="mt-4 d-flex gap-2 flex-wrap align-items-center">
-                                <a href="/carrito" class="btn btn-primary btn-call btn-call--secondary px-4 py-2 text-decoration-none">
-                                    <i class="fa-solid fa-file-invoice-dollar me-2"></i>Solicitar cotización
-                                </a>
+                                <button class="btn btn-primary btn-call btn-call--secondary px-4 py-2" id="btn-add-to-quote"
+                                    data-slug="{{ active_category.slug }}"
+                                    data-name="{{ active_category.name }}"
+                                    data-image="{{ active_category.image }}">
+                                    <i class="fa-solid fa-file-invoice-dollar me-2"></i>Agregar a mi cotización
+                                </button>
                                 <a href="#contacto" class="btn btn-outline-secondary px-4 py-2 text-decoration-none" style="border-radius: 4px;">Consultar directo</a>
                             </div>
                         </div>

@@ -1,0 +1,917 @@
+
+/* ==========================================================================
+   SECCIÓN: VARIABLES.CSS
+   Archivo original: static/css/variables.css
+   ========================================================================== */
+
+:root {
+    /* Colors */
+    --color-primary: #00d4ff;           /* Cian Neón */
+    --color-primary-hover: #7df9ff;     /* Glow Cian */
+    --color-secondary: #c026d3;         /* Magenta Neón */
+    --color-secondary-hover: #e879f9;   /* Glow Magenta */
+    --color-accent-green: #50ae4e;      /* Verde Lima del Logo */
+    --color-dark: #0a0a2e;              /* Azul Noche Profundo */
+    --color-text: #f0f4f8;              /* Gris Azulado Claro (Alta Lectura) */
+    --color-text-muted: #94a3b8;        /* Gris Pizarra Claro */
+    --color-bg-light: #131338;          /* Azul Noche Intermedio */
+    --color-border: #2e2e5c;            /* Borde Azul Noche */
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-gray-dark: #07071e;
+    --color-gray-light: #1b1b44;
+
+    /* Fonts */
+    --font-title: 'Bebas Neue', Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-body: 'Roboto', sans-serif;
+
+    /* Shadows */
+    --shadow-header: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+    /* Layout & Dimensions */
+    --header-height: 152px;             /* Altura por defecto (Desktop) */
+}
+
+/* Responsive Header Heights */
+@media only screen and (max-width: 479px) {
+    :root {
+        --header-height: 132px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    :root {
+        --header-height: 169px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    :root {
+        --header-height: 162px;
+    }
+}
+
+
+/* ==========================================================================
+   SECCIÓN: BASE.CSS
+   Archivo original: static/css/base.css
+   ========================================================================== */
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-dark);
+}
+
+h1 {
+    font-family: var(--font-title);
+}
+
+h2 {
+    text-align: center;
+    font-family: var(--font-title);
+    color: var(--color-white);
+    font-size: 2.25rem;
+    margin: 40px auto 20px;
+    text-transform: uppercase;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--color-primary); /* Cyan Neon */
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+h2 + p {
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--color-text-muted);
+}
+
+/* Modern Dark-mode Alerts */
+.alert-success {
+    background-color: rgba(80, 174, 78, 0.15) !important;
+    color: var(--color-accent-green) !important;
+    border: 1px solid var(--color-accent-green) !important;
+    border-radius: 8px !important;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.15) !important;
+    color: #ff6b6b !important;
+    border: 1px solid #dc3545 !important;
+    border-radius: 8px !important;
+}
+
+/* Bootstrap Helper Overrides */
+.text-primary {
+    color: var(--color-primary) !important;
+}
+
+.text-secondary {
+    color: var(--color-text-muted) !important;
+}
+
+.bg-light {
+    background-color: var(--color-bg-light) !important;
+}
+
+
+/* ==========================================================================
+   SECCIÓN: BUTTONS.CSS
+   Archivo original: static/css/components/buttons.css
+   ========================================================================== */
+
+.btn-call {
+    background-color: var(--color-primary);
+    color: var(--color-dark); /* Dark text on bright cian for high contrast */
+    font-weight: 700;
+    border-radius: 4px;
+    border: 1px solid var(--color-primary);
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-call:hover {
+    background-color: var(--color-primary-hover);
+    color: var(--color-dark);
+    border: 1px solid var(--color-primary-hover);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.6);
+}
+
+/* Secondary Action Button (Magenta) */
+.btn-call--secondary {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.btn-call--secondary:hover {
+    background-color: var(--color-secondary-hover);
+    border-color: var(--color-secondary-hover);
+    color: var(--color-white);
+    box-shadow: 0 0 12px rgba(192, 38, 211, 0.6);
+}
+
+
+/* ==========================================================================
+   SECCIÓN: HEADER.CSS
+   Archivo original: static/css/components/header.css
+   ========================================================================== */
+
+.header {
+    background-color: rgba(10, 10, 46, 0.95) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-header);
+    -webkit-box-shadow: var(--shadow-header);
+    -moz-box-shadow: var(--shadow-header);
+    transition: all 0.3s ease;
+}
+
+.header__top {
+    background-color: var(--color-primary) !important;
+}
+
+.header__top p,
+.header__top a {
+    color: var(--color-dark) !important;
+    font-weight: bold !important;
+}
+
+.header__logo {
+    background-image: url("/custom/logo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50% !important;
+    border: 2px solid var(--color-primary) !important;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.4) !important;
+    width: 80px !important;
+    height: 80px !important;
+    margin: 10px 0 !important;
+}
+
+.header__hamburger {
+    display: block !important;
+    padding: 26px !important; /* Adjusted to center vertically inside 100px header */
+}
+
+.header__hamburger-inner,
+.header__hamburger-inner:after,
+.header__hamburger-inner:before {
+    background-color: var(--color-white) !important; /* White icon on dark header */
+}
+
+.header__menu {
+    float: left;
+    width: 100%;
+    vertical-align: middle;
+    height: 0;
+    line-height: 50px;
+    text-align: left;
+    overflow: hidden;
+    background-color: rgba(10, 10, 46, 0.98);
+}
+
+.header__menu.active {
+    height: auto !important;
+    opacity: 1 !important;
+    padding: 20px 30px !important;
+    overflow-y: auto !important;
+    transition: opacity 0.3s ease, padding 0.3s ease;
+}
+
+.header__menu-item {
+    display: block;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.header__menu-link,
+.header__menu-trigger {
+    padding: 10px 15px !important;
+    margin: 0;
+    display: block;
+}
+
+.header__menu-link {
+    color: var(--color-white) !important;
+    font-size: 1.1rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.header__menu-link:hover {
+    color: var(--color-primary) !important;
+    padding-left: 20px !important; /* Hover slide effect */
+}
+
+/* Responsive Breakpoints for Header */
+@media only screen and (max-width: 479px) {
+    .header__hamburger {
+        padding: 15px 0 !important;
+    }
+    
+    .header__logo {
+        width: 50px !important;
+        height: 50px !important;
+        margin: 5px 0 !important;
+    }
+    
+    .header__menu {
+        height: 70px;
+        line-height: 40px;
+    }
+    
+    .header__menu-link {
+        margin-left: 10px;
+    }
+}
+
+
+/* ==========================================================================
+   SECCIÓN: CAROUSEL.CSS
+   Archivo original: static/css/components/carousel.css
+   ========================================================================== */
+
+/* Carousel Component */
+.carousel-slider {
+    margin-top: var(--header-height) !important;
+    height: calc(100vh - var(--header-height)) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Override remote styles for carousel item overlay */
+.carousel-item::after {
+    background-color: transparent !important; /* Remove legacy grey overlay */
+}
+
+/* Modern brand gradient overlay */
+.carousel-slider__item {
+    position: relative;
+    height: 100%;
+}
+
+.carousel-slider__item::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(10, 10, 46, 0.8) 0%, rgba(28, 11, 78, 0.5) 100%) !important;
+    z-index: 1;
+}
+
+.carousel-slider__caption {
+    z-index: 2;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-slider__caption h1,
+.carousel-slider__caption h2 {
+    font-size: 3.5rem !important;
+    color: var(--color-white) !important;
+    font-family: var(--font-title);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.carousel-slider__caption p {
+    font-size: 1.2rem;
+    color: var(--color-text-muted) !important;
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Carousel indicators */
+.carousel-indicators [data-bs-target] {
+    background-color: var(--color-primary) !important;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 6px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators .active {
+    opacity: 1 !important;
+    transform: scale(1.2);
+    box-shadow: 0 0 8px var(--color-primary);
+}
+
+/* Responsive Media Queries */
+@media only screen and (max-width: 767px) {
+    .carousel-slider__caption h1,
+    .carousel-slider__caption h2 {
+        font-size: 2rem !important;
+    }
+    .carousel-slider {
+        margin-bottom: 40px !important;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .carousel-slider__caption h1,
+    .carousel-slider__caption h2 {
+        font-size: 2.75rem !important;
+    }
+}
+
+
+/* ==========================================================================
+   SECCIÓN: CATEGORIES-GRID.CSS
+   Archivo original: static/css/components/categories-grid.css
+   ========================================================================== */
+
+/* Categories Grid Component */
+.categories-grid.listadoCategorias {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+    gap: 25px !important;
+    width: 100% !important;
+    text-align: left !important;
+    padding: 20px 0 !important;
+}
+
+.categories-grid.listadoCategorias a.categories-grid__card {
+    display: block !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+    float: none !important;
+    position: relative !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--color-border) !important;
+    overflow: hidden !important;
+    background-color: var(--color-bg-light) !important;
+    aspect-ratio: 1 / 1 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.categories-grid.listadoCategorias a.categories-grid__card:after {
+    display: none !important; /* Disables legacy padding-bottom aspect ratio hack */
+}
+
+.categories-grid.listadoCategorias a.categories-grid__card:hover {
+    transform: translateY(-5px) !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 8px 30px rgba(0, 212, 255, 0.25) !important;
+}
+
+.categories-grid__card p {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    background-color: rgba(10, 10, 46, 0.85);
+    color: var(--color-white);
+    margin-bottom: 0;
+    padding: 12px 15px;
+    font-weight: normal;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.categories-grid.listadoCategorias a.categories-grid__card:hover p {
+    background-color: var(--color-primary) !important;
+    color: var(--color-dark) !important;
+    font-weight: bold;
+}
+
+.categories-grid__image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.categories-grid.listadoCategorias a.categories-grid__card:hover .categories-grid__image {
+    transform: translate(-50%, -50%) scale(1.08) !important;
+}
+
+/* Ensure the 4th item in the row has no margin on large screens - disabled as grid handles it */
+@media only screen and (min-width: 1200px) {
+    .categories-grid__card:nth-child(4n) {
+        margin-right: 0 !important;
+    }
+}
+
+
+/* ==========================================================================
+   SECCIÓN: CATEGORY-DETAIL.CSS
+   Archivo original: static/css/components/category-detail.css
+   ========================================================================== */
+
+/* Category Detail Component */
+.category-detail__title {
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 5vw, 3.5rem) !important;
+    line-height: 1.1;
+    font-weight: normal;
+    color: var(--color-primary) !important;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+    letter-spacing: 1px;
+}
+
+.category-detail__image {
+    max-height: 380px;
+    object-fit: contain;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 15px;
+    background-color: var(--color-bg-light);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ==========================================================================
+   SECCIÓN: INTRO-SECTION.CSS
+   Archivo original: static/css/components/intro-section.css
+   ========================================================================== */
+
+/* Intro Section Component */
+.intro-section {
+    background-color: var(--color-bg-light) !important;
+    border-bottom: 1px solid var(--color-border) !important;
+}
+
+.intro-section__lead {
+    max-width: 800px;
+    color: var(--color-text-muted) !important;
+}
+
+
+/* ==========================================================================
+   SECCIÓN: CONTACT-FORM.CSS
+   Archivo original: static/css/components/contact-form.css
+   ========================================================================== */
+
+/* Contact Form Component */
+.contact-section {
+    background-color: var(--color-dark);
+    padding: 80px 0;
+    margin-top: 60px !important;
+}
+
+.contact-form {
+    background-color: var(--color-bg-light);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+}
+
+.contact-form__label {
+    color: var(--color-white);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.contact-form__label.obligatorio::after {
+    content: " *";
+    color: var(--color-secondary); /* Magenta accent for required */
+}
+
+.contact-form__input {
+    background-color: rgba(10, 10, 46, 0.5) !important;
+    color: var(--color-white) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 6px !important;
+    padding: 12px 15px !important;
+    transition: all 0.3s ease !important;
+}
+
+.contact-form__input:focus {
+    background-color: rgba(10, 10, 46, 0.85) !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3) !important;
+}
+
+.contact-form__input::placeholder {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Floating labels adjustments for dark mode compatibility */
+.form-floating > label {
+    color: rgba(255, 255, 255, 0.5) !important;
+    padding-left: 15px !important;
+}
+
+.form-floating > .contact-form__input:focus ~ label,
+.form-floating > .contact-form__input:not(:placeholder-shown) ~ label {
+    color: var(--color-primary) !important;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem) !important;
+}
+
+
+/* ==========================================================================
+   SECCIÓN: SEARCH-OVERLAY.CSS
+   Archivo original: static/css/components/search-overlay.css
+   ========================================================================== */
+
+/* Search Overlay Component */
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.search-overlay.active {
+    display: flex;
+}
+
+.search-overlay__form {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 600px;
+    background: var(--color-dark) !important;
+    color: var(--color-white) !important;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 40px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+.search-overlay__title {
+    font-family: var(--font-title);
+    background-color: transparent;
+    padding: 0;
+    left: auto;
+    transform: none;
+    color: var(--color-white) !important;
+    font-size: 2rem !important;
+    margin-bottom: 25px !important;
+    text-align: center;
+}
+
+.search-overlay__mask {
+    background: rgba(7, 7, 30, 0.85) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.search-overlay__input {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: var(--color-white) !important; /* White text input is now visible on dark input bg */
+    border: 1px solid var(--color-border) !important;
+    border-radius: 8px !important;
+    padding: 15px 20px !important;
+    font-size: 1.25rem !important;
+    width: 100% !important;
+}
+
+.search-overlay__input:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3) !important;
+}
+
+.search-overlay__submit {
+    background-color: var(--color-primary) !important;
+    border: 1px solid var(--color-primary) !important;
+    border-radius: 8px !important;
+    cursor: pointer;
+    transition: all 0.3s ease !important;
+}
+
+.search-overlay__submit:hover {
+    background-color: var(--color-primary-hover) !important;
+    border-color: var(--color-primary-hover) !important;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5) !important;
+}
+
+
+/* ==========================================================================
+   SECCIÓN: FOOTER.CSS
+   Archivo original: static/css/components/footer.css
+   ========================================================================== */
+
+/* Footer Component */
+.footer {
+    background-color: #07071e !important;
+    border-top: 1px solid var(--color-border);
+    padding: 60px 0 40px;
+}
+
+.footer__socials {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.footer__socials a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: var(--color-white) !important;
+    background-color: var(--color-gray-light) !important;
+    border-radius: 50% !important;
+    margin: 0 8px !important;
+    transition: all 0.3s ease !important;
+    vertical-align: middle;
+}
+
+.footer__socials a:hover {
+    background-color: var(--color-primary) !important;
+    color: var(--color-dark) !important;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.5) !important;
+}
+
+.footer__links-column {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    margin-bottom: 25px !important;
+}
+
+.footer__links-column p {
+    margin: 0 !important;
+}
+
+.footer__links-column p a {
+    color: var(--color-text-muted) !important;
+    font-size: 1rem !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer__links-column p a:hover {
+    color: var(--color-primary) !important;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+/* Category links in footer are currently formatted as .btn-call */
+.footer__links-column p a.btn-call {
+    background-color: transparent !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 20px !important;
+    padding: 8px 16px !important;
+    font-size: 0.875rem !important;
+    color: var(--color-white) !important;
+    transition: all 0.3s ease !important;
+}
+
+.footer__links-column p a.btn-call:hover {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: var(--color-dark) !important;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.4) !important;
+}
+
+.footer__links-column p:first-child {
+    display: none !important; /* Disables redundant titles if present */
+}
+
+.footer__copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+    margin-top: 30px;
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* Footer layout alignment helpers */
+.footer .clearfix + .footer__links-column {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center !important;
+}
+
+/* Responsive Footer Breakpoints */
+@media only screen and (max-width: 479px) {
+    .footer__socials a {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+.footer__copyright .realizado {
+    background-image: none !important;
+    width: auto !important;
+    height: auto !important;
+    display: inline-block !important;
+    color: var(--color-primary) !important;
+    text-decoration: none !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 10px !important;
+}
+
+.footer__copyright .realizado:hover {
+    color: var(--color-primary-hover) !important;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+}
+
+
+
+/* ==========================================================================
+   SECCIÓN: WHATSAPP-BTN.CSS
+   Archivo original: static/css/components/whatsapp-btn.css
+   ========================================================================== */
+
+/* WhatsApp Floating Button */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #fff !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none !important;
+}
+
+.whatsapp-btn i {
+    font-family: "Font Awesome 6 Brands" !important;
+}
+
+/* Pulsing glow animation */
+.whatsapp-btn::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #25d366;
+    opacity: 0.5;
+    z-index: -1;
+    animation: whatsapp-pulse 2s infinite;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+    background-color: #20ba5a;
+}
+
+@keyframes whatsapp-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+/* Mobile responsiveness */
+@media only screen and (max-width: 767px) {
+    .whatsapp-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+    }
+}
+
+/* Elevation when cookie banner is active to prevent overlapping */
+.whatsapp-btn.whatsapp-btn--elevated {
+    bottom: 110px;
+}
+
+@media only screen and (max-width: 767px) {
+    .whatsapp-btn.whatsapp-btn--elevated {
+        bottom: 165px; /* Higher offset for mobile stacking */
+    }
+}
+
+
+/* ==========================================================================
+   SECCIÓN: COOKIE-BANNER.CSS
+   Archivo original: static/css/components/cookie-banner.css
+   ========================================================================== */
+
+/* Cookie Banner component style rules with B2B neon glassmorphism brand identity */
+.cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.cookie-banner__content {
+    pointer-events: auto;
+    background: rgba(10, 10, 46, 0.95) !important; /* Deep night blue */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 212, 255, 0.25) !important; /* Subtle neon cyan border */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cookie-banner__text i {
+    color: #00d4ff !important; /* Neon Cyan */
+    text-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+}
+
+.cookie-banner__link {
+    color: rgba(0, 212, 255, 0.8) !important;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.cookie-banner__link:hover {
+    color: #7df9ff !important; /* Glowing Cyan */
+}
+
+.cookie-banner__btn {
+    min-width: 100px;
+    text-align: center;
+    border-radius: 4px !important;
+    font-size: 0.85rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .cookie-banner {
+        bottom: 16px;
+        padding: 0 10px;
+    }
+}
+

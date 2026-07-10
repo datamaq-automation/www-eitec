@@ -32,3 +32,10 @@
     {% include "partials/footer.html" %}
     {% include "partials/search_overlay.html" %}
 {% endblock %}
+
+{% block scripts_extra %}
+<script>
+    localStorage.removeItem('eitec_quote_items');
+    window.dispatchEvent(new Event('cart-updated'));
+</script>
+{% endblock %}

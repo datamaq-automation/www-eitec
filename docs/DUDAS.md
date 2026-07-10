@@ -5,7 +5,7 @@ Este documento recopila las dudas estratégicas de negocio, marca y diseño iden
 ## [D1] Formato y Transparencia del Logo
 **Nivel:** ALTO  
 **Área:** Marca / Diseño  
-**Contexto:** El logo actual en `static/custom/logo.jpg` es un archivo JPEG con fondo blanco sólido y opaco. Esto imposibilita el uso de cabeceras oscuras, translúcidas o con efectos de desenfoque modernos (glassmorphism), obligando a mantener un header blanco plano para evitar un recuadro blanco antiestético.  
+**Contexto:** El logo actual en `static/custom/logo.png` es un archivo JPEG con fondo blanco sólido y opaco. Esto imposibilita el uso de cabeceras oscuras, translúcidas o con efectos de desenfoque modernos (glassmorphism), obligando a mantener un header blanco plano para evitar un recuadro blanco antiestético.  
 **Pregunta:** ¿Se dispone de una versión del logo EITEC con fondo transparente (en formato SVG o PNG de alta resolución)?  
 **Impacto:** Afecta directamente al componente Header, su flexibilidad estética y la capacidad de integrarse con fondos de color.  
 **Bloquea propuesta:** No para la paleta general, pero sí bloquea el rediseño del Header con fondo oscuro o degradado.

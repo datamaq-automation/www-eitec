@@ -61,7 +61,7 @@ www-eitec/
 │   ├── css/styles.css         # Estilos propios
 │   ├── custom/
 │   │   ├── favicon/           # Vacío al momento de la revisión
-│   │   └── logo.jpg           # Logo usado en header, favicon y meta tags
+│   │   └── logo.png           # Logo usado en header, favicon y meta tags
 │   ├── img/                   # Imágenes de categorías y carrusel
 │   └── js/main.js             # Scripts propios
 ├── templates/
@@ -226,7 +226,7 @@ curl -X POST \
 
 - El archivo `static/css/styles.css` es un CSS plano, sin preprocesadores.
 - Existe una mezcla de clases en español e inglés.
-- Algunas reglas hacen referencia a recursos que no existen en el repositorio, por ejemplo `url(../files/logo.jpg)` en el footer, mientras que el logo real está en `static/custom/logo.jpg`.
+- Algunas reglas hacen referencia a recursos que no existen en el repositorio, por ejemplo `url(../files/logo.png)` en el footer, mientras que el logo real está en `static/custom/logo.png`.
 
 ---
 

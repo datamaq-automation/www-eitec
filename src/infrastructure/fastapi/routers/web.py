@@ -19,8 +19,9 @@ async def index(
     context: dict[str, Any] = Depends(get_common_context),
 ) -> HTMLResponse:
     context.update({
-        "title": "EITEC - Accesorios y Repuestos para Artefactos a Gas (ex EITAR)",
-        "description": "Fábrica cooperativa de accesorios para artefactos a gas en Bernal, Argentina. Válvulas de seguridad, termostatos y quemadores de la línea ex EITAR.",
+        # B2B-REFACTOR: se priorizan keywords de búsqueda orgánica por marca histórica EITAR
+        "title": "EITEC - Repuestos y Válvulas EITAR para Artefactos a Gas | Cooperativa",
+        "description": "Fábrica cooperativa EITEC, continuadora de EITAR. Repuestos EITAR, válvulas de seguridad, termostatos y termocuplas para artefactos a gas en Bernal, Argentina.",
         "canonical_url": "https://www.eitec.coop.ar/",
     })
     return templates.TemplateResponse(request, "index.html", context)

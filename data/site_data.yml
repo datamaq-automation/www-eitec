@@ -46,7 +46,8 @@ carousel_slides:
 site_info:
   title: "EITEC Cooperativa de Trabajo"
   subtitle: "Fábrica de accesorios para artefactos a gas"
-  intro_title: "EITEC Cooperativa de Trabajo"
+  # B2B-REFACTOR: H1 orientado a SEO de búsquedas EITAR
+  intro_title: "Repuestos EITAR y accesorios para artefactos a gas"
   intro_text: "Fábrica recuperada dedicada a la producción y comercialización de accesorios para artefactos a gas. Fabricamos los repuestos originales de la clásica línea <strong>EITAR</strong> con la mayor seguridad y experiencia metalúrgica de Quilmes, Buenos Aires."
   category_lead_template: "Fabricación y venta de <strong>{category_name}</strong> de alta calidad. Repuestos originales y componentes aprobados para artefactos a gas (línea ex EITAR)."
   category_description: "Como cooperativa industrial EITEC (anteriormente EITAR), producimos accesorios a gas con los estándares de seguridad y durabilidad más altos en Argentina. Ofrecemos soluciones confiables y seguras para calefactores, cocinas, termotanques y otros artefactos de gas domésticos e industriales. Todos nuestros repuestos e insumos están fabricados por trabajadores metalúrgicos con amplia experiencia en Bernal Oeste, Quilmes."

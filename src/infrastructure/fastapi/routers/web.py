@@ -2,13 +2,14 @@ import xml.etree.ElementTree as ET
 from xml.dom import minidom
 from typing import Any
 from fastapi import APIRouter, Request, Depends, Form, Response
-from fastapi.responses import HTMLResponse, RedirectResponse, PlainTextResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, PlainTextResponse, FileResponse
 
 from src.domain.catalog import CatalogRepository
 from src.infrastructure.fastapi.dependencies import (
     templates,
     get_catalog_repository,
     get_common_context,
+    STATIC_DIR,
 )
 
 router = APIRouter()
@@ -49,7 +50,14 @@ async def category(
 ) -> Response:
     active_cat = repo.get_category_by_slug(slug)
     if not active_cat:
-        return RedirectResponse(url="/", status_code=307)
+        context.update({
+            "title": "Categoría no encontrada - EITEC",
+            "description": "La categoría de repuestos o accesorios para artefactos a gas solicitada no existe.",
+            "message": "La categoría solicitada no existe o ha sido movida.",
+            "message_type": "danger",
+            "canonical_url": "https://www.eitec.coop.ar/",
+        })
+        return templates.TemplateResponse(request, "index.html", context, status_code=404)
         
     context.update({
         "active_category": active_cat,
@@ -58,6 +66,22 @@ async def category(
         "canonical_url": f"https://www.eitec.coop.ar/categoria/{slug}",
     })
     return templates.TemplateResponse(request, "index.html", context)
+
+
+@router.get("/buscar")
+async def search_get(
+    s: str = "",
+    repo: CatalogRepository = Depends(get_catalog_repository),
+) -> RedirectResponse:
+    query = s.strip().lower()
+    if not query:
+        return RedirectResponse(url="/", status_code=301)
+
+    results = repo.search_categories(query)
+    if results:
+        return RedirectResponse(url=f"/categoria/{results[0].slug}", status_code=301)
+
+    return RedirectResponse(url="/", status_code=302)
 
 
 @router.post("/buscar")
@@ -118,3 +142,8 @@ async def sitemap_xml(
     pretty_xml = parsed_xml.toprettyxml(indent="  ", encoding="utf-8")
     
     return Response(content=pretty_xml, media_type="application/xml")
+
+
+@router.get("/favicon.ico", include_in_schema=False)
+async def favicon() -> FileResponse:
+    return FileResponse(STATIC_DIR / "custom" / "logo.png")

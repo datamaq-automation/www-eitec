@@ -2,9 +2,9 @@
     <div class="header__top top">
         <div class="container">
             <div class="header__socials redes">
-                <a href="{{ site_info.social_instagram }}" class="icon icon-instagram" target="_blank"></a>
-                <a href="/contactanos" class="icon icon-mail"></a>
-                <a href="{{ site_info.social_facebook }}" class="icon icon-facebook" target="_blank"></a>
+                <a href="{{ site_info.social_instagram }}" class="icon icon-instagram" target="_blank" rel="noopener noreferrer" aria-label="Seguinos en Instagram"></a>
+                <a href="/contactanos" class="icon icon-mail" aria-label="Enviar un correo electrónico a la cooperativa"></a>
+                <a href="{{ site_info.social_facebook }}" class="icon icon-facebook" target="_blank" rel="noopener noreferrer" aria-label="Seguinos en Facebook"></a>
             </div>
             <p>{{ site_info.subtitle }}</p>
             <div class="header__actions optIcons">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="container">
-        <a href="/" class="header__logo logo"></a>
+        <a href="/" class="header__logo logo" aria-label="EITEC Cooperativa - Volver a la página de inicio"></a>
 
         <button class="header__hamburger hamburger hamburger--collapse" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="navigation-menu">
             <span class="hamburger-box">

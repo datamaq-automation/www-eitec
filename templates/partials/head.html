@@ -54,16 +54,18 @@
 <meta property="og:url" content="{{ canonical_url | default('https://www.eitec.coop.ar/') }}">
 <meta property="og:title" content="{{ title | default('EITEC - Fábrica de accesorios para Artefactos a Gas') }}">
 <meta property="og:description" content="{{ description | default('Fabricación de accesorios y repuestos para artefactos a gas en Bernal, Argentina. Válvulas de seguridad, termostatos y quemadores de la línea ex EITAR.') }}">
-<meta property="og:image" content="https://www.eitec.coop.ar/static/custom/logo.png">
+<meta property="og:image" content="{% if active_category %}https://www.eitec.coop.ar/static/img/{{ active_category.image }}{% else %}https://www.eitec.coop.ar/static/custom/logo.png{% endif %}">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="{{ canonical_url | default('https://www.eitec.coop.ar/') }}">
 <meta name="twitter:title" content="{{ title | default('EITEC - Fábrica de accesorios para Artefactos a Gas') }}">
 <meta name="twitter:description" content="{{ description | default('Fabricación de accesorios y repuestos para artefactos a gas en Bernal, Argentina. Válvulas de seguridad, termostatos y quemadores de la línea ex EITAR.') }}">
-<meta name="twitter:image" content="https://www.eitec.coop.ar/static/custom/logo.png">
+<meta name="twitter:image" content="{% if active_category %}https://www.eitec.coop.ar/static/img/{{ active_category.image }}{% else %}https://www.eitec.coop.ar/static/custom/logo.png{% endif %}">
 
 <!-- Favicon -->
-<link rel="icon" type="image/jpeg" href="/custom/logo.png?v={{ static_version }}">
+<link rel="icon" type="image/png" href="/custom/logo.png?v={{ static_version }}">
+<link rel="shortcut icon" href="/favicon.ico?v={{ static_version }}">
+<link rel="apple-touch-icon" href="/custom/logo.png?v={{ static_version }}">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">

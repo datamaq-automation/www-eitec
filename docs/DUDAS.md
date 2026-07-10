@@ -108,7 +108,7 @@ Este documento recopila exclusivamente las dudas estratégicas, técnicas y de n
 
 ## RESUMEN DE ESTADO
 
-- **Dudas estratégicas abiertas:** 8 (D1, D2, D3, D4, D5, D6, D7, D8)
+- **Dudas estratégicas abiertas:** 9 (D1, D2, D3, D4, D5, D6, D7, D8, D10)
 - **Dudas técnicas abiertas:** 4 (DT1, DT2, DT3, DT4)
 - **Dudas resueltas:** 1 (D9)
 - **Certezas confirmadas:** ver `docs/CERTEZAS.md`
@@ -117,5 +117,6 @@ Este documento recopila exclusivamente las dudas estratégicas, técnicas y de n
 1. **D6** — Dominio EITAR: define estrategia de dominios y redirecciones.
 2. **D7** — Modelo de negocio: define si se necesita área privada de mayoristas.
 3. **D8** — Nomenclatura: define el keyword research completo.
-4. **DT2** — Ruta `/carrito`: define la URL definitiva del formulario de cotización.
-5. **DT4** — Generación de PDF cotizador: define si se requiere implementar el generador de PDF.
+4. **D10** — Centralización de dominios: define la infraestructura y URL definitiva del sitio.
+5. **DT2** — Ruta `/carrito`: define la URL definitiva del formulario de cotización.
+6. **DT4** — Generación de PDF cotizador: define si se requiere implementar el generador de PDF.

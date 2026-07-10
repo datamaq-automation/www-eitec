@@ -90,6 +90,20 @@ Para cumplir con las normas de protección de datos (ya que solicitamos Nombre, 
 
 ---
 
+## 8. Dominio principal de EITEC: eitec.com.ar vs. eitec.coop.ar (D10)
+
+Actualmente la situación de los dominios de la cooperativa es:
+- **`eitec.com.ar`:** El sitio nuevo está montado acá, y ya tenemos el control técnico y administrativo total sobre él.
+- **`eitec.coop.ar`:** Es el dominio legacy. No tenemos acceso activo para administrarlo y recuperarlo exigirá tiempo y trámites burocráticos ante NIC Argentina (presentar documentación legal de la cooperativa, actas de designación, etc.).
+
+Preguntas:
+- ¿Querés que centralicemos el sitio definitivamente en `eitec.com.ar` como dominio principal para ahorrar tiempo de gestión administrativa y enfocar el esfuerzo en el desarrollo?
+- ¿O preferís que hagamos el trámite para recuperar `eitec.coop.ar` y mudar todo allí para mantener la identidad cooperativa en la URL principal?
+
+**Por qué importa:** Avanzar con `eitec.com.ar` nos permite consolidar el sitio y configurar los servicios de forma inmediata. Si elegimos `eitec.coop.ar` como principal, el lanzamiento final quedará supeditado a los tiempos de NIC Argentina. Nuestra sugerencia es usar `eitec.com.ar` como dominio principal del sitio nuevo y, cuando se logre recuperar `eitec.coop.ar`, apuntarlo como redirección hacia el primero.
+
+---
+
 ## Dudas técnicas menores (las resolvemos nosotros, pero tu opinión ayuda)
 
 - **Lista de productos:** ¿preferís que el visitante arme una lista de productos para cotizar (como ahora) o que vaya directo al formulario de contacto sin intermediarios?

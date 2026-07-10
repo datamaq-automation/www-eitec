@@ -20,13 +20,6 @@ load_dotenv()
 
 class Settings:
     # Chatwoot API Integration
-    CHATWOOT_API_URL: str = os.getenv("CHATWOOT_API_URL", "")
     CHATWOOT_API_TOKEN: str = os.getenv("CHATWOOT_API_TOKEN", "")
-    CHATWOOT_ACCOUNT_ID: int = int(os.getenv("CHATWOOT_ACCOUNT_ID", "1"))
-    CHATWOOT_INBOX_ID: int = int(os.getenv("CHATWOOT_INBOX_ID", "1"))
-
-    # Analytics Integrations
-    GOOGLE_ANALYTICS_ID: str = os.getenv("GOOGLE_ANALYTICS_ID", "")
-    MICROSOFT_CLARITY_ID: str = os.getenv("MICROSOFT_CLARITY_ID", "")
 
 settings = Settings()

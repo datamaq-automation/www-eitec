@@ -69,7 +69,7 @@ async def custom_404_handler(request: Request, exc: Exception) -> Response:
     context.update({
         "title": "Página no encontrada - EITEC",
         "description": "La página que buscas no existe o ha sido movida.",
-        "canonical_url": "https://www.eitec.coop.ar/",
+        "canonical_url": f"{context['base_url']}/",
         "noindex": True,
     })
     return templates.TemplateResponse(request, "404.html", context, status_code=404)

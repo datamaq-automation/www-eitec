@@ -36,7 +36,7 @@ class CompositeLeadNotifier(LeadNotifier):
 _active_notifiers: list[LeadNotifier] = [LoggingLeadNotifier()]
 
 if settings.CHATWOOT_API_TOKEN:
-    _active_notifiers.append(ChatwootLeadNotifier())
+    _active_notifiers.append(ChatwootLeadNotifier(_catalog_repo))
 
 _lead_notifier: LeadNotifier = CompositeLeadNotifier(_active_notifiers)
 
@@ -61,12 +61,14 @@ def _get_git_version() -> str:
 def get_common_context(
     repo: CatalogRepository = Depends(get_catalog_repository),
 ) -> dict[str, Any]:
+    site_info = repo.get_site_info()
     return {
         "categories": repo.get_categories(),
         "carousel_slides": repo.get_carousel_slides(),
-        "site_info": repo.get_site_info(),
+        "site_info": site_info,
         "static_version": _get_git_version(),
         "current_year": datetime.now().year,
-        "google_analytics_id": settings.GOOGLE_ANALYTICS_ID,
-        "microsoft_clarity_id": settings.MICROSOFT_CLARITY_ID,
+        "google_analytics_id": site_info.google_analytics_id,
+        "microsoft_clarity_id": site_info.microsoft_clarity_id,
+        "base_url": site_info.base_url.rstrip("/"),
     }

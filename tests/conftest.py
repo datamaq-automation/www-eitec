@@ -29,7 +29,10 @@ MOCK_SITE_INFO = SiteInfo(
     category_description="Como cooperativa industrial EITEC (anteriormente EITAR), producimos accesorios a gas.",
     contact_email="horacio@eitec.coop.ar",
     social_facebook="https://www.facebook.com/CooperativaEitec",
-    social_instagram="https://www.instagram.com/eitec_cooperativa/"
+    social_instagram="https://www.instagram.com/eitec_cooperativa/",
+    chatwoot_api_url="https://chatwoot.eitec.com.ar",
+    chatwoot_account_id=3,
+    chatwoot_inbox_id=13
 )
 
 class MockCatalogRepository(CatalogRepository):

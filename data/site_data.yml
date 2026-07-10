@@ -63,3 +63,9 @@ site_info:
   contact_whatsapp: '5491154721020'
   social_facebook: https://www.facebook.com/CooperativaEitec
   social_instagram: https://www.instagram.com/eitec_cooperativa/
+  base_url: https://www.eitec.coop.ar
+  google_analytics_id: ''
+  microsoft_clarity_id: ''
+  chatwoot_api_url: https://chatwoot.eitec.com.ar
+  chatwoot_account_id: 3
+  chatwoot_inbox_id: 13

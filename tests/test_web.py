@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+from tests.conftest import MOCK_SITE_INFO
 
 def test_health(client: TestClient):
     response = client.get("/health")
@@ -17,8 +18,8 @@ def test_sitemap_xml(client: TestClient):
     response = client.get("/sitemap.xml")
     assert response.status_code == 200
     assert "application/xml" in response.headers["content-type"]
-    assert "<loc>https://www.eitec.coop.ar/</loc>" in response.text
-    assert "<loc>https://www.eitec.coop.ar/categoria/termostatos</loc>" in response.text
+    assert f"<loc>{MOCK_SITE_INFO.base_url}/</loc>" in response.text
+    assert f"<loc>{MOCK_SITE_INFO.base_url}/categoria/termostatos</loc>" in response.text
 
 
 def test_index_page(client: TestClient):

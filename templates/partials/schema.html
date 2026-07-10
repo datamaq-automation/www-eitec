@@ -5,18 +5,18 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://www.eitec.coop.ar/#organization",
+      "@id": "{{ base_url }}/#organization",
       "name": "EITEC Cooperativa de Trabajo",
       "alternateName": "EITAR",
-      "url": "https://www.eitec.coop.ar/",
+      "url": "{{ base_url }}/",
       "logo": {
         "@type": "ImageObject",
-        "@id": "https://www.eitec.coop.ar/#logo",
-        "url": "https://www.eitec.coop.ar/static/custom/logo.png",
+        "@id": "{{ base_url }}/#logo",
+        "url": "{{ base_url }}/static/custom/logo.png",
         "caption": "EITEC Cooperativa ex EITAR Logo"
       },
       "image": {
-        "@id": "https://www.eitec.coop.ar/#logo"
+        "@id": "{{ base_url }}/#logo"
       },
       "description": "Fábrica cooperativa metalúrgica continuadora de EITAR, dedicada a la fabricación de accesorios y repuestos para artefactos a gas en Bernal, Argentina.",
       "sameAs": [
@@ -26,12 +26,12 @@
     },
     {
       "@type": "LocalBusiness",
-      "@id": "https://www.eitec.coop.ar/#localbusiness",
+      "@id": "{{ base_url }}/#localbusiness",
       "name": "EITEC Cooperativa Metalúrgica",
       "parentOrganization": {
-        "@id": "https://www.eitec.coop.ar/#organization"
+        "@id": "{{ base_url }}/#organization"
       },
-      "image": "https://www.eitec.coop.ar/static/custom/logo.png",
+      "image": "{{ base_url }}/static/custom/logo.png",
       "priceRange": "$$",
       "telephone": "+541142707341",
       "address": {
@@ -47,21 +47,21 @@
         "latitude": "-34.721200",
         "longitude": "-58.309400"
       },
-      "url": "https://www.eitec.coop.ar/"
+      "url": "{{ base_url }}/"
     },
     {
       "@type": "WebSite",
-      "@id": "https://www.eitec.coop.ar/#website",
-      "url": "https://www.eitec.coop.ar/",
+      "@id": "{{ base_url }}/#website",
+      "url": "{{ base_url }}/",
       "name": "EITEC - Accesorios y Repuestos para Artefactos a Gas",
       "publisher": {
-        "@id": "https://www.eitec.coop.ar/#organization"
+        "@id": "{{ base_url }}/#organization"
       },
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://www.eitec.coop.ar/buscar?s={search_term_string}"
+          "urlTemplate": "{{ base_url }}/buscar?s={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       }
@@ -76,7 +76,7 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Inicio",
-          "item": "https://www.eitec.coop.ar/"
+          "item": "{{ base_url }}/"
         },
         {
           "@type": "ListItem",
@@ -90,7 +90,7 @@
       "@type": "Product",
       "@id": "{{ canonical_url }}#product",
       "name": "{{ active_category.name }}",
-      "image": "https://www.eitec.coop.ar/static/img/{{ active_category.image }}",
+      "image": "{{ base_url }}/static/img/{{ active_category.image }}",
       "description": "Fabricación y provisión de {{ active_category.name }} para artefactos a gas domésticos e industriales en Argentina por la cooperativa EITEC ex EITAR.",
       "brand": {
         "@type": "Brand",
@@ -102,7 +102,7 @@
         "offerCount": "1",
         "url": "{{ canonical_url }}",
         "seller": {
-          "@id": "https://www.eitec.coop.ar/#organization"
+          "@id": "{{ base_url }}/#organization"
         }
       }
     }

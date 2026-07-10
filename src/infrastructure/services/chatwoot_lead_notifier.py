@@ -1,20 +1,39 @@
 from typing import Any
 import httpx
+from src.domain.catalog import CatalogRepository
 from src.domain.lead import Lead, LeadNotifier
 from src.infrastructure.config import settings
 from src.infrastructure.services.logger import logger
 
 class ChatwootLeadNotifier(LeadNotifier):
+    def __init__(self, repo: CatalogRepository | None = None) -> None:
+        self.repo = repo
+
     async def notify(self, lead: Lead) -> None:
-        if not settings.CHATWOOT_API_TOKEN or not settings.CHATWOOT_API_URL:
-            logger.warning("Chatwoot no está configurado (falta CHATWOOT_API_TOKEN o CHATWOOT_API_URL).")
+        if not settings.CHATWOOT_API_TOKEN:
+            logger.warning("Chatwoot no está configurado (falta CHATWOOT_API_TOKEN).")
             return
 
-        base_url = settings.CHATWOOT_API_URL.rstrip("/")
-        if "/api/v1" not in base_url:
-            url = f"{base_url}/api/v1/accounts/{settings.CHATWOOT_ACCOUNT_ID}/contacts"
+        if self.repo:
+            site_info = self.repo.get_site_info()
+            api_url = site_info.chatwoot_api_url
+            account_id = site_info.chatwoot_account_id
+            inbox_id = site_info.chatwoot_inbox_id
         else:
-            url = f"{base_url}/accounts/{settings.CHATWOOT_ACCOUNT_ID}/contacts"
+            # Fallback para pruebas que no inyectan el repo
+            api_url = "https://chatwoot.eitec.com.ar"
+            account_id = 1
+            inbox_id = 1
+
+        if not api_url:
+            logger.warning("Chatwoot no está configurado (falta chatwoot_api_url).")
+            return
+
+        base_url = api_url.rstrip("/")
+        if "/api/v1" not in base_url:
+            url = f"{base_url}/api/v1/accounts/{account_id}/contacts"
+        else:
+            url = f"{base_url}/accounts/{account_id}/contacts"
 
         headers = {
             "Content-Type": "application/json",
@@ -28,7 +47,7 @@ class ChatwootLeadNotifier(LeadNotifier):
             phone = f"+{phone}"
 
         payload: dict[str, Any] = {
-            "inbox_id": settings.CHATWOOT_INBOX_ID,
+            "inbox_id": inbox_id,
             "name": lead.nombre,
             "email": lead.email,
             "phone_number": phone,

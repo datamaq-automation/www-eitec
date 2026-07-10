@@ -22,6 +22,12 @@ class SiteInfo(BaseModel):
     contact_whatsapp: str | None = None
     social_facebook: str
     social_instagram: str
+    base_url: str = "https://www.eitec.coop.ar"
+    google_analytics_id: str | None = None
+    microsoft_clarity_id: str | None = None
+    chatwoot_api_url: str = "https://chatwoot.eitec.com.ar"
+    chatwoot_account_id: int = 1
+    chatwoot_inbox_id: int = 1
 
 class CatalogRepository(Protocol):
     def get_categories(self) -> list[Category]:

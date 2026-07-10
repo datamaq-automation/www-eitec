@@ -33,7 +33,7 @@ async def add_security_headers(
         "font-src 'self' https://fonts.gstatic.com https://default.contactopuro.com https://cdnjs.cloudflare.com; "
         "img-src 'self' data: https://default.contactopuro.com; "
         "connect-src 'self' https://cdn.jsdelivr.net; "
-        "frame-src 'self';"
+        "frame-src 'self' https://maps.google.com https://www.google.com;"
     )
     response.headers["Content-Security-Policy"] = csp
     

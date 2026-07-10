@@ -77,6 +77,13 @@
                                     Enviar Solicitud de Cotización
                                 </button>
                             </div>
+                            {% if site_info.enable_pdf_generator %}
+                            <div class="col-12 px-1 mt-2">
+                                <button type="button" id="btn-generate-pdf" class="btn btn-outline-secondary w-100 py-2" style="border-radius: 4px;">
+                                    <i class="fa-solid fa-file-pdf me-2"></i>Descargar PDF de Cotización
+                                </button>
+                            </div>
+                            {% endif %}
                         </form>
                     </div>
                 </div>

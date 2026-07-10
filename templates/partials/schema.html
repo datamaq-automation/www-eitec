@@ -19,6 +19,16 @@
         "@id": "{{ base_url }}/#logo"
       },
       "description": "Fábrica cooperativa metalúrgica continuadora de EITAR, dedicada a la fabricación de accesorios y repuestos para artefactos a gas en Bernal, Argentina.",
+      "email": "{{ site_info.contact_email }}",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+{{ site_info.contact_whatsapp }}",
+          "contactType": "customer service",
+          "areaServed": "AR",
+          "availableLanguage": ["Spanish"]
+        }
+      ],
       "sameAs": [
         "https://www.instagram.com/eitec_cooperativa/",
         "https://www.facebook.com/CooperativaEitec"

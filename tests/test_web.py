@@ -72,3 +72,91 @@ def test_custom_404_page(client: TestClient):
     assert response.status_code == 404
     assert "404 - Página no encontrada" in response.text
     assert "Lo sentimos, la página que estás buscando" in response.text
+
+
+def test_blog_disabled(client: TestClient):
+    # Por defecto, en MOCK_SITE_INFO, enable_blog es False
+    response = client.get("/blog")
+    assert response.status_code == 404
+    
+    response = client.get("/blog/test-post")
+    assert response.status_code == 404
+
+
+def test_blog_enabled(client: TestClient):
+    # Habilitamos el blog obteniendo el repo del mock
+    from src.infrastructure.fastapi.dependencies import get_catalog_repository
+    repo = client.app.dependency_overrides[get_catalog_repository]()
+    site_info = repo.get_site_info()
+    site_info.enable_blog = True
+    try:
+        response = client.get("/blog")
+        assert response.status_code == 200
+        assert "Novedades y Fichas Técnicas" in response.text
+        assert "Test Post" in response.text
+        
+        response = client.get("/blog/test-post")
+        assert response.status_code == 200
+        assert "Test Post" in response.text
+        assert "Content" in response.text
+        
+        response = client.get("/blog/nonexistent-post")
+        assert response.status_code == 404
+    finally:
+        # Restauramos el estado del mock
+        site_info.enable_blog = False
+
+
+def test_pdf_generator_disabled(client: TestClient):
+    # Por defecto, enable_pdf_generator es False
+    response = client.post(
+        "/cotizacion/pdf",
+        data={
+            "nombre": "Agustin",
+            "email": "test@test.com",
+            "telefono": "12345678",
+            "mensaje": "test message",
+            "productos": "Producto A, Producto B"
+        }
+    )
+    assert response.status_code == 403
+
+
+def test_pdf_generator_enabled(client: TestClient):
+    # Habilitamos el PDF generator
+    from src.infrastructure.fastapi.dependencies import get_catalog_repository
+    repo = client.app.dependency_overrides[get_catalog_repository]()
+    site_info = repo.get_site_info()
+    site_info.enable_pdf_generator = True
+    try:
+        # Petición exitosa
+        response = client.post(
+            "/cotizacion/pdf",
+            data={
+                "nombre": "Agustin",
+                "email": "test@test.com",
+                "telefono": "12345678",
+                "mensaje": "test message",
+                "productos": "Producto A, Producto B"
+            }
+        )
+        assert response.status_code == 200
+        assert response.headers["content-type"] == "application/pdf"
+        assert "attachment; filename=" in response.headers["content-disposition"]
+        assert len(response.content) > 0
+        
+        # Petición sin productos
+        response = client.post(
+            "/cotizacion/pdf",
+            data={
+                "nombre": "Agustin",
+                "email": "test@test.com",
+                "telefono": "12345678",
+                "mensaje": "test message",
+                "productos": ""
+            }
+        )
+        assert response.status_code == 400
+    finally:
+        site_info.enable_pdf_generator = False
+

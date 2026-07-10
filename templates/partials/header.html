@@ -31,6 +31,11 @@
                 <li class="header__menu-item">
                     <a href="/" class="header__menu-link">Inicio</a>
                 </li>
+                {% if site_info.enable_blog %}
+                <li class="header__menu-item">
+                    <a href="/blog" class="header__menu-link">Novedades y Fichas</a>
+                </li>
+                {% endif %}
                 <li class="header__menu-item">
                     <a href="/carrito" class="header__menu-link" style="color: #ffc107 !important;"><i class="fa-solid fa-file-invoice-dollar me-2"></i>Mi Cotización</a>
                 </li>

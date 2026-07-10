@@ -11,6 +11,7 @@ from src.infrastructure.fastapi.dependencies import (
     get_common_context,
     STATIC_DIR,
 )
+from src.infrastructure.services.pdf_service import create_pdf_bytes
 
 router = APIRouter()
 
@@ -108,6 +109,102 @@ async def thanks_page(
     return templates.TemplateResponse(request, "gracias.html", context)
 
 
+@router.get("/blog", response_class=HTMLResponse)
+async def blog_list(
+    request: Request,
+    repo: CatalogRepository = Depends(get_catalog_repository),
+    context: dict[str, Any] = Depends(get_common_context),
+) -> Response:
+    site_info = repo.get_site_info()
+    if not site_info.enable_blog:
+        context.update({
+            "title": "Página no encontrada - EITEC",
+            "description": "La página que buscas no existe o ha sido movida.",
+            "canonical_url": f"{context['base_url']}/",
+            "noindex": True,
+        })
+        return templates.TemplateResponse(request, "404.html", context, status_code=404)
+        
+    posts = repo.get_blog_posts()
+    context.update({
+        "title": "Novedades y Fichas Técnicas - EITEC",
+        "description": "Artículos de interés, novedades institucionales y fichas técnicas de la cooperativa metalúrgica EITEC ex EITAR.",
+        "canonical_url": f"{context['base_url']}/blog",
+        "blog_posts": posts,
+    })
+    return templates.TemplateResponse(request, "blog_list.html", context)
+
+
+@router.get("/blog/{slug}", response_class=HTMLResponse)
+async def blog_post(
+    request: Request,
+    slug: str,
+    repo: CatalogRepository = Depends(get_catalog_repository),
+    context: dict[str, Any] = Depends(get_common_context),
+) -> Response:
+    site_info = repo.get_site_info()
+    if not site_info.enable_blog:
+        context.update({
+            "title": "Página no encontrada - EITEC",
+            "description": "La página que buscas no existe o ha sido movida.",
+            "canonical_url": f"{context['base_url']}/",
+            "noindex": True,
+        })
+        return templates.TemplateResponse(request, "404.html", context, status_code=404)
+
+    post = repo.get_blog_post_by_slug(slug)
+    if not post:
+        context.update({
+            "title": "Artículo no encontrado - EITEC",
+            "description": "El artículo o ficha técnica solicitado no existe.",
+            "canonical_url": f"{context['base_url']}/blog",
+            "noindex": True,
+        })
+        return templates.TemplateResponse(request, "404.html", context, status_code=404)
+
+    context.update({
+        "post": post,
+        "title": f"{post.title} - EITEC",
+        "description": post.summary,
+        "canonical_url": f"{context['base_url']}/blog/{slug}",
+    })
+    return templates.TemplateResponse(request, "blog_post.html", context)
+
+
+@router.post("/cotizacion/pdf")
+async def generate_pdf(
+    nombre: str = Form(...),
+    email: str = Form(""),
+    telefono: str = Form(""),
+    mensaje: str = Form(""),
+    productos: str = Form(""),
+    repo: CatalogRepository = Depends(get_catalog_repository),
+) -> Response:
+    site_info = repo.get_site_info()
+    if not site_info.enable_pdf_generator:
+        return Response(content="PDF generator is disabled", status_code=403)
+        
+    product_list = [p.strip() for p in productos.split(",") if p.strip()]
+    if not product_list:
+        return Response(content="No products selected", status_code=400)
+        
+    pdf_content = create_pdf_bytes(
+        nombre=nombre,
+        email=email,
+        telefono=telefono,
+        mensaje=mensaje,
+        productos=product_list
+    )
+    
+    filename = f"cotizacion_{nombre.lower().replace(' ', '_')}.pdf"
+    headers = {
+        "Content-Disposition": f'attachment; filename="{filename}"'
+    }
+    return Response(content=pdf_content, media_type="application/pdf", headers=headers)
+
+
+
+
 @router.get("/buscar")
 async def search_get(
     s: str = "",
@@ -192,6 +289,26 @@ async def sitemap_xml(
         changefreq_el.text = "yearly"
         priority_el = ET.SubElement(url_el, "priority")
         priority_el.text = "0.3"
+
+    # Blog posts
+    if site_info.enable_blog:
+        url_el = ET.SubElement(urlset, "url")
+        loc_el = ET.SubElement(url_el, "loc")
+        loc_el.text = f"{base_url}/blog"
+        changefreq_el = ET.SubElement(url_el, "changefreq")
+        changefreq_el.text = "weekly"
+        priority_el = ET.SubElement(url_el, "priority")
+        priority_el.text = "0.7"
+
+        for post in repo.get_blog_posts():
+            url_el = ET.SubElement(urlset, "url")
+            loc_el = ET.SubElement(url_el, "loc")
+            loc_el.text = f"{base_url}/blog/{post.slug}"
+            changefreq_el = ET.SubElement(url_el, "changefreq")
+            changefreq_el.text = "monthly"
+            priority_el = ET.SubElement(url_el, "priority")
+            priority_el.text = "0.6"
+
         
     xml_str = ET.tostring(urlset, encoding="utf-8")
     parsed_xml = minidom.parseString(xml_str)

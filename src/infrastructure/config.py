@@ -19,7 +19,13 @@ def load_dotenv(env_path: Path = ENV_FILE) -> None:
 load_dotenv()
 
 class Settings:
-    # Chatwoot API Integration
-    CHATWOOT_API_TOKEN: str = os.getenv("CHATWOOT_API_TOKEN", "")
+    def __init__(self) -> None:
+        # Chatwoot API Integration
+        self.CHATWOOT_API_TOKEN: str = os.getenv("CHATWOOT_API_TOKEN", "")
+        
+        # Feature flags (activar/desactivar por variable de entorno, por defecto False)
+        self.ENABLE_PDF_GENERATOR: bool = os.getenv("ENABLE_PDF_GENERATOR", "false").lower() in ("true", "1", "yes")
+        self.ENABLE_BLOG: bool = os.getenv("ENABLE_BLOG", "false").lower() in ("true", "1", "yes")
 
 settings = Settings()
+

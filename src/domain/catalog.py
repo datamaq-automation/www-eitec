@@ -28,6 +28,16 @@ class SiteInfo(BaseModel):
     chatwoot_api_url: str = "https://chatwoot.eitec.com.ar"
     chatwoot_account_id: int = 1
     chatwoot_inbox_id: int = 1
+    enable_pdf_generator: bool = False
+    enable_blog: bool = False
+
+class BlogPost(BaseModel):
+    title: str
+    slug: str
+    date: str
+    summary: str
+    content: str
+    image: str
 
 class CatalogRepository(Protocol):
     def get_categories(self) -> list[Category]:
@@ -47,4 +57,11 @@ class CatalogRepository(Protocol):
 
     def get_site_info(self) -> SiteInfo:
         ...
+
+    def get_blog_posts(self) -> list[BlogPost]:
+        ...
+
+    def get_blog_post_by_slug(self, slug: str) -> BlogPost | None:
+        ...
+
 

@@ -6,7 +6,7 @@ from src.infrastructure.config import settings
 
 # Prevent any real HTTP requests to Chatwoot during test suites
 settings.CHATWOOT_API_TOKEN = ""
-from src.domain.catalog import CatalogRepository, Category, CarouselSlide, SiteInfo
+from src.domain.catalog import CatalogRepository, Category, CarouselSlide, SiteInfo, BlogPost
 from src.domain.lead import Lead, LeadNotifier
 from src.infrastructure.fastapi.dependencies import get_catalog_repository, get_lead_notifier
 
@@ -32,8 +32,21 @@ MOCK_SITE_INFO = SiteInfo(
     social_instagram="https://www.instagram.com/eitec_cooperativa/",
     chatwoot_api_url="https://chatwoot.eitec.com.ar",
     chatwoot_account_id=3,
-    chatwoot_inbox_id=13
+    chatwoot_inbox_id=13,
+    enable_blog=False,
+    enable_pdf_generator=False
 )
+
+MOCK_BLOG_POSTS = [
+    BlogPost(
+        title="Test Post",
+        slug="test-post",
+        date="2026-07-10",
+        summary="Summary",
+        content="<p>Content</p>",
+        image="test.jpg"
+    )
+]
 
 class MockCatalogRepository(CatalogRepository):
     def get_categories(self) -> list[Category]:
@@ -57,6 +70,15 @@ class MockCatalogRepository(CatalogRepository):
 
     def get_site_info(self) -> SiteInfo:
         return MOCK_SITE_INFO
+
+    def get_blog_posts(self) -> list[BlogPost]:
+        return MOCK_BLOG_POSTS
+
+    def get_blog_post_by_slug(self, slug: str) -> BlogPost | None:
+        for post in MOCK_BLOG_POSTS:
+            if post.slug == slug:
+                return post
+        return None
 
 
 class MockLeadNotifier(LeadNotifier):

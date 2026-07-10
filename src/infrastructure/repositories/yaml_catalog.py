@@ -1,7 +1,9 @@
 from pathlib import Path
 from typing import Any
 import yaml
-from src.domain.catalog import CatalogRepository, Category, CarouselSlide, SiteInfo
+from src.domain.catalog import CatalogRepository, Category, CarouselSlide, SiteInfo, BlogPost
+
+from src.infrastructure.config import settings
 
 class YamlCatalogRepository(CatalogRepository):
     _data: dict[str, Any]
@@ -43,5 +45,17 @@ class YamlCatalogRepository(CatalogRepository):
         return results
 
     def get_site_info(self) -> SiteInfo:
-        return SiteInfo(**self._data.get("site_info", {}))
+        info = SiteInfo(**self._data.get("site_info", {}))
+        info.enable_pdf_generator = settings.ENABLE_PDF_GENERATOR
+        info.enable_blog = settings.ENABLE_BLOG
+        return info
+
+    def get_blog_posts(self) -> list[BlogPost]:
+        return [BlogPost(**post) for post in self._data.get("blog_posts", [])]
+
+    def get_blog_post_by_slug(self, slug: str) -> BlogPost | None:
+        for post in self.get_blog_posts():
+            if post.slug == slug:
+                return post
+        return None
 

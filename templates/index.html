@@ -69,10 +69,18 @@
                     <p class="intro-section__lead lead mx-auto text-secondary">
                         {{ site_info.intro_text | safe }}
                     </p>
+                    {% if site_info.enable_blog %}
+                    <div class="mt-4">
+                        <a href="/blog" class="btn btn-primary px-4 py-2 fw-bold text-decoration-none" style="border-radius: 4px;">
+                            <i class="fa-regular fa-newspaper me-2"></i>Ver Novedades y Fichas Técnicas
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
             </section>
             
             {% include "partials/categories_grid.html" %}
+            {% include "partials/about_us.html" %}
         </main>
     {% endif %}
 

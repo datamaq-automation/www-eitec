@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include "partials/header.html" %}
+
+    <main id="main-content" class="py-5 bg-light">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Novedades y Fichas</li>
+                </ol>
+            </nav>
+
+            <h1 class="text-primary mb-4 text-center">Novedades y Fichas Técnicas</h1>
+            <p class="lead text-muted text-center mb-5">
+                Seguí el día a día de la cooperativa metalúrgica EITEC y consultá documentación técnica oficial de nuestros productos.
+            </p>
+
+            <div class="row g-4 justify-content-center">
+                {% for post in blog_posts %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm" style="border-radius: 8px; overflow: hidden;">
+                        <img src="/static/img/{{ post.image }}" alt="{{ post.title }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <span class="text-secondary mb-2 d-block" style="font-size: 0.8rem; font-weight: bold;">
+                                <i class="fa-regular fa-calendar me-1"></i>{{ post.date }}
+                            </span>
+                            <h2 class="h5 card-title text-primary fw-bold mb-3">{{ post.title }}</h2>
+                            <p class="card-text text-muted flex-grow-1" style="font-size: 0.9rem;">
+                                {{ post.summary }}
+                            </p>
+                            <a href="/blog/{{ post.slug }}" class="btn btn-outline-primary btn-sm mt-3 w-100 py-2 fw-bold text-decoration-none" style="border-radius: 4px;">
+                                Leer más
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-12 text-center py-5">
+                    <p class="text-secondary">No hay publicaciones disponibles en este momento.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    {% include "partials/footer.html" %}
+    {% include "partials/search_overlay.html" %}
+{% endblock %}

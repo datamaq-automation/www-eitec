@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include "partials/header.html" %}
+
+    <main id="main-content" class="py-5 bg-light">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="/blog" class="text-decoration-none">Novedades y Fichas</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+                </ol>
+            </nav>
+
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-8">
+                    <article class="bg-white p-4 p-md-5 rounded shadow-sm">
+                        <!-- Date -->
+                        <span class="text-muted d-block mb-3" style="font-size: 0.9rem;">
+                            <i class="fa-regular fa-calendar me-2"></i>Publicado el {{ post.date }}
+                        </span>
+
+                        <!-- Title -->
+                        <h1 class="text-primary fw-bold mb-4 h2">{{ post.title }}</h1>
+
+                        <!-- Post Image -->
+                        <div class="mb-5 text-center">
+                            <img src="/static/img/{{ post.image }}" alt="{{ post.title }}" class="img-fluid rounded" style="max-height: 400px; width: 100%; object-fit: cover;">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="article-content text-dark style-content-rich">
+                            {{ post.content | safe }}
+                        </div>
+
+                        <!-- Divider and Back button -->
+                        <hr class="my-5" style="border-top: 1px solid var(--color-border);">
+                        
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <a href="/blog" class="btn btn-outline-secondary px-4 py-2 text-decoration-none" style="border-radius: 4px;">
+                                <i class="fa-solid fa-arrow-left me-2"></i>Volver a Novedades y Fichas
+                            </a>
+                            <a href="https://wa.me/{{ site_info.contact_whatsapp }}?text={{ ('Hola, quisiera consultar sobre: ' ~ post.title) | urlencode }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 py-2 text-decoration-none" style="border-radius: 4px;">
+                                <i class="fa-brands fa-whatsapp me-2"></i>Consultar por Whatsapp
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "partials/footer.html" %}
+    {% include "partials/search_overlay.html" %}
+{% endblock %}

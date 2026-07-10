@@ -69,3 +69,31 @@ site_info:
   chatwoot_api_url: https://chatwoot.eitec.com.ar
   chatwoot_account_id: 3
   chatwoot_inbox_id: 13
+  enable_pdf_generator: false
+  enable_blog: false
+
+blog_posts:
+  - title: "EITEC adquiere nueva maquinaria para optimizar la producción"
+    slug: "eitec-adquiere-nueva-maquinaria"
+    date: "10 de Julio de 2026"
+    summary: "Hemos incorporado prensas de última generación para aumentar la velocidad y precisión en el estampado de accesorios de gas."
+    content: |
+      <p>En nuestra continua búsqueda por ofrecer productos con los más altos estándares de calidad, en la cooperativa <strong>EITEC</strong> hemos concretado la adquisición e instalación de nueva maquinaria para la planta industrial de Bernal Oeste.</p>
+      <p>Se trata de una prensa excéntrica y matrices automatizadas destinadas al estampado de componentes de seguridad para cocinas y termotanques. Esta inversión nos permitirá optimizar los tiempos de fabricación, aumentar la precisión dimensional de cada repuesto de la línea ex EITAR y responder a la demanda de mayor volumen por parte de nuestros distribuidores mayoristas a nivel nacional.</p>
+      <p>Con esta mejora, reafirmamos nuestro compromiso con la excelencia metalúrgica y el crecimiento de la producción nacional gestionada por sus propios trabajadores.</p>
+    image: "cocinahogar-79859.webp"
+  - title: "Ficha Técnica: Válvula de seguridad termostática Serie 900"
+    slug: "ficha-tecnica-valvula-seguridad"
+    date: "05 de Julio de 2026"
+    summary: "Especificaciones técnicas completas, medidas de conexión y certificados de homologación para nuestra válvula de seguridad estrella de la línea ex EITAR."
+    content: |
+      <p>La válvula de seguridad termostática Serie 900 es el componente fundamental para la protección contra el apagado accidental de la llama en calefactores y cocinas domésticas. A continuación, se detallan sus especificaciones principales:</p>
+      <ul>
+        <li><strong>Conexiones de Entrada/Salida:</strong> Rosca M10x1 / Tubo ø6mm.</li>
+        <li><strong>Tiempo de Apertura:</strong> Menor a 5 segundos.</li>
+        <li><strong>Tiempo de Cierre de Seguridad:</strong> Menor a 30 segundos (conforme a norma ENARGAS).</li>
+        <li><strong>Rango de Temperatura de Trabajo:</strong> 0°C a 150°C.</li>
+      </ul>
+      <p>Este producto cumple con los requisitos de la norma IRAM 1362 y se entrega con el sello de homologación de ENARGAS grabado en el cuerpo de latón.</p>
+    image: "calefaccionserie900-52766-83863.webp"
+

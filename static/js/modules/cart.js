@@ -159,5 +159,61 @@ export function initCart() {
         
         // Escuchar por si se limpia el carrito en otro componente
         window.addEventListener('cart-updated', renderCartPage);
+        
+        // 5. Listener para el generador de PDF (si está presente en la página)
+        const btnGeneratePdf = document.getElementById('btn-generate-pdf');
+        if (btnGeneratePdf) {
+            btnGeneratePdf.addEventListener('click', generatePDF);
+        }
     }
+}
+
+function generatePDF() {
+    const items = getQuoteItems();
+    if (items.length === 0) {
+        alert('Tu lista de cotización está vacía.');
+        return;
+    }
+
+    const inputNombre = document.getElementById('nombre');
+    const inputEmail = document.getElementById('email');
+    const inputTelefono = document.getElementById('telefono');
+    const inputMensaje = document.getElementById('contactoMensaje');
+
+    const nombre = inputNombre ? inputNombre.value.trim() : '';
+    const email = inputEmail ? inputEmail.value.trim() : '';
+    const telefono = inputTelefono ? inputTelefono.value.trim() : '';
+    const mensaje = inputMensaje ? inputMensaje.value.trim() : '';
+
+    if (!nombre) {
+        alert('Por favor, ingresá tu Nombre o Razón Social antes de descargar el PDF.');
+        if (inputNombre) inputNombre.focus();
+        return;
+    }
+
+    // Crear formulario oculto para forzar la descarga desde el backend
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/cotizacion/pdf';
+    form.style.display = 'none';
+
+    const fields = {
+        nombre,
+        email,
+        telefono,
+        mensaje,
+        productos: items.map(item => item.name).join(', ')
+    };
+
+    for (const [key, val] of Object.entries(fields)) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = val;
+        form.appendChild(input);
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
 }

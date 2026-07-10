@@ -37,3 +37,29 @@ def test_dependencies_and_logging_notifier():
     lead = Lead(nombre="Test User", email="test@example.com", telefono="12345678", mensaje="Hello", productos="Some product")
     asyncio.run(notifier.notify(lead))
 
+
+def test_feature_flags_default_to_false():
+    if "ENABLE_PDF_GENERATOR" in os.environ:
+        del os.environ["ENABLE_PDF_GENERATOR"]
+    if "ENABLE_BLOG" in os.environ:
+        del os.environ["ENABLE_BLOG"]
+        
+    settings = Settings()
+    assert settings.ENABLE_PDF_GENERATOR is False
+    assert settings.ENABLE_BLOG is False
+
+
+def test_feature_flags_env_override():
+    os.environ["ENABLE_PDF_GENERATOR"] = "True"
+    os.environ["ENABLE_BLOG"] = "1"
+    try:
+        settings = Settings()
+        assert settings.ENABLE_PDF_GENERATOR is True
+        assert settings.ENABLE_BLOG is True
+    finally:
+        if "ENABLE_PDF_GENERATOR" in os.environ:
+            del os.environ["ENABLE_PDF_GENERATOR"]
+        if "ENABLE_BLOG" in os.environ:
+            del os.environ["ENABLE_BLOG"]
+
+

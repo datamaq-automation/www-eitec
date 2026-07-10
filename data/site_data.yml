@@ -1,58 +1,65 @@
 categories:
 - name: Ensamblado y Prueba de Tubos de Distribución
   slug: categoria-ensamblado-y-prueba-de-tubos-de-distribucion
-  image: ensambladoytubosdedistribucion-97545-12556.png
+  image: ensambladoytubosdedistribucion-97545-12556.webp
 - name: Pilotos
   slug: categoria-pilotos
-  image: pilotos-46904.jpeg
+  image: pilotos-46904.webp
 - name: Quemadores para cocinas y anafes
   slug: categoria-quemadores-para-cocinas-y-anafes
-  image: anafeimagen-95560.jpg
+  image: anafeimagen-95560.webp
 - name: Robinetes y válvulas de seguridad a gas para cocinas gastronómicas
   slug: categoria-robinetes-y-valvulas-de-seguridad-a-gas-para-cocinas-gastronomicas
-  image: cocinaindustrialcate-43965.jpg
+  image: cocinaindustrialcate-43965.webp
 - name: Robinetes. Robiválvulas para cocinas domésticas alimentadas a gas
   slug: categoria-robinetes-robivalvulas-para-cocinas-domesticas-alimentadas-a-gas
-  image: cocinaabstract-68053.jpg
+  image: cocinaabstract-68053.webp
 - name: Termostato EITAR para termotanque a gas
   slug: categoria-termostato-eitar-para-termotanque-a-gas
-  image: duchacate-98844.jpg
+  image: duchacate-98844.webp
 - name: Termostatos con seguridad termoelectrica para calentadores de agua a gas
   slug: categoria-termostatos-con-seguridad-termoelectrica-para-calentadores-de-agua-a-gas
-  image: temostatotermoelectricocalentadoresde-78210.png
+  image: temostatotermoelectricocalentadoresde-78210.webp
 - name: Válvulas de Seguridad a gas para Calefactores
   slug: categoria-valvulas-de-seguridad-a-gas-para-calefactores
-  image: calefaccionserie900-52766-83863.png
+  image: calefaccionserie900-52766-83863.webp
 - name: Válvulas de seguridad para hornos y cocinas domésticas a gas
   slug: categoria-valvulas-de-seguridad-para-hornos-y-cocinas-domesticas-a-gas
-  image: cocinahogarcate-19596.jpg
+  image: cocinahogarcate-19596.webp
 - name: Válvulas de seguridad termoeléctrica
   slug: categoria-valvulas-de-seguridad-termoelectrica
-  image: duccha-40246.jpg
+  image: duccha-40246.webp
 carousel_slides:
 - title: Termostato EITAR para termotanque a gas
-  image: ducha-29782.jpg
+  image: ducha-29782.webp
   link: categoria-termostato-eitar-para-termotanque-a-gas
 - title: Quemadores para cocinas y anafes
-  image: anafe-37591.jpg
+  image: anafe-37591.webp
   link: categoria-quemadores-para-cocinas-y-anafes
 - title: Válvulas de seguridad para hornos y cocinas domésticas a gas
-  image: cocinahogar-79859.jpg
+  image: cocinahogar-79859.webp
   link: categoria-valvulas-de-seguridad-para-hornos-y-cocinas-domesticas-a-gas
 - title: Robinetes. Robiválvulas para cocinas domésticas alimentadas a gas
-  image: cocinaabstract-76049.jpg
+  image: cocinaabstract-76049.webp
   link: categoria-robinetes-robivalvulas-para-cocinas-domesticas-alimentadas-a-gas
-
 site_info:
-  title: "EITEC Cooperativa de Trabajo"
-  subtitle: "Fábrica de accesorios para artefactos a gas"
-  # B2B-REFACTOR: H1 orientado a SEO de búsquedas EITAR
-  intro_title: "Repuestos EITAR y accesorios para artefactos a gas"
-  intro_text: "Fábrica recuperada dedicada a la producción y comercialización de accesorios para artefactos a gas. Fabricamos los repuestos originales de la clásica línea <strong>EITAR</strong> con la mayor seguridad y experiencia metalúrgica de Quilmes, Buenos Aires."
-  category_lead_template: "Fabricación y venta de <strong>{category_name}</strong> de alta calidad. Repuestos originales y componentes aprobados para artefactos a gas (línea ex EITAR)."
-  category_description: "Como cooperativa industrial EITEC (anteriormente EITAR), producimos accesorios a gas con los estándares de seguridad y durabilidad más altos en Argentina. Ofrecemos soluciones confiables y seguras para calefactores, cocinas, termotanques y otros artefactos de gas domésticos e industriales. Todos nuestros repuestos e insumos están fabricados por trabajadores metalúrgicos con amplia experiencia en Bernal Oeste, Quilmes."
-  contact_email: "horacio@eitec.coop.ar"
-  contact_whatsapp: "5491154721020"
-  social_facebook: "https://www.facebook.com/CooperativaEitec"
-  social_instagram: "https://www.instagram.com/eitec_cooperativa/"
-
+  title: EITEC Cooperativa de Trabajo
+  subtitle: Fábrica de accesorios para artefactos a gas
+  intro_title: Repuestos EITAR y accesorios para artefactos a gas
+  intro_text: Fábrica recuperada dedicada a la producción y comercialización de accesorios
+    para artefactos a gas. Fabricamos los repuestos originales de la clásica línea
+    <strong>EITAR</strong> con la mayor seguridad y experiencia metalúrgica de Quilmes,
+    Buenos Aires.
+  category_lead_template: Fabricación y venta de <strong>{category_name}</strong>
+    de alta calidad. Repuestos originales y componentes aprobados para artefactos
+    a gas (línea ex EITAR).
+  category_description: Como cooperativa industrial EITEC (anteriormente EITAR), producimos
+    accesorios a gas con los estándares de seguridad y durabilidad más altos en Argentina.
+    Ofrecemos soluciones confiables y seguras para calefactores, cocinas, termotanques
+    y otros artefactos de gas domésticos e industriales. Todos nuestros repuestos
+    e insumos están fabricados por trabajadores metalúrgicos con amplia experiencia
+    en Bernal Oeste, Quilmes.
+  contact_email: horacio@eitec.coop.ar
+  contact_whatsapp: '5491154721020'
+  social_facebook: https://www.facebook.com/CooperativaEitec
+  social_instagram: https://www.instagram.com/eitec_cooperativa/

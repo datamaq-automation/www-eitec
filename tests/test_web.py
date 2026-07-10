@@ -43,10 +43,9 @@ def test_category_page_success(client: TestClient):
 
 
 def test_category_page_not_found(client: TestClient):
-    response = client.get("/categoria/nonexistent-category", follow_redirects=False)
-    # FastAPI/Starlette Redirects default to 307
-    assert response.status_code == 307
-    assert response.headers["location"] == "/"
+    response = client.get("/categoria/nonexistent-category")
+    assert response.status_code == 404
+    assert "La categoría solicitada no existe o ha sido movida" in response.text
 
 
 def test_search_success(client: TestClient):

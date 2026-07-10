@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include "partials/header.html" %}
+
+    <main id="main-content" class="py-5 mt-5">
+        <div class="container py-5 text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card border-0 shadow-sm p-4 p-md-5 bg-white rounded-3">
+                        <div class="mb-4">
+                            <span class="display-1 text-success" style="font-size: 5rem;">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </span>
+                        </div>
+                        <h1 class="text-primary mb-3 fw-bold">¡Muchas gracias!</h1>
+                        <p class="lead text-secondary mb-4">
+                            Tu mensaje ha sido enviado con éxito. Nuestro equipo se pondrá en contacto contigo a la brevedad para asesorarte.
+                        </p>
+                        <hr class="my-4 mx-auto w-25 border-primary opacity-50">
+                        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+                            <a href="/" class="btn btn-primary btn-call btn-call--secondary px-4 py-2 text-decoration-none">
+                                <i class="fa-solid fa-house me-2"></i>Volver al Inicio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "partials/footer.html" %}
+    {% include "partials/search_overlay.html" %}
+{% endblock %}

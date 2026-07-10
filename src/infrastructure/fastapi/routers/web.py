@@ -94,6 +94,20 @@ async def terms_and_conditions(
     return templates.TemplateResponse(request, "terminos_condiciones.html", context)
 
 
+@router.get("/gracias", response_class=HTMLResponse)
+async def thanks_page(
+    request: Request,
+    context: dict[str, Any] = Depends(get_common_context),
+) -> HTMLResponse:
+    context.update({
+        "title": "¡Gracias por contactarte! - EITEC",
+        "description": "Tu mensaje ha sido enviado con éxito a la cooperativa EITEC. Nos comunicaremos a la brevedad.",
+        "canonical_url": "https://www.eitec.coop.ar/gracias",
+        "noindex": True,
+    })
+    return templates.TemplateResponse(request, "gracias.html", context)
+
+
 @router.get("/buscar")
 async def search_get(
     s: str = "",

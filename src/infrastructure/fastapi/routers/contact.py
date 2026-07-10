@@ -1,13 +1,8 @@
-from typing import Any
 from fastapi import APIRouter, Form, Request, Depends
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import RedirectResponse
 
 from src.domain.lead import Lead, LeadNotifier
-from src.infrastructure.fastapi.dependencies import (
-    templates,
-    get_lead_notifier,
-    get_common_context,
-)
+from src.infrastructure.fastapi.dependencies import get_lead_notifier
 from src.infrastructure.services.logger import logger
 
 router = APIRouter()
@@ -19,7 +14,7 @@ async def contact_page() -> RedirectResponse:
     return RedirectResponse(url="/#contacto", status_code=301)
 
 
-@router.post("/contacto", response_class=HTMLResponse)
+@router.post("/contacto")
 async def contact(
     request: Request,
     nombre: str = Form(...),
@@ -28,8 +23,7 @@ async def contact(
     mensaje: str = Form(""),
     productos: str | None = Form(None),
     notifier: LeadNotifier = Depends(get_lead_notifier),
-    context: dict[str, Any] = Depends(get_common_context),
-) -> HTMLResponse:
+) -> RedirectResponse:
     # Depurar petición entrante
     client_ip = request.client.host if request.client else "Desconocida"
     logger.info(
@@ -45,14 +39,4 @@ async def contact(
     lead = Lead(nombre=nombre, email=email, telefono=telefono, mensaje=mensaje, productos=productos)
     await notifier.notify(lead)
 
-    context.update(
-        {
-            "title": "Mensaje enviado - EITEC",
-            "description": "Formulario de contacto de EITEC Cooperativa Bernal. Contactate por repuestos de gas EITAR.",
-            "canonical_url": "https://www.eitec.coop.ar/",
-            "noindex": True,
-            "message": "Gracias por contactarte. Te responderemos a la brevedad.",
-            "message_type": "success",
-        }
-    )
-    return templates.TemplateResponse(request, "index.html", context)
+    return RedirectResponse(url="/gracias", status_code=303)

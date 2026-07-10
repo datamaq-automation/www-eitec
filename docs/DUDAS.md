@@ -92,12 +92,18 @@ Este documento recopila exclusivamente las dudas estratégicas, técnicas y de n
 **Pregunta:** ¿Se crean páginas estáticas adicionales como `/repuestos-eitar`, `/valvulas-eitar`, `/termocuplas-eitar` o se optimizan las categorías existentes?  
 **Impacto:** Afecta la arquitectura de rutas, el sitemap y la estrategia de contenidos.
 
+### [DT4] Generación de PDF cotizador
+**Área:** Frontend / Backend / Funcionalidad B2B  
+**Contexto:** Un cotizador mayorista digital a veces requiere la descarga de un comprobante formal en formato PDF para el cliente, mientras que otras veces basta con enviar la solicitud de cotización digital al backend de administración.  
+**Pregunta:** ¿El sistema debe generar y permitir la descarga de un presupuesto/cotización en formato PDF para el usuario, o es suficiente con que el formulario envíe la solicitud por correo electrónico/base de datos?  
+**Impacto:** Afecta a la implementación de bibliotecas de generación de PDF (ej. ReportLab en Python o jsPDF/html2pdf en JavaScript), diseño de plantilla de presupuesto y flujo de usuario.
+
 ---
 
 ## RESUMEN DE ESTADO
 
 - **Dudas estratégicas abiertas:** 8 (D1, D2, D3, D4, D5, D6, D7, D8)
-- **Dudas técnicas abiertas:** 3 (DT1, DT2, DT3)
+- **Dudas técnicas abiertas:** 4 (DT1, DT2, DT3, DT4)
 - **Dudas resueltas:** 0
 - **Certezas confirmadas:** ver `docs/CERTEZAS.md`
 
@@ -106,3 +112,4 @@ Este documento recopila exclusivamente las dudas estratégicas, técnicas y de n
 2. **D7** — Modelo de negocio: define si se necesita área privada de mayoristas.
 3. **D8** — Nomenclatura: define el keyword research completo.
 4. **DT2** — Ruta `/carrito`: define la URL definitiva del formulario de cotización.
+5. **DT4** — Generación de PDF cotizador: define si se requiere implementar el generador de PDF.

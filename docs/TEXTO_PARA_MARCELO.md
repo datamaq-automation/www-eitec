@@ -86,9 +86,8 @@ La imagen institucional (`image.png`) tiene un estilo oscuro con neones cian/mag
 
 ## Dudas técnicas menores (las resolvemos nosotros, pero tu opinión ayuda)
 
-- **Ruta del cotizador:** la página hoy es `/carrito`. ¿Te parece bien renombrarla a `/cotizacion`?
 - **Lista de productos:** ¿preferís que el visitante arme una lista de productos para cotizar (como ahora) o que vaya directo al formulario de contacto sin intermediarios?
-- **Landing pages EITAR:** ¿querés páginas específicas como `/repuestos-eitar` y `/valvulas-eitar`, o alcanza con optimizar las categorías que ya existen?
+- **Generación de PDF Cotizador:** Si mantenemos la lista de productos para cotizar, ¿es necesario que el cliente pueda descargar un presupuesto/cotización formal en formato PDF desde la web, o es suficiente con que el formulario envíe el detalle por correo electrónico para que ustedes lo procesen?
 
 ---
 

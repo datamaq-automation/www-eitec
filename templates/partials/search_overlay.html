@@ -1,6 +1,6 @@
 {% set category_names = categories | map(attribute='name') | join(', ') %}
 
-<div class="search-overlay buscando">
+<div class="search-overlay">
     <form class="search-overlay__form busqueda" action="/buscar" method="get">
         <h2 class="search-overlay__title">Encontrá lo que buscás</h2>
         <input type="text" placeholder="Buscá , {{ category_names }}" id="busqueda" name="s" class="search-overlay__input" aria-label="Buscar productos">

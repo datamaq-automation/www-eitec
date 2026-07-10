@@ -1,9 +1,26 @@
 /* Search Overlay Component */
 .search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
 }
 
+.search-overlay.active {
+    display: flex;
+}
+
 .search-overlay__form {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 600px;
     background: var(--color-dark) !important;
     color: var(--color-white) !important;
     border: 1px solid var(--color-border);

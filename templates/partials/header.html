@@ -28,6 +28,9 @@
                 <li class="header__menu-item">
                     <a href="/" class="header__menu-link">Inicio</a>
                 </li>
+                <li class="header__menu-item d-md-none">
+                    <a href="javascript:void(0);" class="header__menu-link buscar"><i class="fa-solid fa-magnifying-glass me-2"></i>Buscar productos</a>
+                </li>
                 {% for cat in categories %}
                 <li class="header__menu-item">
                     <p class="header__menu-trigger trigger mb-0"><a href="/categoria/{{ cat.slug }}" class="header__menu-link">{{ cat.name }}</a></p>

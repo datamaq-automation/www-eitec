@@ -2,7 +2,12 @@ from fastapi import FastAPI, Request, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.base import RequestResponseEndpoint
 
-from src.infrastructure.fastapi.dependencies import STATIC_DIR
+from src.infrastructure.fastapi.dependencies import (
+    STATIC_DIR,
+    templates,
+    get_common_context,
+    get_catalog_repository,
+)
 from src.infrastructure.fastapi.routers.web import router as web_router
 from src.infrastructure.fastapi.routers.contact import router as contact_router
 
@@ -55,3 +60,16 @@ app.include_router(contact_router)
 @app.get("/health")
 async def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.exception_handler(404)
+async def custom_404_handler(request: Request, exc: Exception) -> Response:
+    repo = get_catalog_repository()
+    context = get_common_context(repo=repo)
+    context.update({
+        "title": "Página no encontrada - EITEC",
+        "description": "La página que buscas no existe o ha sido movida.",
+        "canonical_url": "https://www.eitec.coop.ar/",
+        "noindex": True,
+    })
+    return templates.TemplateResponse(request, "404.html", context, status_code=404)

@@ -64,3 +64,10 @@ def test_search_no_results(client: TestClient):
     response = client.post("/buscar", data={"busqueda": "xyz"}, follow_redirects=False)
     assert response.status_code == 307
     assert response.headers["location"] == "/"
+
+
+def test_custom_404_page(client: TestClient):
+    response = client.get("/algun-path-invalido")
+    assert response.status_code == 404
+    assert "404 - Página no encontrada" in response.text
+    assert "Lo sentimos, la página que estás buscando" in response.text

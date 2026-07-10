@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include "partials/header.html" %}
+
+    <main id="main-content" class="py-5 mt-5">
+        <div class="container py-4">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Política de Privacidad</li>
+                </ol>
+            </nav>
+
+            <h1 class="text-primary mb-2">Política de Privacidad</h1>
+            <p class="text-muted mb-5">Última actualización: Julio 2026 (Borrador en revisión)</p>
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="legal-content lh-lg text-secondary">
+                        <p class="lead text-dark mb-4">
+                            Esta Política de Privacidad describe cómo <strong>EITEC Cooperativa de Trabajo Limitada</strong> recopila, utiliza y protege los datos personales de los usuarios que interactúan con nuestro sitio web.
+                        </p>
+                        
+                        <p class="mb-4">
+                            Al utilizar nuestro sitio web y enviar datos a través de los formularios provistos, usted acepta las prácticas descritas en esta política, en total conformidad con la <strong>Ley Nº 25.326 de Protección de Datos Personales</strong> de la República Argentina.
+                        </p>
+
+                        <hr class="my-5">
+
+                        <h2 class="h4 text-primary mt-4 mb-3">1. Responsable del Tratamiento de sus Datos</h2>
+                        <ul class="mb-4">
+                            <li><strong>Razón Social:</strong> EITEC Cooperativa de Trabajo Limitada</li>
+                            <li><strong>Domicilio:</strong> Calle 189 Nº 950, Bernal Oeste, Quilmes, Provincia de Buenos Aires, Argentina</li>
+                            <li><strong>Correo de contacto:</strong> <a href="mailto:horacio@eitec.coop.ar" class="text-decoration-none">horacio@eitec.coop.ar</a></li>
+                        </ul>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">2. Datos Personales que Recolectamos</h2>
+                        <p class="mb-3">
+                            Únicamente recopilamos los datos que usted nos proporciona voluntariamente a través del formulario de contacto y de la solicitud de cotización mayorista:
+                        </p>
+                        <ul class="mb-4">
+                            <li>Nombre y Apellido / Razón Social</li>
+                            <li>Dirección de Correo Electrónico (Email)</li>
+                            <li>Teléfono de Contacto</li>
+                            <li>Detalle de la consulta / Productos y cantidades a cotizar</li>
+                        </ul>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">3. Finalidad del Tratamiento de los Datos</h2>
+                        <p class="mb-3">Los datos proporcionados serán utilizados de manera exclusiva para los siguientes fines comerciales:</p>
+                        <ol class="mb-4">
+                            <li>Responder a sus consultas técnicas o comerciales enviadas mediante el formulario de contacto.</li>
+                            <li>Elaborar, cotizar y enviar presupuestos mayoristas a medida basados en su solicitud.</li>
+                            <li>Gestionar y dar seguimiento a la relación comercial con ferreterías, distribuidores e instaladores.</li>
+                        </ol>
+                        <p class="mb-4">No utilizaremos sus datos personales para el envío de correos publicitarios no solicitados (spam) a menos que contemos con su consentimiento expreso previo.</p>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">4. Legitimación para el Tratamiento</h2>
+                        <p class="mb-4">
+                            La base legal para el procesamiento de sus datos es el <strong>consentimiento libre e inequívoco</strong> que usted otorga al presionar el botón "Enviar" en nuestros formularios de contacto y cotización.
+                        </p>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">5. Destinatarios de los Datos y Seguridad</h2>
+                        <p class="mb-4">
+                            <strong>Confidencialidad:</strong> Nos comprometemos a no ceder, vender, alquilar ni compartir sus datos personales con terceros bajo ningún concepto, salvo obligación legal o requerimiento judicial.<br>
+                            <strong>Seguridad:</strong> Implementamos medidas técnicas para proteger sus datos contra accesos no autorizados, alteración o pérdida, incluyendo navegación cifrada mediante protocolo seguro HTTPS (SSL).
+                        </p>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">6. Plazo de Conservación de los Datos</h2>
+                        <p class="mb-4">
+                            Conservaremos sus datos personales durante el tiempo que sea estrictamente necesario para cumplir con la consulta realizada o para mantener la relación comercial activa con la Cooperativa, y mientras no se solicite su eliminación.
+                        </p>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">7. Sus Derechos (Derechos ARCO)</h2>
+                        <p class="mb-3">
+                            De acuerdo con la Ley Nº 25.326, usted tiene derecho a:
+                        </p>
+                        <ul class="mb-4">
+                            <li><strong>Acceder</strong> a los datos personales que poseemos sobre usted de forma gratuita.</li>
+                            <li><strong>Rectificar</strong> o actualizar sus datos si son incorrectos o incompletos.</li>
+                            <li><strong>Suprimir</strong> (eliminar) sus datos de nuestras bases comerciales cuando lo desee.</li>
+                        </ul>
+                        <p class="mb-4">
+                            Para ejercer cualquiera de estos derechos, puede enviar una solicitud por escrito adjuntando copia de su documento de identidad a <a href="mailto:horacio@eitec.coop.ar" class="text-decoration-none">horacio@eitec.coop.ar</a> con el asunto <em>"Protección de Datos Personales"</em>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "partials/footer.html" %}
+    {% include "partials/search_overlay.html" %}
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include "partials/header.html" %}
+
+    <main id="main-content" class="py-5 mt-5">
+        <div class="container py-4">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Términos y Condiciones</li>
+                </ol>
+            </nav>
+
+            <h1 class="text-primary mb-2">Términos y Condiciones</h1>
+            <p class="text-muted mb-5">Última actualización: Julio 2026 (Borrador en revisión)</p>
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="legal-content lh-lg text-secondary">
+                        <p class="lead text-dark mb-4">
+                            El acceso y uso de este sitio web están sujetos a los siguientes Términos y Condiciones. Por favor, léalos atentamente antes de navegar o interactuar con el Sitio.
+                        </p>
+                        
+                        <p class="mb-4">
+                            Al acceder y utilizar el Sitio, usted acepta quedar vinculado por estos Términos y Condiciones. Si no está de acuerdo con alguna parte de los mismos, deberá abstenerse de utilizar el Sitio.
+                        </p>
+
+                        <hr class="my-5">
+
+                        <h2 class="h4 text-primary mt-4 mb-3">1. Objeto del Sitio</h2>
+                        <p class="mb-4">
+                            El Sitio tiene un carácter estrictamente institucional, informativo y de catálogo digital de productos. Su finalidad es dar a conocer la actividad de la Cooperativa, presentar las categorías de repuestos y accesorios para gas que fabricamos (continuando con la producción de la histórica línea <strong>EITAR</strong>), y proveer un canal digital para que ferreteros, casas de sanitarios e industrias puedan enviar solicitudes de cotización mayorista.
+                        </p>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">2. Carácter No Vinculante del Catálogo (B2B)</h2>
+                        <p class="mb-4">
+                            <strong>Información Referencial:</strong> El Sitio funciona como un catálogo digital. Los productos, imágenes, descripciones y especificaciones técnicas que se muestran son de carácter ilustrativo y de referencia comercial.<br>
+                            <strong>Sin Oferta de Venta Directa:</strong> La visualización de productos y el armado de listas de cotización en la web no constituyen una oferta de venta directa, ni un contrato vinculante, ni una pasarela de comercio electrónico (e-commerce) minorista.<br>
+                            <strong>Cotización Formal:</strong> Toda transacción comercial se perfeccionará de forma externa y privada mediante presupuestos y cotizaciones formales emitidos y validados por el personal administrativo de la Cooperativa.
+                        </p>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">3. Condiciones de Uso y Formularios</h2>
+                        <p class="mb-3">
+                            El Usuario se compromete a hacer un uso lícito y correcto del Sitio y de los formularios provistos. Queda expresamente prohibido:
+                        </p>
+                        <ul class="mb-4">
+                            <li>Proporcionar datos falsos, inexactos o falsificar la identidad de una empresa o Razón Social.</li>
+                            <li>Utilizar los formularios de consulta para enviar spam, publicidad o enlaces no solicitados.</li>
+                            <li>Realizar acciones que puedan saturar, dañar o interferir en la infraestructura técnica del Sitio.</li>
+                        </ul>
+
+                        <h2 class="h4 text-primary mt-4 mb-3 text-danger">4. Limitación de Responsabilidad (Instalaciones de Gas)</h2>
+                        <p class="mb-4">
+                            <strong>Seguridad y Matriculación:</strong> Los accesorios y repuestos para gas fabricados por la Cooperativa (válvulas de seguridad, termostatos, pilotos, quemadores, etc.) regulan fluidos combustibles de alta peligrosidad.<br>
+                            <strong>Exención de Responsabilidad por Instalación:</strong> La Cooperativa no se responsabiliza por daños personales, materiales o incidentes derivados de la instalación incorrecta, defectuosa o no autorizada de sus componentes. Se recuerda firmemente al Usuario que todo repuesto o accesorio para gas debe ser instalado y manipulado exclusivamente por un <strong>gasista matriculado y calificado</strong>, respetando las normativas técnicas vigentes de ENARGAS.
+                        </p>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">5. Propiedad Intelectual y Marca Histórica</h2>
+                        <p class="mb-4">
+                            <strong>Derechos sobre Contenido:</strong> Todos los textos, diseños web, códigos de programación, layouts, bases de datos e imágenes del Sitio son propiedad intelectual de la Cooperativa o de terceros que han autorizado su uso.<br>
+                            <strong>Referencia a EITAR:</strong> EITEC es la cooperativa continuadora de la marca e industria EITAR. El uso de los términos de marca histórica y descripciones de repuestos ex EITAR se realiza con fines informativos, de compatibilidad comercial y de reposición técnica en el mercado de repuestos de gas en la República Argentina.
+                        </p>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">6. Modificaciones del Sitio y de los Términos</h2>
+                        <p class="mb-4">
+                            La Cooperativa se reserva el derecho de modificar, suspender o discontinuar parcial o totalmente cualquier contenido del Sitio, catálogo de productos, disponibilidad, o los presentes Términos y Condiciones, en cualquier momento y sin previo aviso, sin que ello genere derecho a reclamo alguno por parte del Usuario.
+                        </p>
+
+                        <h2 class="h4 text-primary mt-4 mb-3">7. Ley Aplicable y Jurisdicción</h2>
+                        <p class="mb-4">
+                            Estos Términos y Condiciones se rigen por las leyes vigentes de la República Argentina. Cualquier controversia derivada del uso del Sitio o de la interpretación de este documento será sometida a la jurisdicción de los Tribunales Ordinarios del Departamento Judicial de Quilmes, Provincia de Buenos Aires, con renuncia a cualquier otro fuero o jurisdicción.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "partials/footer.html" %}
+    {% include "partials/search_overlay.html" %}
+{% endblock %}

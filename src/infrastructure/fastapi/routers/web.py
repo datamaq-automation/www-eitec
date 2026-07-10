@@ -68,6 +68,32 @@ async def category(
     return templates.TemplateResponse(request, "index.html", context)
 
 
+@router.get("/politica-de-privacidad", response_class=HTMLResponse)
+async def privacy_policy(
+    request: Request,
+    context: dict[str, Any] = Depends(get_common_context),
+) -> HTMLResponse:
+    context.update({
+        "title": "Política de Privacidad - EITEC",
+        "description": "Política de privacidad y protección de datos personales de EITEC Cooperativa de Trabajo.",
+        "canonical_url": "https://www.eitec.coop.ar/politica-de-privacidad",
+    })
+    return templates.TemplateResponse(request, "politica_privacidad.html", context)
+
+
+@router.get("/terminos-y-condiciones", response_class=HTMLResponse)
+async def terms_and_conditions(
+    request: Request,
+    context: dict[str, Any] = Depends(get_common_context),
+) -> HTMLResponse:
+    context.update({
+        "title": "Términos y Condiciones de Uso - EITEC",
+        "description": "Términos y condiciones de uso del sitio web oficial de la cooperativa metalúrgica EITEC.",
+        "canonical_url": "https://www.eitec.coop.ar/terminos-y-condiciones",
+    })
+    return templates.TemplateResponse(request, "terminos_condiciones.html", context)
+
+
 @router.get("/buscar")
 async def search_get(
     s: str = "",
@@ -136,6 +162,16 @@ async def sitemap_xml(
         changefreq_el.text = "monthly"
         priority_el = ET.SubElement(url_el, "priority")
         priority_el.text = "0.8"
+        
+    # Paginas Legales
+    for path in ["politica-de-privacidad", "terminos-y-condiciones"]:
+        url_el = ET.SubElement(urlset, "url")
+        loc_el = ET.SubElement(url_el, "loc")
+        loc_el.text = f"https://www.eitec.coop.ar/{path}"
+        changefreq_el = ET.SubElement(url_el, "changefreq")
+        changefreq_el.text = "yearly"
+        priority_el = ET.SubElement(url_el, "priority")
+        priority_el.text = "0.3"
         
     xml_str = ET.tostring(urlset, encoding="utf-8")
     parsed_xml = minidom.parseString(xml_str)

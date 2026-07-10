@@ -70,6 +70,13 @@ Este documento recopila exclusivamente las dudas estratégicas, técnicas y de n
 **Impacto:** Define el keyword research, el copy de producto, los alt de imágenes y las meta-descripciones de categorías.  
 **Bloquea propuesta:** No. Se puede avanzar con keywords obvios, pero se necesita validación para una estrategia completa.
 
+### [D9] Políticas legales y cumplimiento (Privacidad y Cookies)
+**Nivel:** MEDIO  
+**Área:** Legal / SEO E-E-A-T  
+**Contexto:** Se crearon borradores de Políticas de Privacidad y Términos y Condiciones bajo la reglamentación argentina, con sus correspondientes rutas y enlaces en el footer.  
+**Pregunta:** ¿La cooperativa aprueba los textos estándar de los borradores creados o requiere realizar modificaciones de redacción? ¿Se integrarán herramientas de analítica o marketing (como Google Analytics) a corto plazo que ameriten colocar un banner de consentimiento de cookies?  
+**Impacto:** Técnico resuelto. Solo requiere confirmación del contenido legal.
+
 ---
 
 ## DUDAS TÉCNICAS
@@ -102,7 +109,7 @@ Este documento recopila exclusivamente las dudas estratégicas, técnicas y de n
 
 ## RESUMEN DE ESTADO
 
-- **Dudas estratégicas abiertas:** 8 (D1, D2, D3, D4, D5, D6, D7, D8)
+- **Dudas estratégicas abiertas:** 9 (D1, D2, D3, D4, D5, D6, D7, D8, D9)
 - **Dudas técnicas abiertas:** 4 (DT1, DT2, DT3, DT4)
 - **Dudas resueltas:** 0
 - **Certezas confirmadas:** ver `docs/CERTEZAS.md`

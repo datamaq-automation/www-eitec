@@ -1,15 +1,19 @@
 from typing import Protocol
+
 from pydantic import BaseModel
+
 
 class Category(BaseModel):
     name: str
     slug: str
     image: str
 
+
 class CarouselSlide(BaseModel):
     title: str
     image: str
     link: str
+
 
 class SiteInfo(BaseModel):
     title: str
@@ -25,11 +29,9 @@ class SiteInfo(BaseModel):
     base_url: str = "https://www.eitec.coop.ar"
     google_analytics_id: str | None = None
     microsoft_clarity_id: str | None = None
-    chatwoot_api_url: str = "https://chatwoot.eitec.com.ar"
-    chatwoot_account_id: int = 1
-    chatwoot_inbox_id: int = 1
     enable_pdf_generator: bool = False
     enable_blog: bool = False
+
 
 class BlogPost(BaseModel):
     title: str
@@ -39,29 +41,20 @@ class BlogPost(BaseModel):
     content: str
     image: str
 
+
 class CatalogRepository(Protocol):
-    def get_categories(self) -> list[Category]:
-        ...
+    def get_categories(self) -> list[Category]: ...
 
-    def get_carousel_slides(self) -> list[CarouselSlide]:
-        ...
+    def get_carousel_slides(self) -> list[CarouselSlide]: ...
 
-    def get_category_slugs(self) -> set[str]:
-        ...
+    def get_category_slugs(self) -> set[str]: ...
 
-    def get_category_by_slug(self, slug: str) -> Category | None:
-        ...
+    def get_category_by_slug(self, slug: str) -> Category | None: ...
 
-    def search_categories(self, query: str) -> list[Category]:
-        ...
+    def search_categories(self, query: str) -> list[Category]: ...
 
-    def get_site_info(self) -> SiteInfo:
-        ...
+    def get_site_info(self) -> SiteInfo: ...
 
-    def get_blog_posts(self) -> list[BlogPost]:
-        ...
+    def get_blog_posts(self) -> list[BlogPost]: ...
 
-    def get_blog_post_by_slug(self, slug: str) -> BlogPost | None:
-        ...
-
-
+    def get_blog_post_by_slug(self, slug: str) -> BlogPost | None: ...

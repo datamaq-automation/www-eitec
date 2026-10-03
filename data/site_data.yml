@@ -66,9 +66,6 @@ site_info:
   base_url: https://www.eitec.coop.ar
   google_analytics_id: ''
   microsoft_clarity_id: ''
-  chatwoot_api_url: https://chatwoot.eitec.com.ar
-  chatwoot_account_id: 3
-  chatwoot_inbox_id: 13
   enable_pdf_generator: false
   enable_blog: false
 

@@ -22,7 +22,18 @@ LEADS_DB_FILE = BASE_DIR / "data" / "leads.db"
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 _catalog_repo = YamlCatalogRepository(DATA_FILE)
-_lead_repository = LeadRepository(LEADS_DB_FILE)
+_lead_repository: LeadRepository | None = None
+
+
+def _get_lead_repository_instance() -> LeadRepository:
+    global _lead_repository
+    if _lead_repository is None:
+        try:
+            _lead_repository = LeadRepository(LEADS_DB_FILE)
+        except Exception as e:
+            logger.error("Error initializing LeadRepository: %s", str(e))
+            raise
+    return _lead_repository
 
 
 class CompositeLeadNotifier(LeadNotifier):
@@ -68,7 +79,7 @@ def get_lead_notifier() -> LeadNotifier:
 
 
 def get_lead_repository() -> LeadRepository:
-    return _lead_repository
+    return _get_lead_repository_instance()
 
 
 def _get_git_version() -> str:

@@ -42,14 +42,21 @@ class CompositeLeadNotifier(LeadNotifier):
 
 
 # Configurar notificaciones múltiples según variables de entorno
-_active_notifiers: list[LeadNotifier] = [LoggingLeadNotifier()]
+def _create_lead_notifier() -> LeadNotifier:
+    notifiers: list[LeadNotifier] = [LoggingLeadNotifier()]
 
-# Agregar email notifier si SMTP está configurado
-site_info = _catalog_repo.get_site_info()
-if settings.SMTP_HOST and settings.SMTP_PORT:
-    _active_notifiers.append(EmailLeadNotifier(site_info.contact_email))
+    # Agregar email notifier si SMTP está configurado
+    if settings.SMTP_HOST and settings.SMTP_PORT:
+        try:
+            site_info = _catalog_repo.get_site_info()
+            notifiers.append(EmailLeadNotifier(site_info.contact_email))
+        except Exception as e:
+            logger.error("No se pudo configurar EmailLeadNotifier: %s", str(e))
 
-_lead_notifier: LeadNotifier = CompositeLeadNotifier(_active_notifiers)
+    return CompositeLeadNotifier(notifiers)
+
+
+_lead_notifier: LeadNotifier = _create_lead_notifier()
 
 
 def get_catalog_repository() -> CatalogRepository:

@@ -1,14 +1,21 @@
-import pytest
-from typing import Generator
-from fastapi.testclient import TestClient
-from src.infrastructure.fastapi.app import app
-from src.infrastructure.config import settings
+from collections.abc import Generator
 
-# Prevent any real HTTP requests to Chatwoot during test suites
-settings.CHATWOOT_API_TOKEN = ""
-from src.domain.catalog import CatalogRepository, Category, CarouselSlide, SiteInfo, BlogPost
+import pytest
+from fastapi.testclient import TestClient
+
+from src.domain.catalog import (
+    BlogPost,
+    CarouselSlide,
+    CatalogRepository,
+    Category,
+    SiteInfo,
+)
 from src.domain.lead import Lead, LeadNotifier
-from src.infrastructure.fastapi.dependencies import get_catalog_repository, get_lead_notifier
+from src.infrastructure.fastapi.app import app
+from src.infrastructure.fastapi.dependencies import (
+    get_catalog_repository,
+    get_lead_notifier,
+)
 
 # Mock data
 MOCK_CATEGORIES = [
@@ -30,11 +37,8 @@ MOCK_SITE_INFO = SiteInfo(
     contact_email="horacio@eitec.coop.ar",
     social_facebook="https://www.facebook.com/CooperativaEitec",
     social_instagram="https://www.instagram.com/eitec_cooperativa/",
-    chatwoot_api_url="https://chatwoot.eitec.com.ar",
-    chatwoot_account_id=3,
-    chatwoot_inbox_id=13,
     enable_blog=False,
-    enable_pdf_generator=False
+    enable_pdf_generator=False,
 )
 
 MOCK_BLOG_POSTS = [
@@ -44,9 +48,10 @@ MOCK_BLOG_POSTS = [
         date="2026-07-10",
         summary="Summary",
         content="<p>Content</p>",
-        image="test.jpg"
+        image="test.jpg",
     )
 ]
+
 
 class MockCatalogRepository(CatalogRepository):
     def get_categories(self) -> list[Category]:
@@ -101,15 +106,14 @@ def mock_lead_notifier() -> MockLeadNotifier:
 
 @pytest.fixture
 def client(
-    mock_catalog_repo: MockCatalogRepository,
-    mock_lead_notifier: MockLeadNotifier
+    mock_catalog_repo: MockCatalogRepository, mock_lead_notifier: MockLeadNotifier
 ) -> Generator[TestClient, None, None]:
     # Set up overrides
     app.dependency_overrides[get_catalog_repository] = lambda: mock_catalog_repo
     app.dependency_overrides[get_lead_notifier] = lambda: mock_lead_notifier
-    
+
     with TestClient(app) as test_client:
         yield test_client
-        
+
     # Clean up overrides
     app.dependency_overrides.clear()

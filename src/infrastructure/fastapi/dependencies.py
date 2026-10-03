@@ -2,24 +2,28 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+
 from fastapi import Depends
 from fastapi.templating import Jinja2Templates
-
 from src.domain.catalog import CatalogRepository
 from src.domain.lead import Lead, LeadNotifier
 from src.infrastructure.config import settings
+from src.infrastructure.persistence.lead_repository import LeadRepository
 from src.infrastructure.repositories.yaml_catalog import YamlCatalogRepository
-from src.infrastructure.services.logger import logger, LoggingLeadNotifier
-from src.infrastructure.services.chatwoot_lead_notifier import ChatwootLeadNotifier
+from src.infrastructure.services.email_lead_notifier import EmailLeadNotifier
+from src.infrastructure.services.logger import LoggingLeadNotifier, logger
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 TEMPLATES_DIR = BASE_DIR / "templates"
 STATIC_DIR = BASE_DIR / "static"
 DATA_FILE = BASE_DIR / "data" / "site_data.yml"
+LEADS_DB_FILE = BASE_DIR / "data" / "leads.db"
 
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 _catalog_repo = YamlCatalogRepository(DATA_FILE)
+_lead_repository = LeadRepository(LEADS_DB_FILE)
+
 
 class CompositeLeadNotifier(LeadNotifier):
     def __init__(self, notifiers: list[LeadNotifier]):
@@ -30,21 +34,34 @@ class CompositeLeadNotifier(LeadNotifier):
             try:
                 await notifier.notify(lead)
             except Exception as e:
-                logger.error("Error al notificar lead con %s: %s", notifier.__class__.__name__, str(e))
+                logger.error(
+                    "Error al notificar lead con %s: %s",
+                    notifier.__class__.__name__,
+                    str(e),
+                )
+
 
 # Configurar notificaciones múltiples según variables de entorno
 _active_notifiers: list[LeadNotifier] = [LoggingLeadNotifier()]
 
-if settings.CHATWOOT_API_TOKEN:
-    _active_notifiers.append(ChatwootLeadNotifier(_catalog_repo))
+# Agregar email notifier si SMTP está configurado
+site_info = _catalog_repo.get_site_info()
+if settings.SMTP_HOST and settings.SMTP_PORT:
+    _active_notifiers.append(EmailLeadNotifier(site_info.contact_email))
 
 _lead_notifier: LeadNotifier = CompositeLeadNotifier(_active_notifiers)
+
 
 def get_catalog_repository() -> CatalogRepository:
     return _catalog_repo
 
+
 def get_lead_notifier() -> LeadNotifier:
     return _lead_notifier
+
+
+def get_lead_repository() -> LeadRepository:
+    return _lead_repository
 
 
 def _get_git_version() -> str:

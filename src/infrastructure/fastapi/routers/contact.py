@@ -1,8 +1,12 @@
-from fastapi import APIRouter, Form, Request, Depends
+from fastapi import APIRouter, Depends, Form, Request
 from fastapi.responses import RedirectResponse
 
 from src.domain.lead import Lead, LeadNotifier
-from src.infrastructure.fastapi.dependencies import get_lead_notifier
+from src.infrastructure.fastapi.dependencies import (
+    get_lead_notifier,
+    get_lead_repository,
+)
+from src.infrastructure.persistence.lead_repository import LeadRepository
 from src.infrastructure.services.logger import logger
 
 router = APIRouter()
@@ -23,20 +27,31 @@ async def contact(
     mensaje: str = Form(""),
     productos: str | None = Form(None),
     notifier: LeadNotifier = Depends(get_lead_notifier),
+    repo: LeadRepository = Depends(get_lead_repository),
 ) -> RedirectResponse:
-    # Depurar petición entrante
     client_ip = request.client.host if request.client else "Desconocida"
     logger.info(
-        "\x1b[1;33mPETICIÓN DE CONTACTO RECIBIDA\x1b[0m -> IP: \x1b[1m%s\x1b[0m | Nombre: '%s' | Email: '%s' | Teléfono: '%s' | Productos: '%s'",
+        "\x1b[1;33mPETICIÓN DE CONTACTO RECIBIDA\x1b[0m -> IP: \x1b[1m%s\x1b[0m",
         client_ip,
-        nombre,
-        email,
-        telefono,
-        productos
     )
 
-    # Registrar y notificar el lead
-    lead = Lead(nombre=nombre, email=email, telefono=telefono, mensaje=mensaje, productos=productos)
-    await notifier.notify(lead)
+    lead = Lead(
+        nombre=nombre,
+        email=email,
+        telefono=telefono,
+        mensaje=mensaje,
+        productos=productos,
+    )
 
-    return RedirectResponse(url="/gracias", status_code=303)
+    try:
+        # Persistir el lead antes de notificar
+        lead_id = repo.save(lead)
+        logger.info("\x1b[1;32mLEAD PERSISTIDO\x1b[0m -> ID: %d", lead_id)
+
+        # Notificar el lead
+        await notifier.notify(lead)
+
+        return RedirectResponse(url="/gracias", status_code=303)
+    except Exception as e:
+        logger.error("\x1b[1;31mFALLA AL PROCESAR LEAD\x1b[0m -> Error: %s", str(e))
+        return RedirectResponse(url="/gracias", status_code=500)

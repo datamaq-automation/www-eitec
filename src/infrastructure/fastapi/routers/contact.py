@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Form, Request
+from fastapi import APIRouter, Depends, Form, HTTPException, Request
 from fastapi.responses import RedirectResponse
 
 from src.domain.lead import Lead, LeadNotifier
@@ -8,6 +8,8 @@ from src.infrastructure.fastapi.dependencies import (
 )
 from src.infrastructure.persistence.lead_repository import LeadRepository
 from src.infrastructure.services.logger import logger
+from src.infrastructure.services.rate_limiter import limiter
+from src.infrastructure.services.recaptcha_service import RecaptchaService
 
 router = APIRouter()
 
@@ -19,6 +21,7 @@ async def contact_page() -> RedirectResponse:
 
 
 @router.post("/contacto")
+@limiter.limit("5/hour")
 async def contact(
     request: Request,
     nombre: str = Form(...),
@@ -26,6 +29,7 @@ async def contact(
     telefono: str = Form(...),
     mensaje: str = Form(""),
     productos: str | None = Form(None),
+    g_recaptcha_response: str = Form(""),
     notifier: LeadNotifier = Depends(get_lead_notifier),
     repo: LeadRepository = Depends(get_lead_repository),
 ) -> RedirectResponse:
@@ -34,6 +38,14 @@ async def contact(
         "\x1b[1;33mPETICIÓN DE CONTACTO RECIBIDA\x1b[0m -> IP: \x1b[1m%s\x1b[0m",
         client_ip,
     )
+
+    # Validar reCAPTCHA
+    if not RecaptchaService.verify_token(g_recaptcha_response, client_ip):
+        logger.warning(
+            "\x1b[1;31mreCAPTCHA VALIDATION FAILED\x1b[0m -> IP: \x1b[1m%s\x1b[0m",
+            client_ip,
+        )
+        raise HTTPException(status_code=400, detail="reCAPTCHA validation failed")
 
     lead = Lead(
         nombre=nombre,

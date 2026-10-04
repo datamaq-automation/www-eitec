@@ -106,4 +106,5 @@ def get_common_context(
         "google_analytics_id": site_info.google_analytics_id,
         "microsoft_clarity_id": site_info.microsoft_clarity_id,
         "base_url": site_info.base_url.rstrip("/"),
+        "recaptcha_site_key": settings.RECAPTCHA_SITE_KEY,
     }

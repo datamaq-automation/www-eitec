@@ -4,6 +4,7 @@
 
         <form action="/contacto" id="form_contactanos" name="form_contactanos" method="post" enctype="multipart/form-data" class="contact-form row g-3">
             <input type="hidden" id="accion" name="accion" value="contacto">
+            <input type="hidden" id="g_recaptcha_response" name="g_recaptcha_response">
 
             <div class="contact-form__group form-group col-md-6 px-1" id="div_campo_nombre" name="div_campo_nombre">
                 <label class="contact-form__label obligatorio" for="nombre">Nombre / Razón Social</label>
@@ -26,7 +27,8 @@
             </div>
 
             <div class="form-floating col-12">
-                <button type="submit" id="boton_enviar" class="contact-form__submit btn btn-primary btn-call btn-call--secondary col-12 col-md-3">Enviar</button>
+                <div class="g-recaptcha mb-3" data-sitekey="{{ recaptcha_site_key }}" data-callback="onRecaptchaSuccess" data-expired-callback="onRecaptchaExpired"></div>
+                <button type="submit" id="boton_enviar" class="contact-form__submit btn btn-primary btn-call btn-call--secondary col-12 col-md-3" disabled>Enviar</button>
             </div>
         </form>
     </div>

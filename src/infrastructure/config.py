@@ -35,6 +35,10 @@ class Settings:
             "yes",
         )
 
+        # reCAPTCHA v2 Configuration
+        self.RECAPTCHA_SITE_KEY: str = os.getenv("RECAPTCHA_SITE_KEY", "")
+        self.RECAPTCHA_SECRET_KEY: str = os.getenv("RECAPTCHA_SECRET_KEY", "")
+
         # Feature flags (activar/desactivar por variable de entorno, por defecto False)
         self.ENABLE_PDF_GENERATOR: bool = os.getenv(
             "ENABLE_PDF_GENERATOR", "false"
